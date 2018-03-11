@@ -23,20 +23,20 @@
                                     {{Form::label('email','Email')}}
                                     {{Form::text('email', $user->email , ['class' => 'form-control'])}}
 
-                                    {{Form::label('phone_number','Nomor HP')}}
+                                    {{Form::label('phone_number','Phone Number')}}
                                     {{Form::text('phone_number', $user->phone_number, ['class' => 'form-control'])}}
 
-                                    {{Form::label('company','Perusahaan')}}
+                                    {{Form::label('company','Company')}}
                                     {{Form::text('company', $user->company, ['class' => 'form-control'])}}
                                     
                                     {{Form::label('interest','Interest')}}
                                     {{Form::text('interest', $user->interest, ['class' => 'form-control'])}}
 
-                                    {{Form::label('address','Alamat')}}
+                                    {{Form::label('address','Address')}}
                                     {{Form::text('address', $user->address, ['class' => 'form-control'])}}
                                 </div>
                                 {{Form::hidden('_method', 'PUT')}}
-                                {{Form::submit('Submit', ['class' => 'btn btn-blue'])}}
+                                {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
                                  {!! Form::close() !!}
                                 </div>
                             </div>
