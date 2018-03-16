@@ -3,7 +3,6 @@
 @section('title', $user->name . ' | Profile')
 
 @section('content')
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <h2 class="sub-title">Profile</h2>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >  
@@ -14,7 +13,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" 
-                        src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" 
+                        src="/storage/profile_image/{{$user->profile_image}}" 
                         class="img-circle img-responsive" id=""> </div>
                         
                             <div class=" col-md-9 col-lg-9 "> 
