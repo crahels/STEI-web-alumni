@@ -115,7 +115,7 @@ class MembersController extends Controller
         }
         $user->save();
 
-        return redirect('/profile/' . $id)->with('success', 'Profile Updated');
+        return redirect('/members/' . $id)->with('success', 'Profile Updated');
     }
 
     /**
