@@ -15,4 +15,8 @@ Route::get('/', function () {
     return '<h1>Under Construction</h1>';
 });
 
+Route::post('/importcsv','AddMemberController@importCSV');
+Route::post('/importmember','AddMemberController@importMember');
+
 Route::resource('profile', 'MembersController');
+Route::resource('addmember', 'AddMemberController');
