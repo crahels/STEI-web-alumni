@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Web Alumni STEI | Member List')
+@section('title', 'Member List')
 
 @section('content')
-    <h1>Members List</h1>
+    <h2>Members List</h2>
     
     @if(count($members) > 0)
         @foreach($members as $member)

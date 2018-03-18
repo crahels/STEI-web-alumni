@@ -16,3 +16,10 @@ Route::get('/', function () {
 });
 
 Route::resource('members', 'MembersController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
