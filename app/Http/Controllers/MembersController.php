@@ -15,7 +15,8 @@ class MembersController extends Controller
      */
     public function index()
     {
-        //
+        $members = Member::orderBy('name','asc')->paginate(30);
+        return view('members.list')->with('members', $members);
     }
 
     /**

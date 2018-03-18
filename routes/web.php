@@ -15,4 +15,4 @@ Route::get('/', function () {
     return '<h1>Under Construction</h1>';
 });
 
-Route::resource('profile', 'MembersController');
+Route::resource('members', 'MembersController');
