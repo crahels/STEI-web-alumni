@@ -1,7 +1,9 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
           <img src="{{URL::asset('storage/logo_itb.png')}}" alt="logo_ins">
-          <a class="navbar-brand" href="/">Web Alumni STEI</a>
+          <a class="navbar-brand" href="/">
+              Web Alumni <b style="font-size: 1.3em">STEI</b>
+          </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

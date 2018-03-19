@@ -13,8 +13,8 @@
 	margin-right: 20px;
 }
 
-.nav-item,
-.nav-link,
+.navbar-nav .nav-item,
+.navbar-nav .nav-link,
 .navbar-brand {
 	color: white !important;
 	margin-right: 15px;
@@ -34,6 +34,10 @@
 	color: black !important;
 }
 
+.sidebar .nav-link {
+	color: white !important;
+}
+
 .sidebar .nav-link .sideMenu {
 	margin-left: 10px;
 }
@@ -48,11 +52,38 @@
 	margin: 0px;
 }
 
-.container {
-	margin: 0px;
-	padding: 0px;
-}
-
 #bannerMember {
 	max-width: 615px;
+}
+
+.nav-pills .nav-item {
+	padding: 15px;
+	font-size: 1.3em;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+
+.addMenu {
+	font-style: initial;
+	margin: 10px;
+}
+
+.addMemberForm {
+	margin: 40px 200px;
+}
+
+.addMemberForm label {
+	margin-bottom: 10px;
+}
+
+.bottomButton {
+	margin-top: 30px;
+}
+
+.submitButton {
+	background-color: #5DB85C !important;
+}
+
+.cancelButton {
+	background-color: #b22121 !important;
 }

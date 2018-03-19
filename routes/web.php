@@ -18,3 +18,6 @@ Auth::routes();
 Route::resource('members', 'MembersController');
 
 Route::get('/dashboard', 'DashboardController@index');
+Route::get('/add', function () {
+	return view('addMember');
+});
