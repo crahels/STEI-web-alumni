@@ -52,3 +52,7 @@
 	margin: 0px;
 	padding: 0px;
 }
+
+#bannerMember {
+	max-width: 615px;
+}
