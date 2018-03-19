@@ -18,11 +18,16 @@
     <!-- Fonts -->
     </head>
 <body>
-    <div id="app">
         @include('inc.navbar')
         <div class="container">
             @include('inc.messages')
             @yield('content')
+            <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+            <h1 class="display-4">Website Alumni STEI-ITB</h1>
+            <p class="lead">Sarana berkumpul alumni STEI-ITB dan semua personil STEI-ITB</p>
+            </div>
+            </div>
         </div>
     </div>
 </body>
