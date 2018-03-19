@@ -57,15 +57,26 @@
 }
 
 .nav-pills .nav-item {
+	border: 1px solid white;
+	background-color: #3499CC !important;
 	padding: 15px;
 	font-size: 1.3em;
 	border-top-left-radius: 7px;
 	border-top-right-radius: 7px;
 }
 
+.nav-pills .manualAdd {
+	margin-left: 150px;
+}
+
+.nav-pills .CSVAdd {
+	margin-right: 150px;
+}
+
 .addMenu {
 	font-style: initial;
 	margin: 10px;
+	color: white !important;
 }
 
 .addMemberForm {
@@ -86,4 +97,12 @@
 
 .cancelButton {
 	background-color: #b22121 !important;
+}
+
+.addCSVForm {
+	margin: 50px 200px;
+}
+
+[hidden] {
+  display: none !important;
 }

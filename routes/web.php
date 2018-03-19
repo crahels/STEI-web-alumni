@@ -21,3 +21,6 @@ Route::get('/dashboard', 'DashboardController@index');
 Route::get('/add', function () {
 	return view('addMember');
 });
+Route::get('/addCSV', function () {
+	return view('addCSV');
+});
