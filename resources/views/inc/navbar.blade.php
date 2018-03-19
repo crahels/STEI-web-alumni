@@ -16,10 +16,10 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/members">Members</a>
                   </li>
-                  @endif
                   <li class="nav-item">
                     <a class="nav-link" href="#">Articles</a>
                   </li>
+                  @endif
                 </ul>
 
               <!-- Right Side Of Navbar -->

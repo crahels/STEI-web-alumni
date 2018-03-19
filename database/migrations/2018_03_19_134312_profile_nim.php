@@ -14,7 +14,7 @@ class ProfileNim extends Migration
     public function up()
     {
         Schema::table('members', function($table){
-            $table->string('nim');
+            $table->string('nim')->unique();
         });
     }
 
