@@ -8,6 +8,11 @@ use App\Member;
 
 class MembersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['show', 'edit', 'update']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,8 @@ class MembersController extends Controller
      */
     public function index()
     {
-        //
+        $members = Member::orderBy('name','asc')->paginate(30);
+        return view('members.list')->with('members', $members);
     }
 
     /**
@@ -114,7 +120,7 @@ class MembersController extends Controller
         }
         $user->save();
 
-        return redirect('/profile/' . $id)->with('success', 'Profile Updated');
+        return redirect('/members/' . $id)->with('success', 'Profile Updated');
     }
 
     /**

@@ -44,7 +44,7 @@
                             </div>
                         </div>
                     <div class="panel-footer">
-                            <a href="/profile/{{$user->id}}/edit" data-original-title="Edit this user" 
+                            <a href="/members/{{$user->id}}/edit" data-original-title="Edit this user" 
                                 data-toggle="tooltip" type="button" class="btn btn-sm btn-warning pull right">
                                 <i class="glyphicon glyphicon-edit"></i>
                                 </a>
@@ -52,5 +52,6 @@
                 </div>
             </div>
         </div>
+        <h2 class="sub-title"><a href="/members" class="btn btn-default">&#8592; Back</a></h2>
 
 @endsection

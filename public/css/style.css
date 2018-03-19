@@ -1,0 +1,58 @@
+.navbar {
+	background-color: #003365 !important;
+	border-radius: 0px !important;
+	height: 80px;
+}
+
+.navbar-brand {
+	margin-right: 30px;
+}
+
+.navbar img {
+	width: 50px;
+	margin-right: 20px;
+}
+
+.nav-item,
+.nav-link,
+.navbar-brand {
+	color: white !important;
+	margin-right: 15px;
+}
+
+.navbar-nav {
+	font-size: 1.2em;
+}
+
+.sidebar {
+	background-color: #3499CC !important;
+	height: 100%;
+	padding: 0px;
+}
+
+.sidebar .nav-link:hover {
+	color: black !important;
+}
+
+.sidebar .nav-link .sideMenu {
+	margin-left: 10px;
+}
+
+.sidebar .sideMenu {
+	margin-left: 10px;
+	font-style: initial;
+}
+
+.sidebar-sticky .nav-item,
+.nav-link {
+	margin: 0px;
+}
+
+.container {
+	margin: 0px;
+	padding: 0px;
+}
+
+#bannerMember {
+	max-width: 615px;
+}

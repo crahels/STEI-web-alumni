@@ -48,6 +48,7 @@ class AddMemberController extends Controller
                 if (!empty($data)) {
                     foreach ($data as $key=>$value) {
                         $member = Member::create([
+                            'nim' => $value->nim,
                             'name' => $value->name,
                             'email' => $value->email,
                             'phone_number' => $value->phone_number,
@@ -75,11 +76,12 @@ class AddMemberController extends Controller
                     'required',
                     'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/'),
             'phone_number' => 'required',
-            'name' => 'required'/*,
-            'nim' => 'required'*/
+            'name' => 'required',
+            'nim' => 'required'
         ]);
 
         $member = Member::create([
+            'nim' => $request->input('nim'),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone_number' => $request->input('phone_number'),

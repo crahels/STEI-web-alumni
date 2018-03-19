@@ -46,8 +46,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('users.profile')->with('user', $user);
+        //
     }
 
     /**
@@ -58,8 +57,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('users.editprofile')->with('user', $user);
+       //
     }
 
     /**
@@ -71,25 +69,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'email' => 
-                array(
-                    'required',
-                    'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/'),
-            'phone_number' => 'required',
-            'company' => 'required',
-            'interest' => 'required'
-        ]);
-
-        $user = User::find($id);
-        $user->email = $request->input('email');
-        $user->phone_number = $request->input('phone_number');
-        $user->company = $request->input('company');
-        $user->interest = $request->input('interest');
-        $user->address = $request->input('address');
-        $user->save();
-
-        return redirect('/profile/' . $id)->with('success', 'Profile Updated');
+        //
     }
 
     /**
