@@ -12,10 +12,9 @@
 */
 
 Route::get('/', function () {
-    return '<h1>Under Construction</h1>';
+    return view('layouts.app');
 });
-
-Route::resource('members', 'MembersController');
 Auth::routes();
+Route::resource('members', 'MembersController');
 
 Route::get('/dashboard', 'DashboardController@index');

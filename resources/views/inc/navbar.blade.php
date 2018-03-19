@@ -1,6 +1,6 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-          <img src="{{URL::asset('/res/logo_itb.png')}}" alt="logo_ins">
+          <img src="{{URL::asset('storage/logo_itb.png')}}" alt="logo_ins">
           <a class="navbar-brand" href="/">Web Alumni STEI</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -12,9 +12,11 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                   </li>
+                  @if(!Auth::guest() &&  Auth::user()->IsAdmin == 1)
                   <li class="nav-item">
                     <a class="nav-link" href="/members">Members</a>
                   </li>
+                  @endif
                   <li class="nav-item">
                     <a class="nav-link" href="#">Articles</a>
                   </li>
@@ -24,8 +26,8 @@
               <ul class="navbar-nav ml-auto navbar-right">
                   <!-- Authentication Links -->
                   @guest
-                      <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login Admin') }}</a></li>
-                      <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                      <!-- <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login Admin') }}</a></li> -->
+                      <!-- <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li> -->
                   @else
                       <li class="nav-item dropdown">
                           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
