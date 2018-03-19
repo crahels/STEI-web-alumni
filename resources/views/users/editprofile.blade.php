@@ -39,7 +39,7 @@
                                 </div>
                                 {{Form::hidden('_method', 'PUT')}}
                                 {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-                                <a href="/members/{{$user->id}}}" class="btn btn-default">Cancel</a>
+                                <a href="/members/{{$user->id}}" class="btn btn-default">Cancel</a>
                                  {!! Form::close() !!}
                                 </div>
                             </div>

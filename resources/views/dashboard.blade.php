@@ -11,19 +11,19 @@
               <li class="nav-item">
                 <a class="nav-link active" href="/dashboard">
                   <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
+                  <i class="sideMenu">Dashboard</i><span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/members">
                   <span data-feather="users"></span>
-                  Members List
+                  <i class="sideMenu">Members List</i>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/dashboard/#">
                   <span data-feather="file"></span>
-                  Articles
+                  <i class="sideMenu">Articles</i>
                 </a>
               </li>
             </ul>
