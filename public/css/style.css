@@ -1,0 +1,15 @@
+.navbar {
+	background-color: #003365 !important;
+	border-radius: 0px !important;
+	height: 80px;
+	color: white !important;
+}
+
+.navbar img {
+	width: 50px;
+	margin-right: 20px;
+}
+
+.navbar a {
+	color: white !important;
+}
