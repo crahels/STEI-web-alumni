@@ -23,7 +23,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/dashboard/#">
                     <span data-feather="file"></span>
-                    <i class="sideMenu">Articles</i>
+                    <i class="sideMenu">TBD</i>
                   </a>
                 </li>
               </ul>

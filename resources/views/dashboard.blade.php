@@ -21,9 +21,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/dashboard/#">
+                  <a class="nav-link" href="/dashboard">
                     <span data-feather="file"></span>
-                    <i class="sideMenu">Articles</i>
+                    <i class="sideMenu">TBD</i>
                   </a>
                 </li>
               </ul>
@@ -35,8 +35,11 @@
               <img src="{{URL::asset('storage/banner.jpg')}}" id="bannerMember">
             </div>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-              <h1 class="h2">What to Show</h1>
+              <h1 class="h2">Website Alumni STEI-ITB</h1>
             </div>
+            <p class="bio">
+              Saat ini, belum terdapat sarana resmi bagi para alumni STEI ITB untuk berinteraksi. Para alumni hanya berinteraksi melalui media sosial sehingga tidak dapat diketahui identitas asli sang pemilik akun. Oleh karena itu, organisasi STEI ITB ingin membuat suatu sarana resmi untuk interaksi para alumni dengan melakukan verifikasi credential melalui email yang terdaftar pada STEI ITB sehingga dapat dipastikan bahwa pemilik akun adalah benar merupakan alumni STEI ITB. Dengan adanya sistem ini, pemalsuan identitas yang mengatasnamakan salah satu alumni STEI ITB dapat dicegah/dikurangi. Selain itu, sistem ini juga diharapkan dapat menjadi sarana bagi para alumni STEI ITB untuk saling bertukar informasi satu dengan yang lain agar dapat saling membangun sebagai satu kesatuan alumni STEI ITB.
+            </p>
           </main>
       </div>
     </div>
