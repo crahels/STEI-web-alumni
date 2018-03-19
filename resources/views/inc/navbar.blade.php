@@ -1,5 +1,7 @@
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
+          <img src="res/logo_itb.png">
           <a class="navbar-brand" href="/">Web Alumni STEI</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
