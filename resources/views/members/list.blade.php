@@ -3,34 +3,34 @@
 @section('title', 'Members List')
 
 @section('content')
-<div class="container-fluid">
+      <div class="container-fluid">
         <div class="row">
-          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <nav class="col-3 sidebar">
             <div class="sidebar-sticky">
               <ul class="nav flex-column">
                 <li class="nav-item">
                   <a class="nav-link active" href="/dashboard">
                     <span data-feather="home"></span>
-                    Dashboard <span class="sr-only">(current)</span>
+                    <i class="sideMenu">Dashboard</i><span class="sr-only">(current)</span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/members">
                     <span data-feather="users"></span>
-                    Members List
+                    <i class="sideMenu">Members List</i>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/dashboard/#">
                     <span data-feather="file"></span>
-                    Articles
+                    <i class="sideMenu">Articles</i>
                   </a>
                 </li>
               </ul>
             </div>
           </nav>
   
-          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <main role="main" class="col-7">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
               <h1 class="h2">Members List</h1>
               <button class="btn btn-primary">Add Member</button>

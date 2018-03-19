@@ -34,6 +34,10 @@
 	color: black !important;
 }
 
+.sidebar .nav-link .sideMenu {
+	margin-left: 10px;
+}
+
 .sidebar .sideMenu {
 	margin-left: 10px;
 	font-style: initial;
@@ -42,4 +46,9 @@
 .sidebar-sticky .nav-item,
 .nav-link {
 	margin: 0px;
+}
+
+.container {
+	margin: 0px;
+	padding: 0px;
 }
