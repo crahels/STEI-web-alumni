@@ -8,6 +8,11 @@ use App\Member;
 
 class MembersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['show', 'edit', 'update']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
