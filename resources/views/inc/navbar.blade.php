@@ -23,11 +23,12 @@
               <ul class="navbar-nav ml-auto navbar-right">
                   <!-- Authentication Links -->
                   @guest
-                      <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                      <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login Admin') }}</a></li>
+                      <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                   @else
                       <li class="nav-item dropdown">
                           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                              {{ Auth::user()->name }} <span class="caret"></span>
+                              {{ Auth::user()->name }}</span>
                           </a>
 
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
