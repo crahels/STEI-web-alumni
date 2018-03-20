@@ -2,7 +2,8 @@
       <div class="container">
           <img src="{{URL::asset('storage/logo_itb.png')}}" alt="logo_ins">
           <a class="navbar-brand" href="/">
-              Web Alumni <b style="font-size: 1.3em">STEI</b>
+              <i style="font-weight: lighter; font-style: initial; font-size: 1.3em">Web Alumni</i>
+              <b style="font-size: 1.5em">STEI</b>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

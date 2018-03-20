@@ -17,11 +17,11 @@
             </div>
             @if(count($members) > 0)
             <table class="table table-bordered">
-              <thead class="thead-dark">
+              <thead class="thead-light custom-thread">
                 <tr>
-                  <th scope="col">Student ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email Address</th>
+                  <th scope="col-3">Student ID</th>
+                  <th scope="col-6">Name</th>
+                  <th scope="col-3">Email Address</th>
                 </tr>  
               </thead>
               <tbody>
