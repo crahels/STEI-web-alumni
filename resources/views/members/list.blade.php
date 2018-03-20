@@ -3,10 +3,9 @@
 @section('title', 'Members List')
 
 @section('content')
-
-@include('inc.adminmenu')
-
-      <main role="main" class="col-7">
+      @include('inc.adminmenu')
+  
+          <main role="main" class="col-7">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
               <img src="{{URL::asset('storage/banner.jpg')}}" id="bannerMember">
             </div>
@@ -17,16 +16,29 @@
               </a>
             </div>
             @if(count($members) > 0)
+            <table class="table table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Student ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email Address</th>
+                </tr>  
+              </thead>
+              <tbody>
                 @foreach($members as $member)
-                    <div class="list-group-item">
-                    <h4><a href="/members/{{$member->id}}">{{$member->name}}</a></h4>
-                    </div>
+                  <tr>
+                    <td>{{$member->nim}}</td>
+                    <td><a href="/members/{{$member->id}}">{{$member->name}}</a></td>
+                    <td>{{$member->email}}</td>
+                  </tr>
                 @endforeach
-                <ul class="pagination pull-right">{{$members->links()}}</ul>
+              </tbody>
+            </table>
+              <ul class="pagination pull-right">{{$members->links()}}</ul>
             @else
                 <p>No member.</p>
             @endif
           </main>
         </div>
-      </main>
+        </main>
 @endsection

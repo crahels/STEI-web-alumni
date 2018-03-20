@@ -24,8 +24,8 @@ Route::resource('profile', 'MembersController');
 Route::resource('addmember', 'AddMemberController');
 Route::get('/dashboard', 'DashboardController@index');
 Route::get('/add', function () {
-	return view('addMember');
-});
+	return view('admin.addmember');
+})->middleware('admin');
 Route::get('/addCSV', function () {
-	return view('addCSV');
-});
+	return view('admin.addCSV');
+})->middleware('admin');
