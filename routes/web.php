@@ -17,6 +17,11 @@ Route::get('/', function () {
 Auth::routes();
 Route::resource('members', 'MembersController');
 
+Route::post('/importcsv','AddMemberController@importCSV');
+Route::post('/importmember','AddMemberController@importMember');
+
+Route::resource('profile', 'MembersController');
+Route::resource('addmember', 'AddMemberController');
 Route::get('/dashboard', 'DashboardController@index');
 Route::get('/add', function () {
 	return view('addMember');

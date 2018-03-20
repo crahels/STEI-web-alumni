@@ -91,7 +91,10 @@ class MembersController extends Controller
                 array(
                     'required',
                     'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/'),
-            'phone_number' => 'required',
+            'phone_number' => 
+                array(
+                    'required',
+                    'regex:/^[0-9]+$/'),
             'company' => 'required',
             'interest' => 'required',
             'profile_image' => 'image|nullable|max:1999'
