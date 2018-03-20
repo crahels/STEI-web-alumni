@@ -40,4 +40,5 @@
             @endif
           </main>
         </div>
+        </main>
 @endsection
