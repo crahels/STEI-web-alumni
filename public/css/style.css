@@ -115,3 +115,27 @@
 [hidden] {
   display: none !important;
 }
+
+#loginItb {
+	width: 85px;
+	margin-left: 340px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	vertical-align: middle;
+}
+
+.loginTitle {
+	font-size: 2.5em;
+	color: white;
+	margin: 60px 20px;
+}
+
+.header-login .title1 {
+	font-weight: lighter;
+	font-style: initial;
+}
+
+.header-login .title2 {
+	font-weight: bold;
+	font-style: initial;
+}

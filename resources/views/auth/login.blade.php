@@ -1,11 +1,42 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
+        <link rel="stylesheet" href="{{asset('css/style.css')}}">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <title>@yield('title')</title>
 
-@section('title', 'Login Admin')
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-@section('content')
-<div class="container">
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+</head>
+@include('inc.messages')
+<body class="bodyLogin" style="background:url({{url('storage/banner.jpg')}}) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;">
+<div class="container row justify-content-center header-login">
+    <div class="col-offset-4">
+        <img src="{{URL::asset('storage/logo_itb.png')}}" id=loginItb>
+    </div>
+    <div class="col-offset-8">
+        <div class="loginTitle">
+            <i class="title1">Web Alumni</i>
+            <i class="title2">STEI-ITB</i>
+        </div>
+    </div>
+</div>
+<div class="container loginContainer">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">{{ __('Login Admin') }}</div>
 
@@ -68,4 +99,7 @@
         </div>
     </div>
 </div>
-@endsection
+</body>
+</html>
+
+@section('title', 'Login Admin')
