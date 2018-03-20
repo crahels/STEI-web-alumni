@@ -1,3 +1,8 @@
+/*.jumbotron {
+   background: #3499CC !important;
+   color: white !important;
+}*/
+
 .navbar {
 	background-color: #003365 !important;
 	border-radius: 0px !important;
@@ -13,8 +18,8 @@
 	margin-right: 20px;
 }
 
-.nav-item,
-.nav-link,
+.navbar-nav .nav-item,
+.navbar-nav .nav-link,
 .navbar-brand {
 	color: white !important;
 	margin-right: 15px;
@@ -34,6 +39,10 @@
 	color: black !important;
 }
 
+.sidebar .nav-link {
+	color: white !important;
+}
+
 .sidebar .nav-link .sideMenu {
 	margin-left: 10px;
 }
@@ -48,11 +57,61 @@
 	margin: 0px;
 }
 
-.container {
-	margin: 0px;
-	padding: 0px;
-}
-
 #bannerMember {
 	max-width: 615px;
+}
+
+.bio {
+	font-size: 1.2em;
+}
+
+.nav-pills .nav-item {
+	border: 1px solid white;
+	background-color: #3499CC !important;
+	padding: 15px;
+	font-size: 1.3em;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+
+.nav-pills .manualAdd {
+	margin-left: 150px;
+}
+
+.nav-pills .CSVAdd {
+	margin-right: 150px;
+}
+
+.addMenu {
+	font-style: initial;
+	margin: 10px;
+	color: white !important;
+}
+
+.addMemberForm {
+	margin: 40px 200px;
+}
+
+.addMemberForm label {
+	margin-bottom: 10px;
+}
+
+.bottomButton {
+	margin-top: 30px;
+}
+
+.submitButton {
+	background-color: #5DB85C !important;
+}
+
+.cancelButton {
+	background-color: #b22121 !important;
+}
+
+.addCSVForm {
+	margin: 50px 200px;
+}
+
+[hidden] {
+  display: none !important;
 }
