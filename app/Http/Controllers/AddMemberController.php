@@ -11,6 +11,12 @@ use App\Member;
 
 class AddMemberController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +54,7 @@ class AddMemberController extends Controller
                 if (!empty($data)) {
                     foreach ($data as $key=>$value) {
                         $member = Member::create([
+                            'nim' => $value->nim,
                             'name' => $value->name,
                             'email' => $value->email,
                             'phone_number' => $value->phone_number,
@@ -63,35 +70,44 @@ class AddMemberController extends Controller
             }
         }
 
-        return view('admin.showmember')->with('array_members', $array_members);
+        $members = Member::orderBy('name','asc')->paginate(30);
+        return view('members.list')->with('members', $members)->with('success', 'Members Imported');
     }
 
     public function importMember(Request $request)
     {
-        $array_members = collect();
         $this->validate($request, [
             'email' => 
                 array(
                     'required',
                     'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/'),
-            'phone_number' => 'required',
-            'name' => 'required'/*,
-            'nim' => 'required'*/
+            'phone_number' => 
+                array(
+                    'required',
+                    'regex:/^[0-9]+$/'),
+            'nim' => 
+                array(
+                    'required',
+                    'regex:/^[0-9]+$/'),
+            'name' => 'required'
         ]);
+        $array_members = collect();
 
         $member = Member::create([
+            'nim' => $request->input('nim'),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone_number' => $request->input('phone_number'),
             'interest' => 'none', 
-            'company' => 'none',
+            'company' => 'none'
         ]);
         $member->save();
 
         $member = Member::where('email', $request->input('email'))->first();
         $array_members->push($member);
 
-        return view('admin.showmember')->with('array_members', $array_members);
+        $members = Member::orderBy('name','asc')->paginate(30);
+        return redirect('/members')->with('members', $members)->with('success', 'Member Added');
     }
 
     /**
