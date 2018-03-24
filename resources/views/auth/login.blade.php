@@ -18,7 +18,7 @@
     <!-- Fonts -->
 </head>
 @include('inc.messages')
-<body class="bodyLogin" style="background:url({{url('storage/banner.jpg')}}) no-repeat center center fixed;
+<body class="bodyLogin" style="background:url({{url('storage/bannerlogin.jpg')}}) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
