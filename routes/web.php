@@ -28,6 +28,7 @@ Route::get('/members/{user}/delete', 'MembersController@destroy');
 Route::get('/add', function () {
 	return view('admin.addmember');
 })->middleware('admin');
+
 Route::get('/addCSV', function () {
 	return view('admin.addCSV');
 })->middleware('admin');
