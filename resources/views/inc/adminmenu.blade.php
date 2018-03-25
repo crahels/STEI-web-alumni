@@ -20,7 +20,7 @@
             </a>
           </li>
           <li class="nav-item" id="nav-three">
-            <a class="nav-link" href="/dashboard/#">
+            <a class="nav-link" href="/posts">
               <span id="text-nav-three">
                 <span data-feather="file"></span>
                 <i class="sideMenu">Articles</i>

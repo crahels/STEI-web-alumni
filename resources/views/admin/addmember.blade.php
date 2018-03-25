@@ -27,7 +27,7 @@
             {{Form::hidden('_method', 'POST')}}
             <div class="bottomButton">
                 {{Form::submit('Submit', ['class' => 'btn btn-primary submitButton'])}}
-                <a class="btn btn-primary cancelButton" href="/members">
+                <a onclick="return confirm('Are you sure you want to leave?')" class="btn btn-primary cancelButton" href="/members">
                     Cancel
                 </a>
             </div>

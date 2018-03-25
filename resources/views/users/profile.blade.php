@@ -45,12 +45,12 @@
                         </div>
                     <div class="panel-footer">
                         <a href="/members/{{$user->id}}/edit" data-original-title="Edit this user" 
-                            data-toggle="tooltip" type="button" class="btn btn-sm btn-warning pull right">
+                            data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         @if(!Auth::guest() &&  Auth::user()->IsAdmin == 1)
                             <a onclick="return confirm('Do you want to delete this member?')" href="/members/{{$user->id}}/delete" data-original-title="Delete this user" 
-                                data-toggle="tooltip" type="button" class="btn btn-sm btn-danger pull right">
+                                data-toggle="tooltip" type="button" class="btn btn-sm btn-danger pull-right">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>
                         @endif

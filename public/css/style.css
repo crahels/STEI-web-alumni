@@ -98,6 +98,10 @@
 	color: white !important;
 }
 
+.post {
+	padding-bottom: 4%;
+}
+
 .addMemberForm {
 	margin: 40px 200px;
 }

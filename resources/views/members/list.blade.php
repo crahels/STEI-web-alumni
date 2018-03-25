@@ -3,9 +3,9 @@
   @section('content')
     @include('inc.adminmenu')
       <main role="main" class="col-7">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <!--<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <img src="{{URL::asset('storage/banner.jpg')}}" id="bannerMember">
-        </div>
+        </div>-->
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="h2">Members List</h1>
           <a class="btn btn-primary" href="/add">
