@@ -134,6 +134,13 @@ class MembersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Member::find($id);
+        if($user !== null){
+            $user->delete();
+            $members = Member::orderBy('name','asc')->paginate(30);
+            return view('members.list')->with('members', $members)->with('success', 'Member Deleted');
+        } else {
+            return abort(404);
+        }
     }
 }

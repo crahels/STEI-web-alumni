@@ -39,6 +39,14 @@
 	color: black !important;
 }
 
+.active {
+	background-color: #f0f0f0;
+}
+
+.color-active {
+	color: black;
+}
+
 .sidebar .nav-link {
 	color: white !important;
 }

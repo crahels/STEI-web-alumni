@@ -13,7 +13,7 @@
               <!-- Left Side Of Navbar -->
               <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
                   </li>
                   @if(!Auth::guest() &&  Auth::user()->IsAdmin == 1)
                   <li class="nav-item">

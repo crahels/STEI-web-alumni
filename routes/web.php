@@ -23,6 +23,8 @@ Route::post('/importmember','AddMemberController@importMember');
 Route::resource('profile', 'MembersController');
 Route::resource('addmember', 'AddMemberController');
 Route::get('/dashboard', 'DashboardController@index');
+Route::get('/members/{user}/delete', 'MembersController@destroy');
+
 Route::get('/add', function () {
 	return view('admin.addmember');
 })->middleware('admin');
