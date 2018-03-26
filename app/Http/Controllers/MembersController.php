@@ -20,7 +20,7 @@ class MembersController extends Controller
      */
     public function index()
     {
-        $members = Member::orderBy('nim','asc')->paginate(30);
+        $members = Member::orderBy('nim','asc')->paginate(20);
         return view('members.list')->with('members', $members);
     }
 
@@ -137,7 +137,7 @@ class MembersController extends Controller
         $user = Member::find($id);
         if($user !== null){
             $user->delete();
-            $members = Member::orderBy('name','asc')->paginate(30);
+            $members = Member::orderBy('name','asc')->paginate(20);
             return view('members.list')->with('members', $members)->with('success', 'Member Deleted');
         } else {
             return abort(404);

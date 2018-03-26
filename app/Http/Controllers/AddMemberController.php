@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Excel;
 use DB;
 use App\Member;
+use Exception;
 
 class AddMemberController extends Controller
 {
@@ -47,30 +48,34 @@ class AddMemberController extends Controller
     {
         $array_members = collect();
         if ($request->hasFile('list_members')) {
-            $extension = $request->file('list_members')->getClientOriginalExtension();
-            if ($extension === 'csv') {
-                $path = $request->file('list_members')->getRealPath();
-                $data = Excel::load($path, function($reader) {})->get();
-                if (!empty($data)) {
-                    foreach ($data as $key=>$value) {
-                        $member = Member::create([
-                            'nim' => $value->nim,
-                            'name' => $value->name,
-                            'email' => $value->email,
-                            'phone_number' => $value->phone_number,
-                            'interest' => 'none', 
-                            'company' => 'none',
-                        ]);
-                        $member->save();
-                        
-                        $member = Member::where('email', $value->email)->first();
-                        $array_members->push($member);
+            try {
+                $extension = $request->file('list_members')->getClientOriginalExtension();
+                if ($extension === 'csv') {
+                    $path = $request->file('list_members')->getRealPath();
+                    $data = Excel::load($path, function($reader) {})->get();
+                    if (!empty($data)) {
+                        foreach ($data as $key=>$value) {
+                            $member = Member::create([
+                                'nim' => $value->nim,
+                                'name' => $value->name,
+                                'email' => $value->email,
+                                'phone_number' => $value->phone_number,
+                                'interest' => 'none', 
+                                'company' => 'none',
+                            ]);
+                            $member->save();
+                            
+                            $member = Member::where('email', $value->email)->first();
+                            $array_members->push($member);
+                        }
                     }
                 }
+            } catch (Exception $e) {
+                return redirect('/members')->with('error', $e->getMessage());
             }
         }
 
-        $members = Member::orderBy('name','asc')->paginate(30);
+        $members = Member::orderBy('name','asc')->paginate(20);
         return view('members.list')->with('members', $members)->with('success', 'Members Imported');
     }
 
@@ -92,21 +97,24 @@ class AddMemberController extends Controller
             'name' => 'required'
         ]);
         $array_members = collect();
-
-        $member = Member::create([
-            'nim' => $request->input('nim'),
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'phone_number' => $request->input('phone_number'),
-            'interest' => 'none', 
-            'company' => 'none'
-        ]);
-        $member->save();
-
-        $member = Member::where('email', $request->input('email'))->first();
-        $array_members->push($member);
-
-        $members = Member::orderBy('name','asc')->paginate(30);
+        try {
+            $member = Member::create([
+                'nim' => $request->input('nim'),
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'phone_number' => $request->input('phone_number'),
+                'interest' => 'none', 
+                'company' => 'none'
+            ]);
+            $member->save();
+    
+            $member = Member::where('email', $request->input('email'))->first();
+            $array_members->push($member);
+        } catch (Exception $e) {
+            return redirect('/members')->with('error', $e->getMessage());
+        }
+        
+        $members = Member::orderBy('name','asc')->paginate(20);
         return redirect('/members')->with('members', $members)->with('success', 'Member Added');
     }
 
