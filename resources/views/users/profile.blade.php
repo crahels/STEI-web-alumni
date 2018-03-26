@@ -58,6 +58,6 @@
                 </div>
             </div>
         </div>
-        <h2 class="sub-title"><a href="/members" class="btn btn-default">&#8592; Back</a></h2>
+        <h2 class="sub-title"><a href="/members" class="btn btn-info">&#8592; Back</a></h2>
 
 @endsection

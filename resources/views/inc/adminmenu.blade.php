@@ -15,7 +15,7 @@
             <a class="nav-link" href="/members">
               <span id="text-nav-two">
                 <span data-feather="users"></span>
-                <i class="sideMenu">Members List</i>
+                <i class="sideMenu">Members</i>
               </span>    
             </a>
           </li>
@@ -23,7 +23,7 @@
             <a class="nav-link" href="/posts">
               <span id="text-nav-three">
                 <span data-feather="file"></span>
-                <i class="sideMenu">Articles</i>
+                <i class="sideMenu">Posts</i>
               </span>
             </a>
           </li>
