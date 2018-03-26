@@ -8,6 +8,11 @@ use App\Member;
 
 class MembersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['show', 'edit', 'update']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,8 @@ class MembersController extends Controller
      */
     public function index()
     {
-        //
+        $members = Member::orderBy('nim','asc')->paginate(20);
+        return view('members.list')->with('members', $members);
     }
 
     /**
@@ -85,7 +91,10 @@ class MembersController extends Controller
                 array(
                     'required',
                     'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/'),
-            'phone_number' => 'required',
+            'phone_number' => 
+                array(
+                    'required',
+                    'regex:/^[0-9]+$/'),
             'company' => 'required',
             'interest' => 'required',
             'profile_image' => 'image|nullable|max:1999'
@@ -114,7 +123,7 @@ class MembersController extends Controller
         }
         $user->save();
 
-        return redirect('/profile/' . $id)->with('success', 'Profile Updated');
+        return redirect('/members/' . $id)->with('success', 'Profile Updated');
     }
 
     /**
@@ -125,6 +134,13 @@ class MembersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Member::find($id);
+        if($user !== null){
+            $user->delete();
+            $members = Member::orderBy('name','asc')->paginate(20);
+            return view('members.list')->with('members', $members)->with('success', 'Member Deleted');
+        } else {
+            return abort(404);
+        }
     }
 }

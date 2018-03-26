@@ -1,0 +1,154 @@
+/*.jumbotron {
+   background: #3499CC !important;
+   color: white !important;
+}*/
+
+.navbar {
+	background-color: #003365 !important;
+	border-radius: 0px !important;
+	height: 80px;
+}
+
+.navbar-brand {
+	margin-right: 30px;
+}
+
+.navbar img {
+	width: 50px;
+	margin-right: 20px;
+}
+
+.navbar-nav .nav-item,
+.navbar-nav .nav-link,
+.navbar-brand {
+	color: white !important;
+	margin-right: 15px;
+}
+
+.navbar-nav {
+	font-size: 1.2em;
+}
+
+.sidebar {
+	background-color: #003365 !important;
+	height: 100%;
+	padding: 0px;
+}
+
+.sidebar .nav-link:hover {
+	color: black !important;
+}
+
+.active {
+	background-color: #f0f0f0;
+}
+
+.color-active {
+	color: black;
+}
+
+.sidebar .nav-link {
+	color: white !important;
+}
+
+.sidebar .nav-link .sideMenu {
+	margin-left: 10px;
+}
+
+.sidebar .sideMenu {
+	margin-left: 10px;
+	font-style: initial;
+}
+
+.sidebar-sticky .nav-item,
+.nav-link {
+	margin: 0px;
+}
+
+#bannerMember {
+	max-width: 615px;
+}
+
+.bio {
+	font-size: 1.2em;
+	text-align: justify;
+    text-justify: inter-word;
+}
+
+.nav-pills .nav-item {
+	border: 1px solid white;
+	background-color: #3499CC !important;
+	padding: 15px;
+	font-size: 1.3em;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+
+.nav-pills .manualAdd {
+	margin-left: 150px;
+}
+
+.nav-pills .CSVAdd {
+	margin-right: 150px;
+}
+
+.addMenu {
+	font-style: initial;
+	margin: 10px;
+	color: white !important;
+}
+
+.post {
+	padding-bottom: 4%;
+}
+
+.addMemberForm {
+	margin: 40px 200px;
+}
+
+.addMemberForm label {
+	margin-bottom: 10px;
+}
+
+.bottomButton {
+	margin-top: 30px;
+}
+
+.submitButton {
+	background-color: #5DB85C !important;
+}
+
+.cancelButton {
+	background-color: #b22121 !important;
+}
+
+.addCSVForm {
+	margin: 50px 200px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+#loginItb {
+	width: 85px;
+	margin-top: 50px;
+	vertical-align: middle;
+	float: right;
+}
+
+.loginTitle {
+	font-size: 2.5em;
+	color: white;
+	margin: 60px 20px;
+}
+
+.header-login .title1 {
+	font-weight: lighter;
+	font-style: initial;
+}
+
+.header-login .title2 {
+	font-weight: bold;
+	font-style: initial;
+}
