@@ -137,8 +137,7 @@ class MembersController extends Controller
         $user = Member::find($id);
         if($user !== null){
             $user->delete();
-            $members = Member::orderBy('name','asc')->paginate(20);
-            return view('members.list')->with('members', $members)->with('success', 'Member Deleted');
+            return redirect('/members')->with('error', 'Member Deleted');
         } else {
             return abort(404);
         }
