@@ -38,16 +38,68 @@
                                             <td>Address</td>
                                             <td>{{$user->address}}</td>
                                         </tr>
+                                        @if(Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $user->id)
+                                            @if(Auth::guard('member')->user()->facebook_email != null)
+                                                <tr>
+                                                    <td>
+                                                        Facebook Account
+                                                    </td>
+                                                    <td>
+                                                        <a href="/link/facebook/delete" data-original-title="Delete Facebook Link" 
+                                                            data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">
+                                                            {{Auth::guard('member')->user()->facebook_email}} <i class="glyphicon glyphicon-remove"></i> 
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td>
+                                                        Facebook Account
+                                                    </td>
+                                                    <td>
+                                                        <a href="/link/facebook" data-toggle="tooltip" type="button" class="btn btn-sm btn-success">
+                                                            Link facebook account
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                            @if(Auth::guard('member')->user()->linkedin_email != null)
+                                                <tr>
+                                                    <td>
+                                                        Linkedin Account
+                                                    </td>
+                                                    <td>
+                                                        <a href="/link/linkedin/delete" data-original-title="Delete Linkedin Link" 
+                                                            data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">
+                                                            {{Auth::guard('member')->user()->linkedin_email}} <i class="glyphicon glyphicon-remove"></i> 
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td>
+                                                        Linkedin Account
+                                                    </td>
+                                                    <td>
+                                                        <a href="/link/linkedin" data-toggle="tooltip" type="button" class="btn btn-sm btn-success">
+                                                            Link linkedin account
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endif
                                     </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     <div class="panel-footer">
-                        <a href="/members/{{$user->id}}/edit" data-original-title="Edit this user" 
-                            data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </a>
+                        @if((Auth::user() != null && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $user->id))
+                            <a href="/members/{{$user->id}}/edit" data-original-title="Edit this user" 
+                                data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                        @endif
                         @if(!Auth::guest() &&  Auth::user()->IsAdmin == 1)
                             <a onclick="return confirm('Do you want to delete this member?')" href="/members/{{$user->id}}/delete" data-original-title="Delete this user" 
                                 data-toggle="tooltip" type="button" class="btn btn-sm btn-danger pull-right">
