@@ -1,7 +1,7 @@
-/*.jumbotron {
-   background: #3499CC !important;
-   color: white !important;
-}*/
+/* Clear the 1px gap on row and container */
+div.row:before, div.row:after {
+	display: none
+}
 
 .navbar {
 	background-color: #003365 !important;
@@ -151,4 +151,27 @@
 .header-login .title2 {
 	font-weight: bold;
 	font-style: initial;
+}
+
+/* PROFILE BLADE */
+
+.edit-profile {
+	height: 650px;
+}
+
+.edit-prof-pic {
+	background-color: #92c6f9;
+}
+
+#user-ava {
+	margin-top: 30px !important;
+	width: 300px;
+	margin: 0 auto;
+}
+
+.user-main-name {
+	margin-top: 50px !important;
+	text-align: center;
+	font-size: 2.5em !important;
+	color: white !important;
 }

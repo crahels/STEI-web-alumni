@@ -17,7 +17,7 @@
                         <a class="nav-link" href="/members/{{Auth::guard('member')->user()->id}}">Profile</span></a>
                     </li>
                 @endif
-                  <!--<li class="nav-item">
+                  <li class="nav-item">
                     <a class="nav-link" href="/dashboard">Dashboard<span class="sr-only">(current)</span></a>
                   </li>
                   @if(!Auth::guest() &&  Auth::user()->IsAdmin == 1)
@@ -27,7 +27,7 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/posts">Posts</a>
                   </li>
-                  @endif-->
+                  @endif
                 </ul>
 
               <!-- Right Side Of Navbar -->
