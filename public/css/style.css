@@ -1,7 +1,7 @@
-/* Clear the 1px gap on row and container */
-div.row:before, div.row:after {
-	display: none
-}
+/*.jumbotron {
+   background: #3499CC !important;
+   color: white !important;
+}*/
 
 .navbar {
 	background-color: #003365 !important;
