@@ -3,17 +3,20 @@
 @section('title', $user->name . ' | Profile')
 
 @section('content')
-<div class="row edit-profile">
-  <div class="col-4 edit-prof-pic">
-    <img alt="User Pic" src="/storage/profile_image/{{$user->profile_image}}" class="img-circle img-responsive"
-    id="user-ava">
-    <h3 class="panel-title user-main-name">{{$user->name}}</h3>
-  </div>
-  <div class="col-8">
-    <div class="profile-content">
-      <h1 id="profile-header"> MY PROFILE </h1>
-      <div class="profile-info">
-          <div class=" col-md-9 col-lg-9 "> 
+    <h2 class="sub-title">Profile</h2>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >  
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                <h3 class="panel-title">{{$user->name.' ('.$user->nim .')'}}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" 
+                        src="/storage/profile_image/{{$user->profile_image}}" 
+                        class="img-circle img-responsive" id=""> </div>
+                        
+                            <div class=" col-md-9 col-lg-9 "> 
                                 <table class="table table-user-information">
                                     <tbody>
                                         <tr>
@@ -88,8 +91,25 @@
                                     </tbody>
                                     </table>
                                 </div>
-      </div>
-    </div>
-  </div>
-</div>
+                            </div>
+                        </div>
+                    <div class="panel-footer">
+                        @if((Auth::user() != null && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $user->id))
+                            <a href="/members/{{$user->id}}/edit" data-original-title="Edit this user" 
+                                data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                        @endif
+                        @if(!Auth::guest() &&  Auth::user()->IsAdmin == 1)
+                            <a onclick="return confirm('Do you want to delete this member?')" href="/members/{{$user->id}}/delete" data-original-title="Delete this user" 
+                                data-toggle="tooltip" type="button" class="btn btn-sm btn-danger pull-right">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 class="sub-title"><a href="/members" class="btn btn-info">&#8592; Back</a></h2>
+
 @endsection
