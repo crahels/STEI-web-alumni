@@ -31,7 +31,7 @@
                 <i class="title2">STEI-ITB</i>
             </div>
 </div>
-<div class="container loginContainer-member">
+<div class="container-fluid loginContainer-member">
     <div class="justify-content-center">
             <div class="text-center header-login-member-padding">
                 <h2 class="text-center text-uppercase text-white"><b>Login</b></h2>
@@ -77,6 +77,3 @@
 </html>
 
 @section('title', 'Login Admin')
-
-
-10:21 AM 4/5/2018

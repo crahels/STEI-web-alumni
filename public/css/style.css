@@ -448,7 +448,7 @@ header.masthead-custom p {
 .portfolio .portfolio-item {
   position: relative;
   display: block;
-  max-width: 23rem;
+  max-width: 20rem;
   margin-bottom: 15px;
   opacity: 1;
 }
@@ -725,6 +725,7 @@ anchors are inline so you need ot make them block to go full width
 .loginContainer-member {
   background-color: #969ba3; 
   opacity: 0.8;
+  width: 50%;
 }
 
 .header-login-member-padding {
