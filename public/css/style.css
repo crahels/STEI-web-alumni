@@ -160,3 +160,21 @@
 	font-weight: bold;
 	margin-right: 20px;
 }
+
+/* Clear the 1px gap on row and container */
+div.row:before, div.row:after {
+	display: none
+}
+
+.post-view h1 {
+	font-size: 4em;
+}
+
+.post-view h3 {
+	font-size: 1.5em;
+}
+
+.post-view-img img {
+	max-height: inherit;
+	margin-top: 130px;
+}
