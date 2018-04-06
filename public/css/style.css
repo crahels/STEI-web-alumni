@@ -740,6 +740,18 @@ anchors are inline so you need ot make them block to go full width
 
 /* === PROFILE === */
 
+.profile-content a {
+  color: grey;
+}
+
+#profile-header {
+  margin-left: 12px;
+}
+
+.edit-profile-button {
+  margin-bottom: 20px;
+}
+
 .edit-profile {
 	height: 650px;
 }

@@ -90,11 +90,24 @@
                             </tr>
                         @endif
                     @endif
+                    <div class="edit-profile-button">
+                        @if((Auth::user() != null && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $user->id))
+                            <a href="/members/{{$user->id}}/edit" data-original-title="Edit this user" 
+                                data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                        @endif
+                        @if(!Auth::guest() &&  Auth::user()->IsAdmin == 1)
+                            <a onclick="return confirm('Do you want to delete this member?')" href="/members/{{$user->id}}/delete" data-original-title="Delete this user" 
+                                data-toggle="tooltip" type="button" class="btn btn-sm btn-danger pull-right">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        @endif
+                    </div>
                 </tbody>
             </table>
         </div>
       </div>
     </div>
-  </div>
 </div>
 @endsection
