@@ -16,8 +16,8 @@
                 {{Form::file('cover_image')}}
             </div>
             <div class="bottomButton">
-                {{Form::submit('Submit', ['class' => 'btn btn-primary submitButton'])}}
-                <a onclick="return confirm('Are you sure you want to leave?')" class="pull-right onclick btn btn-primary cancelButton" href="/posts">
+                {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+                <a onclick="return confirm('Are you sure you want to leave?')" class="pull-right onclick btn btn-danger" href="/posts">
                     Cancel
                 </a>
             </div>

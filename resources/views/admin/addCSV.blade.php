@@ -10,6 +10,9 @@
 			</div>
 			{{Form::hidden('_method', 'POST')}}
 			{{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+			<a onclick="return confirm('Are you sure you want to leave?')" class="btn btn-danger pull-right" href="/members">
+				Cancel
+			</a>
 			{!! Form::close() !!}
 	</div>
 </div>
