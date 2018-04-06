@@ -1,7 +1,7 @@
-/*.jumbotron {
-   background: #3499CC !important;
-   color: white !important;
-}*/
+/* Clear the 1px gap on row and container */
+div.row:before, div.row:after {
+  display: none
+}
 
 .navbar {
 	background-color: #003365 !important;
@@ -759,6 +759,13 @@ anchors are inline so you need ot make them block to go full width
 	text-align: center;
 	font-size: 2.5em !important;
 	color: white !important;
+}
+
+.nim {
+  margin-top: 20px !important;
+  text-align: center;
+  font-size: 1.5em !important;
+  color: white !important;
 }
 
 .profile-content {

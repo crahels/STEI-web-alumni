@@ -8,6 +8,7 @@
     <img alt="User Pic" src="/storage/profile_image/{{$user->profile_image}}" class="img-circle img-responsive"
     id="user-ava">
     <h3 class="panel-title user-main-name">{{$user->name}}</h3>
+    <h3 class="panel-title nim">{{$user->nim}}</h3>
   </div>
   <div class="col-8">
     <div class="profile-content">
@@ -16,6 +17,10 @@
         <div class=" col-md-9 col-lg-9 "> 
             <table class="table table-user-information">
                 <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{$user->name}}</td>
+                    </tr>
                     <tr>
                         <td>Email</td>
                         <td><a href="mailto:{{$user->email}}">{{$user->email}}</a></td>
