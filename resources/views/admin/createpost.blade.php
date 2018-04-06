@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="post">
-        <h1>Create New Post</h1>
+<div class="row create-post-container">
+    <div class="col-3 header-create-post">
+        <h1>Create<br>Post</h1>
+    </div>
+    <div class="col-8 post">
         {!! Form::open(['action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
                 {{Form::label('title', 'Title')}}
@@ -22,5 +25,6 @@
                 </a>
             </div>
         {!! Form::close() !!}
-    </div>
+    </div>        
+</div>
 @endsection
