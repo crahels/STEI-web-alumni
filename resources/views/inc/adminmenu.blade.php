@@ -31,6 +31,7 @@
       </div>
     </nav>
   <!-- Icons -->
+  <!--<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>-->
   <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
   <script>
     feather.replace();
