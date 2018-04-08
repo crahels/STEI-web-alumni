@@ -1,6 +1,8 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 $factory->define(App\Member::class, function (Faker $faker) {
     return [
@@ -10,7 +12,6 @@ $factory->define(App\Member::class, function (Faker $faker) {
         'company' => 'none',
         'interest' => 'none',
         'address' => str_random(10),
-        'profile_image' => 'noimage.jpg',
         'nim' => str_random(8)
     ];
 });

@@ -23,22 +23,22 @@
                                     {{Form::file('profile_image')}}
                                     
                                     {{Form::label('email','Email')}}
-                                    {{Form::text('email', $user->email , ['class' => 'form-control'])}}
+                                    {{Form::text('email', $user->email , ['class' => 'form-control', 'dusk' => 'email'])}}
 
                                     {{Form::label('phone_number','Phone Number')}}
-                                    {{Form::text('phone_number', $user->phone_number, ['class' => 'form-control'])}}
+                                    {{Form::text('phone_number', $user->phone_number, ['class' => 'form-control', 'dusk' => 'phone_number'])}}
 
                                     {{Form::label('company','Company')}}
-                                    {{Form::text('company', $user->company, ['class' => 'form-control'])}}
+                                    {{Form::text('company', $user->company, ['class' => 'form-control', 'dusk' => 'company'])}}
                                     
                                     {{Form::label('interest','Interest')}}
-                                    {{Form::text('interest', $user->interest, ['class' => 'form-control'])}}
+                                    {{Form::text('interest', $user->interest, ['class' => 'form-control', 'dusk' => 'interest'])}}
 
                                     {{Form::label('address','Address')}}
-                                    {{Form::text('address', $user->address, ['class' => 'form-control'])}}
+                                    {{Form::text('address', $user->address, ['class' => 'form-control', 'dusk' => 'address'])}}
                                 </div>
                                 {{Form::hidden('_method', 'PUT')}}
-                                {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+                                {{Form::submit('Submit', ['class' => 'btn btn-primary', 'dusk' => 'Submit'])}}
                                 <a onclick="return confirm('Are you sure you want to cancel?')" href="/members/{{$user->id}}" class="btn btn-danger pull-right">Cancel</a>
                                  {!! Form::close() !!}
                                 </div>

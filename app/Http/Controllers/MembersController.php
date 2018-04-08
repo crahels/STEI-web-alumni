@@ -135,7 +135,7 @@ class MembersController extends Controller
     public function destroy($id)
     {
         $user = Member::find($id);
-        if($user !== null){
+        if($user !== null) {
             $user->delete();
             return redirect('/members')->with('error', 'Member Deleted');
         } else {

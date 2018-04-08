@@ -167,7 +167,7 @@ class AuthTest extends TestCase
         $response->assertStatus(302);
     }
 
-    /**
+     /**
      * test for load each member with admin credentials
      *
      * @return void
@@ -181,6 +181,18 @@ class AuthTest extends TestCase
                          ->get('/members/' . $member->id);
 
         $response->assertStatus(200);
+
+        $response = $this->get('/members/' . $member->id . '/edit');
+
+        $response->assertStatus(200);
+
+        $response = $this->get('/members/' . $member->id . '/delete');
+
+        $response->assertStatus(302);
+
+        $this->assertDatabaseMissing('members', [
+            'id' => $member->id
+        ]);
     }
 
      /**
@@ -190,10 +202,22 @@ class AuthTest extends TestCase
      */
     public function testLoadMemberFail()
     {
-        $member = factory(Member::class)->make();
+        $member = factory(Member::class)->create();
 
         $response = $this->get('/members/' . $member->id);
 
+        $response->assertStatus(200);
+
+        $response = $this->get('/members/' . $member->id . '/edit');
+
+        $response->assertStatus(200);
+
+        $response = $this->get('/members/' . $member->id . '/delete');
+        
         $response->assertStatus(302);
+
+        $this->assertDatabaseHas('members', [
+            'id' => $member->id
+        ]);
     }
 }
