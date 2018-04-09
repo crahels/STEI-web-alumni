@@ -12,6 +12,6 @@ $factory->define(App\Member::class, function (Faker $faker) {
         'company' => 'none',
         'interest' => 'none',
         'address' => str_random(10),
-        'nim' => str_random(8)
+        'nim' => rand(0, 50000)
     ];
 });

@@ -202,11 +202,10 @@ class AuthTest extends TestCase
 
         $response->assertResponseStatus(302);
 
-        $user->delete();
+        $this->notSeeInDatabase('members', ['id' => $member->id]);
 
-        /*$this->assertDatabaseMissing('members', [
-            'id' => $member->id
-        ]);*/
+        $user->delete();
+        $member->delete();
     }
 
      /**
@@ -230,8 +229,8 @@ class AuthTest extends TestCase
         
         $response->assertResponseStatus(302);
 
-        /*$this->assertDatabaseHas('members', [
-            'id' => $member->id
-        ]);*/
+        $this->seeInDatabase('members', ['id' => $member->id]);
+
+        $member->delete();
     }
 }
