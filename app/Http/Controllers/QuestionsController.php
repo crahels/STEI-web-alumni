@@ -74,7 +74,12 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = Question::find($id);
+        if ($question !== null) {
+            return view('users.editquestion')->with('question', $question);
+        } else {
+            return abort(404);
+        }
     }
 
     /**
@@ -86,7 +91,17 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'topic' => 'required',
+            'body' => 'required'
+        ]);
+
+        $question = Question::find($id);
+        $question->topic = $request->input('topic');
+        $question->body = $request->input('body');
+        $question->save();
+
+        return redirect('/questions')->with('success', 'Question Updated');
     }
 
     /**
@@ -97,6 +112,9 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $question = Question::find($id);
+        $question->delete();
+
+        return redirect('/questions')->with('error', 'Question Deleted');
     }
 }
