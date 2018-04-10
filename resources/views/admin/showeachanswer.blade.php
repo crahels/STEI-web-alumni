@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>{{$question->topic}}</h1>
+    <h1>Q: {{$answer->question->body}}</h1>
 
     <div class="body-article">
-        {!!$question->body!!}
+        {!!$answer->body!!}
     </div>
 
     <div class="footer-article">
         <hr>
-        <small>Written on {{$question->created_at}} by {{$question->user->name}}</small>
+        <small>Written on {{$answer->created_at}} by {{$answer->user->name}}</small>
         <hr>
     </div>
     @if(!Auth::guest() &&  Auth::user()->IsAdmin == 1)
-    <a href="/questions/{{$question->id}}/edit" class="btn btn-warning">Edit</a>
-    {!!Form::open(['action' => ['QuestionsController@destroy', $question->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+    <a href="/answers/{{$answer->id}}/edit" class="btn btn-warning">Edit</a>
+    {!!Form::open(['action' => ['AnswersController@destroy', $answer->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
         {{Form::hidden('_method', 'DELETE')}}
         {{Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure you want to delete?')"])}}
     {!!Form::close() !!}

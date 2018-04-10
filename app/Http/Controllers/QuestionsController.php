@@ -7,6 +7,11 @@ use App\Question;
 
 class QuestionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -45,6 +50,7 @@ class QuestionsController extends Controller
         $question = new Question;
         $question->topic = $request->input('topic');
         $question->body = $request->input('body');
+        $question->user_id = auth()->user()->id;
         $question->save();
 
         return redirect('/questions')->with('success', 'Question Added');

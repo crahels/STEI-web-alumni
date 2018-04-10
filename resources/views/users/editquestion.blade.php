@@ -8,7 +8,7 @@
         <h1>Edit <br>Question</h1>
     </div>
     <div class="col-8 post">
-        {!! Form::open(['action' => ['QuestionsController@update', $question->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::open(['action' => ['QuestionsController@update', $question->id], 'method' => 'POST']) !!}
             <div class="form-group">
                 {{Form::label('topic', 'Topic')}}
                 {{Form::text('topic', $question->topic, ['class' => 'form-control', 'placeholder' => 'Topic'])}}
