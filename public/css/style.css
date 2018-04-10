@@ -57,6 +57,10 @@
 	border-radius: 50%;
   }
 
+.post-title {
+	display: inline-block;
+}
+
 .navbar {
 	background-color: #003365 !important;
 	border-radius: 0px !important;

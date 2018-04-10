@@ -1,7 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>{{$post->title}}</h1>
+  
+    <span>
+        <h1 class="post-title">{{$post->title}}</h1>
+        <h5 class="post-title">&nbsp;
+            @if ($post->draft == '1')
+                <span style="color:red;">Draft</span>
+            @else
+                <span style="color:green;">Published</span>
+            @endif
+        </h5>
+    </span>  
+
     <!--@if ($post->cover_image !== 'noimage.jpg')   
         <div class="row">
             <div class="col-8">
@@ -34,7 +45,17 @@
 
     <div class="footer-article">
         <hr>
-        <small>Written on {{$post->created_at}} by {{$post->user->name}}</small>
+        <h5>
+            @if ($post->public == '1')
+                Public 
+            @else
+                Private 
+            @endif  
+            Post
+        </h5>
+        <small>Written on {{$post->created_at}}</small><br>
+        <small>Last Editted on {{$post->updated_at}}</small><br>
+        <small>by {{$post->user->name}}</small>
         <hr>
 
         @if(!Auth::guest() &&  Auth::user()->IsAdmin == 1)

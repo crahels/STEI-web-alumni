@@ -53,6 +53,16 @@ class PostsController extends Controller
             'cover_image' => 'image|nullable|max:1999'
         ]);
 
+        $public = '0';
+        $draft = '0';
+        if ($request->input('draft') === 'yes') {
+            $draft = '1';
+        } 
+
+        if ($request->input('public') === 'yes') {
+            $public = '1';
+        }
+
         if ($request->hasFile('cover_image')) {
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -66,6 +76,8 @@ class PostsController extends Controller
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        $post->draft = $draft;
+        $post->public = $public;
         $post->user_id = auth()->user()->id;
         $post->cover_image = $filenameToStore;
         $post->save();
