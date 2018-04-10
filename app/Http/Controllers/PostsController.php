@@ -118,6 +118,16 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'required'
         ]);
+        
+        $public = 1;
+        $draft = 1;
+        if ($request->input('draft_no') === "1") {
+            $draft = 0;
+        }
+
+        if ($request->input('public_no') === "1") {
+            $public = 0;
+        }
 
         if ($request->hasFile('cover_image')) {
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
@@ -125,11 +135,13 @@ class PostsController extends Controller
             $extension = $request->file('cover_image')->getClientOriginalExtension();
             $filenameToStore = $filename.'_'.time().'.'.$extension;
             $path = $request->file('cover_image')->storeAs('public/cover_images', $filenameToStore);            
-        }
+        } 
 
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        $post->draft = $draft;
+        $post->public = $public;
         if ($request->hasFile('cover_image')) {
             if($post->cover_image !== 'noimage.jpg'){
                 Storage::delete('public/cover_images/' . $post->cover_image);
