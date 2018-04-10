@@ -119,14 +119,14 @@ class PostsController extends Controller
             'body' => 'required'
         ]);
         
-        $public = 1;
-        $draft = 1;
-        if ($request->input('draft_no') === "1") {
-            $draft = 0;
-        }
+        $public = '0';
+        $draft = '0';
+        if ($request->input('draft') === "yes") {
+            $draft = '1';
+        } 
 
-        if ($request->input('public_no') === "1") {
-            $public = 0;
+        if ($request->input('public') === "yes") {
+            $public = '1';
         }
 
         if ($request->hasFile('cover_image')) {
