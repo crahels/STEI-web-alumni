@@ -17,9 +17,13 @@
                     <tr>
                         <div class="form-group">
                                 <td>{{Form::label('draft', 'Save As Draft')}}</td>
-                                <td>
+                                <td> 
                                     <label class="switch">
-                                        <input name="draft" id="draft" value="yes" type="checkbox" checked>
+                                        @if ($post->draft == '1')
+                                            <input name="draft" id="draft" value="yes" type="checkbox" checked>
+                                        @else
+                                            <input name="draft" id="draft" value="yes" type="checkbox">
+                                        @endif
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
@@ -30,7 +34,11 @@
                                 <td>{{Form::label('public', 'Save As Public')}}</td>
                                 <td>
                                     <label class="switch">
-                                        <input name="public" id="public" value="yes" type="checkbox" checked>
+                                        @if ($post->public == '1')
+                                            <input name="public" id="public" value="yes" type="checkbox" checked>
+                                        @else
+                                            <input name="public" id="public" value="yes" type="checkbox">
+                                        @endif
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
