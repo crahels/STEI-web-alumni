@@ -121,11 +121,11 @@ class PostsController extends Controller
         
         $public = '0';
         $draft = '0';
-        if ($request->input('draft') === "yes") {
+        if ($request->input('draft') === 'yes') {
             $draft = '1';
         } 
 
-        if ($request->input('public') === "yes") {
+        if ($request->input('public') === 'yes') {
             $public = '1';
         }
 

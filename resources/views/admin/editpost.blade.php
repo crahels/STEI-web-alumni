@@ -12,21 +12,32 @@
                 {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title'])}}
             </div>
 
-            <div class="form-group">
-                {{Form::label('draft', 'Save As Draft')}}
-                <label class="switch">
-                    <input name="draft" id="draft" value="yes" type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-
-            <div class="form-group">
-                {{Form::label('public', 'Save As Public')}}
-                <label class="switch">
-                    <input name="public" id="public" value="yes" type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </div>
+            <table class="table" style="border-width:0px;">
+                <tbody>
+                    <tr>
+                        <div class="form-group">
+                                <td>{{Form::label('draft', 'Save As Draft')}}</td>
+                                <td>
+                                    <label class="switch">
+                                        <input name="draft" id="draft" value="yes" type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="form-group">
+                                <td>{{Form::label('public', 'Save As Public')}}</td>
+                                <td>
+                                    <label class="switch">
+                                        <input name="public" id="public" value="yes" type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                        </div>
+                    </tr>
+                </tbody>
+            </table>
 
             <div class="form-group">
                 {{Form::label('body', 'Body')}}
