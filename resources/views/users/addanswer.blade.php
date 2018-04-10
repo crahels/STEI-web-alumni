@@ -22,14 +22,22 @@
                             </a>
                         </div>
 
-                        @foreach ($question->answers as $answer)
-                            <div class="col-12 post-card">
+                        @foreach ($question->answers->sortByDesc('rating') as $answer)
+                            <div class="col-12 post-card" style="display:inline;">
                                 <hr>
-                                <p>{{$answer->body}}</p>
-                                <small>Written on {{$answer->created_at}} by {{$answer->user->name}}</small><br>
-                                @if ($answer->created_at != $answer->updated_at)
-                                    <small style="color:green;">(edited)</small>
-                                @endif
+                                <div class="col-10" style="float:left;">
+                                    <p>{{$answer->body}}</p>
+                                    <a href="/answers/{{$answer->id}}"><small>Written on {{$answer->created_at}} by {{$answer->user->name}}</small></a><br>
+                                    @if ($answer->created_at != $answer->updated_at)
+                                        <small style="color:green;">(edited)</small>
+                                    @endif
+                                </div>
+                                <div class="col-2 pull-right">
+                                    <center><h2>{{$answer->rating}}</h2></center>
+                                    {!! Form::open(['action' => ['AnswersController@giveRating',$answer->id], 'method' => 'POST']) !!}
+                                    {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
+                                    {!! Form::close() !!}
+                                </div>
                             </div>
                         @endforeach
                         
