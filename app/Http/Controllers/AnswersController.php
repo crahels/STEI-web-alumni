@@ -107,14 +107,34 @@ class AnswersController extends Controller
      * @param  \App\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function giveRating($answer_id)
+    public function giveRating($answer_id, $user_id)
     {
         $answer = Answer::where('id', $answer_id)->first();
-        $answer->rating++;
-        $answer->save();
+        $found = 0;
+        foreach ($answer->users as $user) {
+            if ($user->id == $user_id) {
+                $found = 1;
+                break;
+            }
+        }
 
-        $questions = Question::orderBy('created_at','desc')->paginate(15);
-        return redirect('/questions')->with('questions', $questions)->with('success','Rating Added');
+        if ($found == 0) {
+            $answer->users()->attach($user_id);
+
+            $answer->rating++;
+            $answer->save();
+            
+            $questions = Question::orderBy('created_at','desc')->paginate(15);
+            return redirect('/questions')->with('questions', $questions)->with('success','Rating Added');
+        } else {
+            $answer->users()->detach($user_id);
+
+            $answer->rating--;
+            $answer->save();
+            
+            $questions = Question::orderBy('created_at','desc')->paginate(15);
+            return redirect('/questions')->with('questions', $questions)->with('error','Rating Deleted');
+        }
     }
 
     /**

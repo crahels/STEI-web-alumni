@@ -17,4 +17,8 @@ class Answer extends Model
     public function question() {
         return $this->belongsTo('App\Question');
     }
+
+    public function users() {
+        return $this->belongsToMany('App\User', 'ratings', 'answer_id', 'user_id')->withPivot('id');
+    }
 }

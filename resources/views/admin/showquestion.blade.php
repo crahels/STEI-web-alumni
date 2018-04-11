@@ -36,8 +36,14 @@
                                 </div>
                                 <div class="col-2 pull-right">
                                     <center><h2>{{$answer->rating}}</h2></center>
-                                    {!! Form::open(['action' => ['AnswersController@giveRating',$answer->id], 'method' => 'POST']) !!}
-                                    {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
+                                    {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::user()->id], 'method' => 'POST']) !!}
+                                    
+                                    @if ($answer->users->contains(Auth::user()->id)) 
+                                        {{Form::submit('VOTE', ['class' => 'btn'])}}
+                                    @else
+                                        {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
+                                    @endif
+                                    
                                     {!! Form::close() !!}
                                 </div>
                             </div>
