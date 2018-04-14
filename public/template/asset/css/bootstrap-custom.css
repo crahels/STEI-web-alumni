@@ -6,3 +6,8 @@
     color: #fff;
     font-size: 12px;
 }
+
+.dropdown-item {
+    color: white;
+    margin: 0 0 0 8%;
+}

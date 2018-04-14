@@ -313,6 +313,24 @@ footer.style-1 {
     background-color: #FF432E;
 }
 
-.login:hover {
+.login:hover,
+.login:focus,
+.login:active {
+    color: #FF432E;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #FF432E;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #FF432E;
+}
+
+.page-change {
     color: #FF432E;
 }
