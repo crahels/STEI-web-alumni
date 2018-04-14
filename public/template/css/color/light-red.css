@@ -312,3 +312,7 @@ footer.style-1 {
 .dot1, .dot2 {
     background-color: #FF432E;
 }
+
+.login:hover {
+    color: #FF432E;
+}

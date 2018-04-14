@@ -12,7 +12,7 @@
     <title>Fame - One Page Multipurpose Bootstrap Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('template/asset/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('template/asset/css/bootstrap.css') }}" rel="stylesheet">
     
     <!-- Font Awesome CSS -->
     <link href="{{ asset('template/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('template/css/owl.theme.css') }}" >
     <link rel="stylesheet" href="{{ asset('template/css/owl.transitions.css') }}" >
 
-    <!-- Custom CSS -->
+    <!-- Custom CSS from Template -->
     <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('template/css/responsive.css') }}" rel="stylesheet">
     
@@ -45,7 +45,9 @@
 
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('template/asset/css/bootstrap-custom.css') }}" rel="stylesheet">
     
     <!-- Modernizer js -->
     <script src="{{ asset('template/js/modernizr.custom.js') }}"></script>
@@ -94,18 +96,15 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-left">
                     <li class="hidden">
                         <a href="#page-top"></a>
+                    </li>   
+                    <li>
+                        <a class="" href="#">Article</a>
                     </li>
                     <li>
-
-                        <a class="page-scroll" href="#feature">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio">Portfolio</a>
+                        <a class="" href="#">Forum</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#about-us">About</a>
@@ -114,24 +113,55 @@
                         <a class="page-scroll" href="#service">Services</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#team">Team</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#pricing">Pricing</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#latest-news">Latest News</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#testimonial">Testimonials</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#partner">Partner</a>
-                    </li>
-                    <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav ml-auto navbar-right" style="margin-top: 1.25%">
+                        <!-- Authentication Links -->
+                        @guest
+                          @if(Auth::guard('member')->user() != null)
+                              <li class="nav-item dropdown">
+                                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                      {{Auth::guard('member')->user()->name}}</span>
+                                  </a>
+        
+                                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                      <a class="dropdown-item" href="/logout"
+                                         onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();">
+                                          Logout
+                                      </a>
+        
+                                      <form id="logout-form" action="/logout" method="GET" style="display: none;">
+                                          @csrf
+                                      </form>
+                                  </div>
+                              </li>
+                          @else
+                              <a class="login" href="/login">Login</a>
+                          @endif
+                            
+                            <!-- <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li> -->
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}</span>
+                                </a>
+      
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+      
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
