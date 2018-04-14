@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/dashboard-member', function () {
+    return view('dashboard-member');
+});
+
 Route::resource('members', 'MembersController');
 
 Route::post('/importcsv','AddMemberController@importCSV');
