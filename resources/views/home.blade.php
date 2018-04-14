@@ -99,7 +99,10 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#feature">Feature</a>
+
+                        <a class="page-scroll" href="#feature">
+                            Home
+                        </a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#portfolio">Portfolio</a>
