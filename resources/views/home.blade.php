@@ -158,7 +158,7 @@
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
                             <h1 class="animated3">
-                                <span><strong>Fame</strong> for the highest</span>
+                                <span>Web Alumni <strong>STEI</strong></span>
                             </h1>
                             <p class="animated2">At vero eos et accusamus et iusto odio dignissimos<br> ducimus qui blanditiis praesentium voluptatum</p>	
                             <a href="#feature" class="page-scroll btn btn-primary animated1">Read More</a>
