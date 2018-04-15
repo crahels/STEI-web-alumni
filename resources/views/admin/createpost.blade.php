@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Create Post')
+
 @section('content')
 <div class="row create-post-container">
     <div class="col-3 header-create-post">

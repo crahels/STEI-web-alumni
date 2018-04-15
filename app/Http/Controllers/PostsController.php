@@ -8,6 +8,11 @@ use App\Post;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -25,7 +30,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at','desc')->paginate(30);
+        $posts = Post::orderBy('created_at','desc')->paginate(10);
         return view('admin.showpost')->with('posts', $posts);
     }
 

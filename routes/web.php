@@ -27,7 +27,11 @@ Route::post('/importmember','AddMemberController@importMember');
 Route::resource('profile', 'MembersController');
 Route::resource('addmember', 'AddMemberController');
 Route::resource('posts', 'PostsController');
+Route::resource('questions', 'QuestionsController');
+Route::resource('answers', 'AnswersController');
 
+Route::post('/answers/rate/{answer}/{user}', 'AnswersController@giveRating');
+Route::get('/answers/add/{question}', 'AnswersController@giveAnswer');
 Route::get('/dashboard', 'DashboardController@index');
 Route::get('/members/{user}/delete', 'MembersController@destroy');
 

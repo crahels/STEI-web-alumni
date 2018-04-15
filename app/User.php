@@ -30,4 +30,16 @@ class User extends Authenticatable
     public function posts() {
         return $this->hasMany('App\Post');
     }
+
+    public function questions() {
+        return $this->hasMany('App\Question');
+    }
+
+    public function answers() {
+        return $this->hasMany('App\Answer');
+    }
+
+    public function rate_answers() {
+        return $this->belongsToMany('App\Answer', 'ratings', 'user_id', 'answer_id')->withPivot('id');
+    }
 }

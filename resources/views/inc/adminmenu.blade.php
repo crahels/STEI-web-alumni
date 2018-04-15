@@ -27,6 +27,14 @@
               </span>
             </a>
           </li>
+          <li class="nav-item" id="nav-four">
+            <a class="nav-link" href="/questions">
+              <span id="text-nav-four">
+                <span data-feather="help-circle"></span>
+                <i class="sideMenu">Questions</i>
+              </span>
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
