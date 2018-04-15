@@ -19,6 +19,10 @@ Route::get('/dashboard-member', function () {
     return view('dashboard-member');
 });
 
+Route::get('/about', function () {
+	return view('about');
+});
+
 Route::resource('members', 'MembersController');
 
 Route::post('/importcsv','AddMemberController@importCSV');
