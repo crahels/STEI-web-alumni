@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question;
+use App\Answer;
 
 class QuestionsController extends Controller
 {
@@ -120,6 +121,9 @@ class QuestionsController extends Controller
     {
         $question = Question::find($id);
         $question->delete();
+
+        $answer = Answer::where('question_id', $id);
+        $answer->delete();
 
         return redirect('/admin/questions')->with('error', 'Question Deleted');
     }

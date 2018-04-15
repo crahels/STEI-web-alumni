@@ -17,13 +17,13 @@
                 <div class="well">
                     <div class="row">
                         <div class="col-12 post-card">
-                                <h3><a href="/admin/questions/{{$question->id}}">{{$question->topic}}</a></h3>
-                                <p>{{$question->body}}</p>
-                                <small><i>Written on {{$question->created_at}} by {{$question->user->name}}</i></small><br>
-                                <a href="/admin/answers/add/{{$question->id}}" class="btn btn-primary" style="float:right;">
-                                    Give Answer
-                                </a>
-                            </div>
+                            <h3><a href="/admin/questions/{{$question->id}}">{{$question->topic}}</a></h3>
+                            <p>{{$question->body}}</p>
+                            <small><i>Written on {{$question->created_at}} by {{$question->user->name}}</i></small><br>
+                            <a href="/admin/answers/add/{{$question->id}}" class="btn btn-primary" style="float:right;">
+                                Give Answer
+                            </a>
+                        </div>
                         @foreach ($question->answers->sortByDesc('rating') as $answer)
                             <div class="col-12 post-card" style="display:inline;">
                                 <hr>
@@ -44,6 +44,7 @@
                                     
                                     {!! Form::close() !!}
                                 </div>
+
                                 <div class="col-10 pull-right">
                                     <p>{{$answer->body}}</p>
                                     <a href="/admin/answers/{{$answer->id}}">
