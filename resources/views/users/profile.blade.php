@@ -21,10 +21,10 @@
                         <td>Name</td>
                         <td>{{$user->name}}</td>
                     </tr>
-                    <tr>
+                    <!--<tr>
                         <td>Email</td>
                         <td><a href="mailto:{{$user->email}}">{{$user->email}}</a></td>
-                    </tr>
+                    </tr>-->
                         <td>Phone Number</td>
                         <td>{{$user->phone_number}}                            
                     </tr>
@@ -41,6 +41,19 @@
                         <td>{{$user->address}}</td>
                     </tr>
                     @if(Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $user->id)
+                        @if(Auth::guard('member')->user()->email != null)
+                            <tr>
+                                <td>
+                                    Google Account
+                                </td>
+                                <td>
+                                    <a href="/link/google" data-original-title="Edit Google Link" 
+                                        data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
+                                        {{Auth::guard('member')->user()->email}} <i class="glyphicon glyphicon-edit"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
                         @if(Auth::guard('member')->user()->facebook_email != null)
                             <tr>
                                 <td>

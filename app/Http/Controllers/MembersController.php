@@ -98,10 +98,10 @@ class MembersController extends Controller
             return redirect('/');
         
         $this->validate($request, [
-            'email' => 
-                array(
-                    'required',
-                    'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/'),
+            //'email' => 
+            //    array(
+            //        'required',
+            //        'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/'),
             'phone_number' => 
                 array(
                     'required',
@@ -121,7 +121,7 @@ class MembersController extends Controller
         }
 
         $user = Member::find($id);
-        $user->temp_email = $request->input('email');
+        //$user->temp_email = $request->input('email');
         $user->phone_number = $request->input('phone_number');
         $user->company = $request->input('company');
         $user->interest = $request->input('interest');
@@ -134,7 +134,7 @@ class MembersController extends Controller
         }
         $user->save();
 
-        if($user->email != $user->temp_email){
+        /*if($user->email != $user->temp_email){
             $provider = $user->accounts()->where('provider_name','=','google')->first();
             if($user->verifyToken != null)
                 $user->verifyToken->delete();
@@ -147,9 +147,9 @@ class MembersController extends Controller
             ]);
             Mail::to($user)->send(new SendReverificationEmail($token));
             return redirect('/members/' . $id)->with('success', 'Profile Updated. Confirmation code has been sent to new email.');
-        }else{
+        }else{*/
             return redirect('/members/' . $id)->with('success', 'Profile Updated');
-        }
+        //}
     }
 
     /**
