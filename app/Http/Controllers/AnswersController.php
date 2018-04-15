@@ -148,6 +148,7 @@ class AnswersController extends Controller
         // admin can give vote as much as he can
         if ($isAdmin) {
             $answer->rating++;
+            $answer->timestamps = false;
             $answer->save();
             
             $questions = Question::orderBy('created_at','desc')->paginate(15);
@@ -166,6 +167,7 @@ class AnswersController extends Controller
                 $answer->users()->attach($user_id);
 
                 $answer->rating++;
+                $answer->timestamps = false;
                 $answer->save();
                 
                 $questions = Question::orderBy('created_at','desc')->paginate(15);
@@ -174,6 +176,7 @@ class AnswersController extends Controller
                 $answer->users()->detach($user_id);
 
                 $answer->rating--;
+                $answer->timestamps = false;
                 $answer->save();
                 
                 $questions = Question::orderBy('created_at','desc')->paginate(15);
