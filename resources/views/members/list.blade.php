@@ -19,6 +19,7 @@
               <th scope="col-3">Student ID</th>
               <th scope="col-6">Name</th>
               <th scope="col-3">Email Address</th>
+              <th scope="col-3">Status</th>
             </tr>  
           </thead>
           <tbody>
@@ -27,6 +28,11 @@
                 <td>{{$member->nim}}</td>
                 <td><a href="/admin/members/{{$member->id}}">{{$member->name}}</a></td>
                 <td>{{$member->email}}</td>
+                @if ($member->verified == 0)
+                  <td style="color:red;">not verified</td>
+                @else
+                  <td>verified</td>
+                @endif
               </tr>
             @endforeach
           </tbody>

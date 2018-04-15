@@ -27,15 +27,13 @@
                         @foreach ($question->answers->sortByDesc('rating') as $answer)
                             <div class="col-12 post-card" style="display:inline;">
                                 <hr>
-                                <div class="col-10" style="float:left;">
-                                    <p>{{$answer->body}}</p>
-                                    <a href="/admin/answers/{{$answer->id}}"><small>Written on {{$answer->created_at}} by {{$answer->user->name}}</small></a><br>
-                                    @if ($answer->created_at != $answer->updated_at)
-                                        <small style="color:green;">(edited)</small>
-                                    @endif
-                                </div>
-                                <div class="col-2 pull-right">
-                                    <center><h2>{{$answer->rating}}</h2></center>
+                                <div class="col-2" style="float:left;">
+                                    <div class="sum-rating">
+                                        <center>
+                                            {{$answer->rating}}
+                                        </center>
+                                    </div>
+                                    
                                     {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::user()->id], 'method' => 'POST']) !!}
                                     
                                     @if ($answer->users->contains(Auth::user()->id)) 
@@ -45,6 +43,18 @@
                                     @endif
                                     
                                     {!! Form::close() !!}
+                                </div>
+                                <div class="col-10 pull-right">
+                                    <p>{{$answer->body}}</p>
+                                    <a href="/admin/answers/{{$answer->id}}">
+                                        <small>
+                                            Written on {{$answer->created_at}} by {{$answer->user->name}}
+                                        </small>
+                                    </a>
+                                    <br>
+                                    @if ($answer->created_at != $answer->updated_at)
+                                        <small style="color:green;">(edited)</small>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach
