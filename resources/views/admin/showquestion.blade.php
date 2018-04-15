@@ -18,8 +18,16 @@
                     <div class="row">
                         <div class="col-12 post-card">
                             <h3><a href="/admin/questions/{{$question->id}}">{{$question->topic}}</a></h3>
-                            <p>{{$question->body}}</p>
-                            <small><i>Written on {{$question->created_at}} by {{$question->user->name}}</i></small><br>
+                            <p>{!!$question->body!!}</p>
+                            <small>
+                                <i>
+                                    Written on {{$question->created_at}} by {{$question->user->name}}
+                                </i>
+                            </small>
+                            <br>
+                            @if ($question->created_at != $question->updated_at)
+                                <small style="color:green;">(edited)</small>
+                            @endif
                             <a href="/admin/answers/add/{{$question->id}}" class="btn btn-primary" style="float:right;">
                                 Give Answer
                             </a>
@@ -34,11 +42,15 @@
                                         </center>
                                     </div>
                                     
-                                    {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::user()->id], 'method' => 'POST']) !!}
-                                    
-                                    @if ($answer->users->contains(Auth::user()->id)) 
-                                        {{Form::submit('VOTE', ['class' => 'btn'])}}
+                                    @if(Auth::guard('member')->user() != null)
+                                        {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id], 'method' => 'POST']) !!}
+                                        @if ($answer->users->contains(Auth::guard('member')->user()->id)) 
+                                            {{Form::submit('VOTE', ['class' => 'btn'])}}
+                                        @else
+                                            {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
+                                        @endif
                                     @else
+                                        {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::user()->id], 'method' => 'POST']) !!}
                                         {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
                                     @endif
                                     

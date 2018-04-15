@@ -10,7 +10,7 @@
     <div class="col-8 post">
         {!! Form::open(['action' => ['AnswersController@update', $answer->id], 'method' => 'POST']) !!}
             {{Form::label('question', 'Question')}}: 
-            {{$answer->question->body}}
+            {!!$answer->question->body!!}
             <div class="form-group">
                 {{Form::label('body', 'Answer')}}
                 {{Form::textarea('body', $answer->body, ['class' => 'form-control', 'placeholder' => 'Answer'])}}

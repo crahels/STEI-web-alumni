@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Question;
 use App\Answer;
 use Illuminate\Http\Request;
+use \Auth;
 
 class AnswersController extends Controller
 {
@@ -136,31 +137,48 @@ class AnswersController extends Controller
      */
     public function giveRating($answer_id, $user_id)
     {
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+        $isMember = Auth::guard('member')->user() != null;
+
+        // if not member and admin then cannot rate this answer
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+        
         $answer = Answer::where('id', $answer_id)->first();
-        $found = 0;
-        foreach ($answer->users as $user) {
-            if ($user->id == $user_id) {
-                $found = 1;
-                break;
-            }
-        }
-
-        if ($found == 0) {
-            $answer->users()->attach($user_id);
-
+        // admin can give vote as much as he can
+        if ($isAdmin) {
             $answer->rating++;
             $answer->save();
             
             $questions = Question::orderBy('created_at','desc')->paginate(15);
             return redirect('/admin/questions')->with('questions', $questions)->with('success','Rating Added');
+        // member can only give vote once
         } else {
-            $answer->users()->detach($user_id);
+            $found = 0;
+            foreach ($answer->users as $user) {
+                if ($user->id == $user_id) {
+                    $found = 1;
+                    break;
+                }
+            }
 
-            $answer->rating--;
-            $answer->save();
-            
-            $questions = Question::orderBy('created_at','desc')->paginate(15);
-            return redirect('/admin/questions')->with('questions', $questions)->with('error','Rating Deleted');
+            if ($found == 0) {
+                $answer->users()->attach($user_id);
+
+                $answer->rating++;
+                $answer->save();
+                
+                $questions = Question::orderBy('created_at','desc')->paginate(15);
+                return redirect('/admin/questions')->with('questions', $questions)->with('success','Rating Added');
+            } else {
+                $answer->users()->detach($user_id);
+
+                $answer->rating--;
+                $answer->save();
+                
+                $questions = Question::orderBy('created_at','desc')->paginate(15);
+                return redirect('/admin/questions')->with('questions', $questions)->with('error','Rating Deleted');
+            }
         }
     }
 
