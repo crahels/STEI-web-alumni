@@ -14,6 +14,16 @@ class PostsController extends Controller
     }
 
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -48,6 +58,16 @@ class PostsController extends Controller
             'cover_image' => 'image|nullable|max:1999'
         ]);
 
+        $public = '0';
+        $draft = '0';
+        if ($request->input('draft') === 'yes') {
+            $draft = '1';
+        } 
+
+        if ($request->input('public') === 'yes') {
+            $public = '1';
+        }
+
         if ($request->hasFile('cover_image')) {
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -61,6 +81,8 @@ class PostsController extends Controller
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        $post->draft = $draft;
+        $post->public = $public;
         $post->user_id = auth()->user()->id;
         $post->cover_image = $filenameToStore;
         $post->save();
@@ -113,6 +135,16 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'required'
         ]);
+        
+        $public = '0';
+        $draft = '0';
+        if ($request->input('draft') === 'yes') {
+            $draft = '1';
+        } 
+
+        if ($request->input('public') === 'yes') {
+            $public = '1';
+        }
 
         if ($request->hasFile('cover_image')) {
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
@@ -120,11 +152,13 @@ class PostsController extends Controller
             $extension = $request->file('cover_image')->getClientOriginalExtension();
             $filenameToStore = $filename.'_'.time().'.'.$extension;
             $path = $request->file('cover_image')->storeAs('public/cover_images', $filenameToStore);            
-        }
+        } 
 
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        $post->draft = $draft;
+        $post->public = $public;
         if ($request->hasFile('cover_image')) {
             if($post->cover_image !== 'noimage.jpg'){
                 Storage::delete('public/cover_images/' . $post->cover_image);

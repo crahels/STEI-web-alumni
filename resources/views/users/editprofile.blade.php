@@ -21,10 +21,10 @@
                                 <div class="form-group">
                                     {{Form::label('profile_image','Profile Image')}}
                                     {{Form::file('profile_image')}}
-                                    
-                                    {{Form::label('email','Email')}}
-                                    {{Form::text('email', $user->email , ['class' => 'form-control'])}}
-
+                                   
+                                    <!-- {{Form::label('email','Email')}} 
+                                    {{Form::text('email', $user->email , ['class' => 'form-control'])}} -->
+ 
                                     {{Form::label('phone_number','Phone Number')}}
                                     {{Form::text('phone_number', $user->phone_number, ['class' => 'form-control'])}}
 

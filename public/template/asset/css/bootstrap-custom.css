@@ -1,0 +1,13 @@
+.login {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.dropdown-item {
+    color: white;
+    margin: 0 0 0 8%;
+}

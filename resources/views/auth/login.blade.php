@@ -23,8 +23,8 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;">
-<div class="container row justify-content-center header-login">
-    <div class="col-md-8">
+<div class="container justify-content-center header-login">
+    <div class="col-md-10">
         <div class="col-md-5">
             <img src="{{URL::asset('storage/logo_itb.png')}}" id=loginItb>
         </div>
