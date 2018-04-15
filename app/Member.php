@@ -2,13 +2,14 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 
-class Member extends Model
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class Member extends Authenticatable
 {
     use Notifiable;
-
+    //protected $guard = 'member';
     /**
      * The attributes that are mass assignable.
      *
@@ -17,4 +18,16 @@ class Member extends Model
     protected $fillable = [
         'nim','name', 'email', 'phone_number', 'interest', 'company',
     ];
+
+    public function accounts(){
+        return $this->hasMany('App\LinkedSocialAccount');
+    }
+
+    protected $hidden = [
+        'remember_token',
+    ];
+
+    public function verifyToken(){
+        return $this->hasOne('App\VerifyToken');
+    }   
 }

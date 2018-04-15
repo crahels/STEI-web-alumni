@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendReverificationEmail;
 use App\Member;
+use \Auth;
 
 class MembersController extends Controller
 {
@@ -69,8 +72,10 @@ class MembersController extends Controller
      */
     public function edit($id)
     {
+        $isMember = Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $id;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
         $user = Member::find($id);
-        if($user !== null){
+        if($user !== null && ($isMember || $isAdmin)){
             return view('users.editprofile')->with('user', $user);
         } else {
             return abort(404);
@@ -86,11 +91,17 @@ class MembersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $isMember = Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $id;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+        
         $this->validate($request, [
-            'email' => 
-                array(
-                    'required',
-                    'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/'),
+            //'email' => 
+            //    array(
+            //        'required',
+            //        'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/'),
             'phone_number' => 
                 array(
                     'required',
@@ -110,7 +121,7 @@ class MembersController extends Controller
         }
 
         $user = Member::find($id);
-        $user->email = $request->input('email');
+        //$user->temp_email = $request->input('email');
         $user->phone_number = $request->input('phone_number');
         $user->company = $request->input('company');
         $user->interest = $request->input('interest');
@@ -123,7 +134,22 @@ class MembersController extends Controller
         }
         $user->save();
 
-        return redirect('/members/' . $id)->with('success', 'Profile Updated');
+        /*if($user->email != $user->temp_email){
+            $provider = $user->accounts()->where('provider_name','=','google')->first();
+            if($user->verifyToken != null)
+                $user->verifyToken->delete();
+
+            if($provider != null)
+                $provider->delete();
+            
+            $token = $user->verifyToken()->create([
+                'token' => sha1(time())
+            ]);
+            Mail::to($user)->send(new SendReverificationEmail($token));
+            return redirect('/members/' . $id)->with('success', 'Profile Updated. Confirmation code has been sent to new email.');
+        }else{*/
+            return redirect('/members/' . $id)->with('success', 'Profile Updated');
+        //}
     }
 
     /**
