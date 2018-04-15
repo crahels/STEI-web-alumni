@@ -35,7 +35,7 @@ class AnswersController extends Controller
     public function giveAnswer($question_id)
     {
         $questions = Question::orderBy('created_at','desc')->paginate(15);
-        return view('users.addanswer')->with('questions', $questions)->with('question_id', $question_id);
+        return view('admin.addanswer')->with('questions', $questions)->with('question_id', $question_id);
     }
 
     /**
@@ -66,7 +66,7 @@ class AnswersController extends Controller
         $answer->user_id = auth()->user()->id;
         $answer->save();
 
-        return redirect('/questions')->with('success', 'Answer Saved');
+        return redirect('/admin/questions')->with('success', 'Answer Saved');
     }
 
     /**
@@ -95,7 +95,7 @@ class AnswersController extends Controller
     {
         $answer = Answer::find($id);
         if ($answer !== null) {
-            return view('users.editanswer')->with('answer', $answer);
+            return view('admin.editanswer')->with('answer', $answer);
         } else {
             return abort(404);
         }
@@ -125,7 +125,7 @@ class AnswersController extends Controller
             $answer->save();
             
             $questions = Question::orderBy('created_at','desc')->paginate(15);
-            return redirect('/questions')->with('questions', $questions)->with('success','Rating Added');
+            return redirect('/admin/questions')->with('questions', $questions)->with('success','Rating Added');
         } else {
             $answer->users()->detach($user_id);
 
@@ -133,7 +133,7 @@ class AnswersController extends Controller
             $answer->save();
             
             $questions = Question::orderBy('created_at','desc')->paginate(15);
-            return redirect('/questions')->with('questions', $questions)->with('error','Rating Deleted');
+            return redirect('/admin/questions')->with('questions', $questions)->with('error','Rating Deleted');
         }
     }
 
@@ -154,7 +154,7 @@ class AnswersController extends Controller
         $answer->body = $request->input('body');
         $answer->save();
 
-        return redirect('/questions')->with('success', 'Answer Updated');
+        return redirect('/admin/questions')->with('success', 'Answer Updated');
     }
 
     /**
@@ -168,6 +168,6 @@ class AnswersController extends Controller
         $answer = Answer::find($id);
         $answer->delete();
 
-        return redirect('/questions')->with('error', 'Answer Deleted');
+        return redirect('/admin/questions')->with('error', 'Answer Deleted');
     }
 }

@@ -4,7 +4,7 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item" id="nav-one">
-            <a class="nav-link" href="/dashboard">
+            <a class="nav-link" href="/admin/dashboard">
               <span id="text-nav-one">  
                 <span data-feather="home"></span>
                 <i class="sideMenu">Dashboard</i><span class="sr-only">(current)</span>
@@ -12,7 +12,7 @@
             </a>
           </li>
           <li class="nav-item" id="nav-two">
-            <a class="nav-link" href="/members">
+            <a class="nav-link" href="/admin/members">
               <span id="text-nav-two">
                 <span data-feather="users"></span>
                 <i class="sideMenu">Members</i>
@@ -20,7 +20,7 @@
             </a>
           </li>
           <li class="nav-item" id="nav-three">
-            <a class="nav-link" href="/posts">
+            <a class="nav-link" href="/admin/posts">
               <span id="text-nav-three">
                 <span data-feather="file"></span>
                 <i class="sideMenu">Posts</i>
@@ -28,7 +28,7 @@
             </a>
           </li>
           <li class="nav-item" id="nav-four">
-            <a class="nav-link" href="/questions">
+            <a class="nav-link" href="/admin/questions">
               <span id="text-nav-four">
                 <span data-feather="help-circle"></span>
                 <i class="sideMenu">Questions</i>

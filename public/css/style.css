@@ -58,7 +58,9 @@
   }
 
 .post-title {
-	display: inline-block;
+  display: inline-block;
+}
+
 /* Clear the 1px gap on row and container */
 div.row:before, div.row:after {
   display: none
@@ -253,7 +255,9 @@ div.row:before, div.row:after {
 
 .post-view-img img {
 	max-height: inherit;
-	margin-top: 130px;
+  margin-top: 130px;
+}
+
 .user-row {
     margin-bottom: 14px;
 }

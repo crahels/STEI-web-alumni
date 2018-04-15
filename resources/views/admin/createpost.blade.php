@@ -52,7 +52,7 @@
             
             <div class="bottomButton">
                 {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-                <a onclick="return confirm('Are you sure you want to leave?')" class="pull-right onclick btn btn-danger" href="/posts">
+                <a onclick="return confirm('Are you sure you want to leave?')" class="pull-right onclick btn btn-danger" href="/admin/posts">
                     Cancel
                 </a>
             </div>

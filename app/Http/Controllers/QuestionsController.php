@@ -30,7 +30,7 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('users.addquestion');
+        return view('admin.addquestion');
     }
 
     /**
@@ -53,7 +53,7 @@ class QuestionsController extends Controller
         $question->user_id = auth()->user()->id;
         $question->save();
 
-        return redirect('/questions')->with('success', 'Question Added');
+        return redirect('/admin/questions')->with('success', 'Question Added');
     }
 
     /**
@@ -82,7 +82,7 @@ class QuestionsController extends Controller
     {
         $question = Question::find($id);
         if ($question !== null) {
-            return view('users.editquestion')->with('question', $question);
+            return view('admin.editquestion')->with('question', $question);
         } else {
             return abort(404);
         }
@@ -107,7 +107,7 @@ class QuestionsController extends Controller
         $question->body = $request->input('body');
         $question->save();
 
-        return redirect('/questions')->with('success', 'Question Updated');
+        return redirect('/admin/questions')->with('success', 'Question Updated');
     }
 
     /**
@@ -121,6 +121,6 @@ class QuestionsController extends Controller
         $question = Question::find($id);
         $question->delete();
 
-        return redirect('/questions')->with('error', 'Question Deleted');
+        return redirect('/admin/questions')->with('error', 'Question Deleted');
     }
 }

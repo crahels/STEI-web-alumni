@@ -8,22 +8,20 @@
     <main role="main" class="col-7">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">List of Questions</h1>
-            <a class="btn btn-primary" href="/admin/questions/create">
-                Add Question
-            </a>
         </div>
         @if (count($questions) > 0)
             @foreach ($questions as $question)
                 <div class="well">
                     <div class="row">
                         <div class="col-12 post-card">
-                                <h3><a href="/admin/questions/{{$question->id}}">{{$question->topic}}</a></h3>
-                                <p>{{$question->body}}</p>
-                                <small><i>Written on {{$question->created_at}} by {{$question->user->name}}</i></small><br>
-                                <a href="/admin/answers/add/{{$question->id}}" class="btn btn-primary" style="float:right;">
-                                    Give Answer
-                                </a>
-                            </div>
+                            <h3><a href="/admin/questions/{{$question->id}}">{{$question->topic}}</a></h3>
+                            <p>{{$question->body}}</p>
+                            <small><i>Written on {{$question->created_at}} by {{$question->user->name}}</i></small><br>
+                            <a href="/admin/answers/add/{{$question->id}}" class="btn btn-primary" style="float:right;">
+                                Give Answer
+                            </a>
+                        </div>
+
                         @foreach ($question->answers->sortByDesc('rating') as $answer)
                             <div class="col-12 post-card" style="display:inline;">
                                 <hr>
@@ -48,6 +46,21 @@
                                 </div>
                             </div>
                         @endforeach
+                        
+                        @if ($question->id == $question_id)
+                            <div class="col-12 post-card">
+                                <hr>
+                                {!! Form::open(['action' => ['AnswersController@store'], 'method' => 'POST']) !!}
+                                <div class="form-group">
+                                    {{Form::label('body','Answer')}}
+                                    {{Form::text('body', '', ['class' => 'form-control'])}}
+                                </div>
+                                {{ Form::hidden('question_id', $question->id) }}
+                                {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+                                    <a onclick="return confirm('Are you sure you want to cancel?')" href="/admin/questions" class="btn btn-danger pull-right">Cancel</a>
+                                {!! Form::close() !!}
+                            </div>
+                        @endif
                     </div>
                 </div>
             @endforeach

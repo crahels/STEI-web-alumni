@@ -8,7 +8,7 @@
         </div>-->
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="h2">List of Members</h1>
-          <a class="btn btn-primary" href="/add">
+          <a class="btn btn-primary" href="/admin/add">
             Add Member
           </a>
         </div>
@@ -25,7 +25,7 @@
             @foreach($members as $member)
               <tr>
                 <td>{{$member->nim}}</td>
-                <td><a href="/members/{{$member->id}}">{{$member->name}}</a></td>
+                <td><a href="/admin/members/{{$member->id}}">{{$member->name}}</a></td>
                 <td>{{$member->email}}</td>
               </tr>
             @endforeach

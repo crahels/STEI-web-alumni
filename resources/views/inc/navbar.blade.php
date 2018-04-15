@@ -1,7 +1,7 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light ">
     <div class="container">
         <img src="{{URL::asset('storage/logo_itb.png')}}" alt="logo_ins">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/admin/">
             <i style="font-weight: lighter; font-style: initial; font-size: 1.3em">Web Alumni</i>
             <b style="font-size: 1.5em">STEI</b>
         </a>
@@ -14,18 +14,18 @@
               <ul class="navbar-nav mr-auto">
                 @if(Auth::guard('member')->user() != null)
                     <li class="nav-item">
-                        <a class="nav-link" href="/members/{{Auth::guard('member')->user()->id}}">Profile</span></a>
+                        <a class="nav-link" href="/admin/members/{{Auth::guard('member')->user()->id}}">Profile</span></a>
                     </li>
                 @endif
                   <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Dashboard<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/admin/dashboard">Dashboard<span class="sr-only">(current)</span></a>
                   </li>
                   @if(!Auth::guest() &&  Auth::user()->IsAdmin == 1)
                   <li class="nav-item">
-                    <a class="nav-link" href="/members">Members</a>
+                    <a class="nav-link" href="/admin/members">Members</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/posts">Posts</a>
+                    <a class="nav-link" href="/admin/posts">Posts</a>
                   </li>
                   @endif
                 </ul>

@@ -12,16 +12,6 @@ class PostsController extends Controller
     {
         $this->middleware('admin');
     }
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('admin');
-    }
     
     /**
      * Display a listing of the resource.
@@ -87,7 +77,7 @@ class PostsController extends Controller
         $post->cover_image = $filenameToStore;
         $post->save();
 
-        return redirect('/posts')->with('success', 'Post Created');
+        return redirect('/admin/posts')->with('success', 'Post Created');
     }
 
     /**
@@ -167,7 +157,7 @@ class PostsController extends Controller
         }
         $post->save();
 
-        return redirect('/posts')->with('success', 'Post Updated');
+        return redirect('/admin/posts')->with('success', 'Post Updated');
     }
 
     /**
@@ -185,6 +175,6 @@ class PostsController extends Controller
             Storage::delete('public/cover_images/'.$post->cover_image);
         }
 
-        return redirect('/posts')->with('error', 'Post Deleted');
+        return redirect('/admin/posts')->with('error', 'Post Deleted');
     }
 }
