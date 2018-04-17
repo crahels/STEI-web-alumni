@@ -13,6 +13,10 @@
     font-size: 2.5em;
   }
 
+  .show-answer {
+    float: right;
+  }
+
   /* The slider */
   .slider {
 	position: absolute;

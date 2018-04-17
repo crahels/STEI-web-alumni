@@ -185,6 +185,51 @@ class AnswersController extends Controller
         }
     }
 
+     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Answer  $answer
+     * @return \Illuminate\Http\Response
+     */
+    public function givePin($answer_id)
+    {
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+        // if not admin then cannot pin this answer
+        if(!$isAdmin)
+            return redirect('/');
+        
+        $answer = Answer::where('id', $answer_id)->first();
+        // admin can give vote as much as he can
+        if ($isAdmin) {
+            if ($answer->is_pinned == 0) {
+                $answer_pinned = Answer::where('is_pinned', 1)->first();
+                if ($answer_pinned !== null) {
+                    $answer_pinned->is_pinned = 0;
+                    $answer_pinned->timestamps = false;
+                    $answer_pinned->save();
+                }
+                $answer->is_pinned = 1;
+                $answer->timestamps = false;
+                $answer->save();
+
+                $questions = Question::orderBy('created_at','desc')->paginate(15);
+                return redirect('/admin/questions')->with('questions', $questions)->with('success','Answer Pinned');
+            } else {
+                $answer->is_pinned = 0;
+                $answer->timestamps = false;
+                $answer->save();
+
+                $questions = Question::orderBy('created_at','desc')->paginate(15);
+                return redirect('/admin/questions')->with('questions', $questions)->with('success','Answer Unpinned');
+            }
+        // member can only give vote once
+        } else {
+            $questions = Question::orderBy('created_at','desc')->paginate(15);
+            return redirect('/admin/questions')->with('questions', $questions)->with('error','You do not have right to pin this answer.');
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      *

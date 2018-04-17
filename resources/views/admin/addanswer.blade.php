@@ -33,29 +33,37 @@
                         @foreach ($question->answers->sortByDesc('rating') as $answer)
                             <div class="col-12 post-card" style="display:inline;">
                                 <hr>
-                                <div class="col-2" style="float:left;">
-                                    <div class="sum-rating">
+                                <div class="col-3" style="float:left;">
+                                    <div>
                                         <center>
-                                            {{$answer->rating}}
+                                            <small style="font-size:1.1em;">vote<span>@if($answer->rating > 1)<span>s</span>@endif</span>
+                                            </small><br>
+                                            <span class="sum-rating">
+                                                {{$answer->rating}}
+                                            </span>
+                                            @if(Auth::guard('member')->user() != null)
+                                                {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id], 'method' => 'POST']) !!}
+                                                @if ($answer->users->contains(Auth::guard('member')->user()->id)) 
+                                                    {{Form::submit('VOTE', ['class' => 'btn'])}}
+                                                @else
+                                                    {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
+                                                @endif
+                                            @else
+                                                @if($answer->is_pinned == 1) 
+                                                    {!! Form::open(['action' => ['AnswersController@givePin', $answer->id], 'method' => 'POST']) !!}
+                                                    {{Form::button('<i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PINNED', ['type' => 'submit', 'class' => 'btn', 'data-toggle' => 'tooltip'])}}
+                                                    
+                                                @else
+                                                    {!! Form::open(['action' => ['AnswersController@givePin', $answer->id], 'method' => 'POST']) !!}
+                                                    {{Form::button('<i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PIN', ['type' => 'submit', 'class' => 'btn btn-warning', 'data-toggle' => 'tooltip'])}}
+                                                @endif
+                                            @endif
+                                            {!! Form::close() !!}
                                         </center>
                                     </div>
-                                    
-                                    @if(Auth::guard('member')->user() != null)
-                                        {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id], 'method' => 'POST']) !!}
-                                        @if ($answer->users->contains(Auth::guard('member')->user()->id)) 
-                                            {{Form::submit('VOTE', ['class' => 'btn'])}}
-                                        @else
-                                            {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
-                                        @endif
-                                    @else
-                                        {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::user()->id], 'method' => 'POST']) !!}
-                                        {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
-                                    @endif
-                                    
-                                    {!! Form::close() !!}
                                 </div>
 
-                                <div class="col-10 pull-right">
+                                <div class="col-9 pull-right">
                                     <p>{{$answer->body}}</p>
                                     <a href="/admin/answers/{{$answer->id}}">
                                         <small>
@@ -71,7 +79,7 @@
                         @endforeach
                         
                         @if ($question->id == $question_id)
-                            <div class="col-12 post-card">
+                            <div id="add-answer" class="col-12 post-card">
                                 <hr>
                                 {!! Form::open(['action' => ['AnswersController@store'], 'method' => 'POST']) !!}
                                 <div class="form-group">
@@ -93,8 +101,14 @@
         @endif
     </main>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     document.getElementById("nav-four").classList.add("active");
     document.getElementById("text-nav-four").classList.add("color-active");
+
+    $(document).ready(function() {
+        var top = $('#add-answer').position().top;
+        $('html').scrollTop(top);
+    });
 </script>
 @endsection
