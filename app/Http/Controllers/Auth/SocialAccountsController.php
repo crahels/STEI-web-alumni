@@ -47,11 +47,18 @@ class SocialAccountsController extends Controller
             return redirect('/login');
         }
         if(auth()->guard('member')->user() != null){
-            $linkStatus = $accountService->findOrLink(
-                $user,
-                auth()->guard('member')->user(),
-                $provider
-            );
+            if($provider == 'google'){
+                $linkStatus = $accountService->editGoogleLink(
+                    $user,
+                    auth()->guard('member')->user()
+                );
+            }else{
+                $linkStatus = $accountService->findOrLink(
+                    $user,
+                    auth()->guard('member')->user(),
+                    $provider
+                );
+            }
             if($linkStatus)
                 return redirect()->to('/members/'.auth()->guard('member')->user()->id)->with('success',ucfirst($provider).' account successfully linked');
             else
