@@ -1,5 +1,5 @@
 <!-- Navigation -->
-@if (Request::is('/'))
+@if (Request::is('/') || Request::is('about'))
     <nav class="navbar navbar-default navbar-fixed-top">
 @else
     <nav class="navbar navbar-default" style="background-color: #222; padding: 1% 0;">
@@ -48,11 +48,15 @@
                         <a class="" href="#">Forum</a>
                     @endif
                 </li>
-                <li>
-                    @if (Request::is('/'))
-                        <a class="page-scroll" href="#">About</a>
-                    @endif                    
-                </li>
+                @if (Request::is('about'))
+                    <li class="on-page">
+                        <a href="#">About</a>
+                    </li>
+                @else
+                    <li>
+                        <a class="page-scroll" href="/about">About</a>
+                    </li>
+                @endif
                 <li>
                     @if (Request::is('/'))
                         <a class="page-scroll" href="#service">Services</a>

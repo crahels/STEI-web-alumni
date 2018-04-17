@@ -337,11 +337,19 @@ footer.style-1 {
     color: #28ABE3;
 }
 
-.page-change {
-    color: #28ABE3;
-}
-
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   color: #28ABE3;
 }
+
+.on-page {
+    background-color: #28ABE3;
+}
+
+/* .on-page,
+.on-page:hover,
+.on-page:focus {
+    color: #fff;
+    background-color: #28ABE3;
+    border-radius: 3px;
+} */

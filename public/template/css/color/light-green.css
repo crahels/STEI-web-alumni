@@ -332,11 +332,11 @@ footer.style-1 {
   color: #BCCF02;
 }
 
-.page-change {
-    color: #BCCF02;
-}
-
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   color: #BCCF02;
+}
+
+.on-page {
+    background-color: #BCCF02;
 }

@@ -29,3 +29,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.navbar-default .navbar-nav>.on-page>a:hover,
+.navbar-default .navbar-nav>.on-page>a:focus {
+    color: #fff;    
+}
+
+.on-page {
+    border-radius: 3px;
+}

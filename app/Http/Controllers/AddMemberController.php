@@ -69,14 +69,18 @@ class AddMemberController extends Controller
                             $array_members->push($member);
                         }
                     }
+                } else {
+                    return redirect('/admin/members')->with('error', 'Wrong File Extension');
                 }
             } catch (Exception $e) {
-                return redirect('/members')->with('error', $e->getMessage());
+                return redirect('/admin/members')->with('error', $e->getMessage());
             }
+        } else {
+            return redirect('/admin/members')->with('error','No CSV file');
         }
 
         $members = Member::orderBy('name','asc')->paginate(20);
-        return view('members.list')->with('members', $members)->with('success', 'Members Imported');
+        return redirect('/admin/members')->with('members', $members)->with('success', 'Members Imported');
     }
 
     public function importMember(Request $request)
@@ -111,11 +115,11 @@ class AddMemberController extends Controller
             $member = Member::where('email', $request->input('email'))->first();
             $array_members->push($member);
         } catch (Exception $e) {
-            return redirect('/members')->with('error', $e->getMessage());
+            return redirect('/admin/members')->with('error', $e->getMessage());
         }
         
         $members = Member::orderBy('name','asc')->paginate(20);
-        return redirect('/members')->with('members', $members)->with('success', 'Member Added');
+        return redirect('/admin/members')->with('members', $members)->with('success', 'Member Added');
     }
 
     /**

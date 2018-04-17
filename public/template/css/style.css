@@ -109,7 +109,6 @@ li {
 }
 
 
-
 /*------------------------------------------------*/
 /* Start Top Navbar Section                           */
 /*------------------------------------------------*/
@@ -2001,4 +2000,33 @@ iframe {
       }
 }
 
+.navbar-default .navbar-nav>.on-page>a {
+    border-radius: 3px;
+    color: #fff;
+}
 
+.navbar-default .navbar-nav>.on-page>a:hover,
+.navbar-default .navbar-nav>.on-page>a:focus {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav>.on-page>a {
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+/* a>.on-page,
+a>.on-page:hover,
+a>.on-page:focus {
+    color: #fff;
+    background-color: #28ABE3;
+    border-radius: 3px;
+}
+
+a>.on-page>.active {
+    color: #fff;
+    background-color: #28ABE3;
+    border-radius: 3px;
+} */

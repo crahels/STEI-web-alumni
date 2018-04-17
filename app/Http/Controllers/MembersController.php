@@ -58,7 +58,7 @@ class MembersController extends Controller
     {
         $user = Member::find($id);
         if($user !== null){
-            return view('users.profile')->with('user', $user);
+            return view('admin.profile')->with('user', $user);
         } else {
             return abort(404);
         }
@@ -86,7 +86,7 @@ class MembersController extends Controller
         $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
         $user = Member::find($id);
         if($user !== null && ($isMember || $isAdmin)){
-            return view('users.editprofile')->with('user', $user);
+            return view('admin.editprofile')->with('user', $user);
         } else {
             return abort(404);
         }
@@ -103,6 +103,7 @@ class MembersController extends Controller
             return abort(404);
         }
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -170,7 +171,7 @@ class MembersController extends Controller
             Mail::to($user)->send(new SendReverificationEmail($token));
             return redirect('/members/' . $id)->with('success', 'Profile Updated. Confirmation code has been sent to new email.');
         }else{*/
-            return redirect('/members/' . $id)->with('success', 'Profile Updated');
+            return redirect('/admin/members/' . $id)->with('success', 'Profile Updated');
         //}
     }
 
@@ -183,10 +184,9 @@ class MembersController extends Controller
     public function destroy($id)
     {
         $user = Member::find($id);
-        if($user !== null){
+        if($user !== null) {
             $user->delete();
-            $members = Member::orderBy('name','asc')->paginate(20);
-            return view('members.list')->with('members', $members)->with('success', 'Member Deleted');
+            return redirect('/admin/members')->with('error', 'Member Deleted');
         } else {
             return abort(404);
         }

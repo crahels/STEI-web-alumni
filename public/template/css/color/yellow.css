@@ -331,11 +331,11 @@ footer.style-1 {
   color: #FED136;
 }
 
-.page-change {
-    color: #FED136;
-}
-
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   color: #FED136;
+}
+
+.on-page {
+    background-color: #FED136;
 }
