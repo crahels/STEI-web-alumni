@@ -191,7 +191,7 @@ class AnswersController extends Controller
      * @param  \App\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function givePin($answer_id)
+    public function givePin($answer_id, $question_id)
     {
         $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
 
@@ -203,7 +203,7 @@ class AnswersController extends Controller
         // admin can give vote as much as he can
         if ($isAdmin) {
             if ($answer->is_pinned == 0) {
-                $answer_pinned = Answer::where('is_pinned', 1)->first();
+                $answer_pinned = Answer::where(['is_pinned' => 1, 'question_id' => $question_id])->first();
                 if ($answer_pinned !== null) {
                     $answer_pinned->is_pinned = 0;
                     $answer_pinned->timestamps = false;

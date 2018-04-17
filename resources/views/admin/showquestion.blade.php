@@ -48,12 +48,11 @@
                                                     {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
                                                 @endif
                                             @else
+                                                {!! Form::open(['action' => ['AnswersController@givePin', $answer->id, $question->id], 'method' => 'POST']) !!}
                                                 @if($answer->is_pinned == 1) 
-                                                    {!! Form::open(['action' => ['AnswersController@givePin', $answer->id], 'method' => 'POST']) !!}
                                                     {{Form::button('<i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PINNED', ['type' => 'submit', 'class' => 'btn', 'data-toggle' => 'tooltip'])}}
                                                     
                                                 @else
-                                                    {!! Form::open(['action' => ['AnswersController@givePin', $answer->id], 'method' => 'POST']) !!}
                                                     {{Form::button('<i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PIN', ['type' => 'submit', 'class' => 'btn btn-warning', 'data-toggle' => 'tooltip'])}}
                                                 @endif
                                             @endif

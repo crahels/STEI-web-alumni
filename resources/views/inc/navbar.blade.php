@@ -27,6 +27,9 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/admin/posts">Posts</a>
                   </li>
+                  <li class="nav-item">
+                        <a class="nav-link" href="/admin/questions">Questions</a>
+                      </li>
                   @endif
                 </ul>
 
