@@ -869,8 +869,20 @@ anchors are inline so you need ot make them block to go full width
 	height: 650px;
 }
 
+.show-question {
+	height: 400px;
+}
+
+.left-question {
+  color: white;
+}
+
 .edit-prof-pic {
 	background-color: #92c6f9;
+}
+
+.edit-question {
+  background-color: #003365;
 }
 
 #user-ava {

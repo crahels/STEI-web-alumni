@@ -147,9 +147,9 @@ class QuestionsController extends Controller
             $question->topic = $request->input('topic');
             $question->body = $request->input('body');
             $question->save();
-            return redirect('/admin/questions')->with('success', 'Question Updated');
+            return redirect('/admin/questions/' . $id)->with('success', 'Question Updated');
         } else {
-            return redirect('/admin/questions')->with('error', 'You can not edit this question.');
+            return redirect('/admin/questions/' . $id)->with('error', 'You can not edit this question.');
         }
     }
 

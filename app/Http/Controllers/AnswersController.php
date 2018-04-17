@@ -55,7 +55,7 @@ class AnswersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $each)
     {
         $isMember = Auth::guard('member')->user() != null;
         $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
@@ -79,7 +79,11 @@ class AnswersController extends Controller
         }
         $answer->save();
 
-        return redirect('/admin/questions')->with('success', 'Answer Saved');
+        if ($each == 1) {
+            return redirect('/admin/questions/' . $request->input('question_id'))->with('success', 'Answer Saved');
+        } else {
+            return redirect('/admin/questions')->with('success', 'Answer Saved');
+        }
     }
 
     /**
@@ -191,7 +195,7 @@ class AnswersController extends Controller
      * @param  \App\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function givePin($answer_id, $question_id)
+    public function givePin($answer_id, $question_id, $each)
     {
         $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
 
@@ -214,16 +218,24 @@ class AnswersController extends Controller
                 $answer->save();
 
                 $questions = Question::orderBy('created_at','desc')->paginate(15);
-                return redirect('/admin/questions')->with('questions', $questions)->with('success','Answer Pinned');
+                if ($each == 1) {
+                    return redirect('/admin/questions/' . $answer->question->id)->with('success','Answer Pinned');
+                } else {
+                    return redirect('/admin/questions')->with('questions', $questions)->with('success','Answer Pinned');
+                }
             } else {
                 $answer->is_pinned = 0;
                 $answer->timestamps = false;
                 $answer->save();
 
                 $questions = Question::orderBy('created_at','desc')->paginate(15);
-                return redirect('/admin/questions')->with('questions', $questions)->with('success','Answer Unpinned');
+                if ($each == 1) {
+                    return redirect('/admin/questions/' . $answer->question->id)->with('error','Answer Unpinned');
+                } else {
+                    return redirect('/admin/questions')->with('questions', $questions)->with('error','Answer Unpinned');
+                }
             }
-        // member can only give vote once
+        // others besides admin can not give vote
         } else {
             $questions = Question::orderBy('created_at','desc')->paginate(15);
             return redirect('/admin/questions')->with('questions', $questions)->with('error','You do not have right to pin this answer.');
@@ -254,11 +266,22 @@ class AnswersController extends Controller
         $member = Auth::guard('member')->user();
 
         if ($isAdmin || ($answer->user()->id == $member->id && $answer->is_admin == 0)) {
+            if ($request->input('pin') === 'yes') {
+                $answer_pinned = Answer::where(['is_pinned' => 1, 'question_id' => $answer->question->id])->first();
+                if ($answer_pinned !== null) {
+                    $answer_pinned->is_pinned = 0;
+                    $answer_pinned->timestamps = false;
+                    $answer_pinned->save();
+                }
+                $answer->is_pinned = 1;
+            } else {
+                $answer->is_pinned = 0;
+            }
             $answer->body = $request->input('body');
             $answer->save();
-            return redirect('/admin/questions')->with('success', 'Answer Updated');
+            return redirect('/admin/answers/' . $id)->with('success', 'Answer Updated');
         } else {
-            return redirect('/admin/questions')->with('error', 'You can not edit this answer.');
+            return redirect('/admin/answers/' . $id)->with('error', 'You can not edit this answer.');
         }
     }
 

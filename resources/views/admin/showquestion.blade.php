@@ -8,6 +8,11 @@
     <main role="main" class="col-7">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">List of Questions</h1>
+            @if(Auth::guard('member')->user() != null || (Auth::user() != null && Auth::user()->IsAdmin == 1))
+                <a class="btn btn-primary" href="/admin/questions/create">
+                    Add Question
+                </a>
+            @endif
         </div>
         @if (count($questions) > 0)
             @foreach ($questions as $question)
@@ -15,10 +20,10 @@
                     <div class="row">
                         <div class="col-12 post-card">
                             <h3><a href="/admin/questions/{{$question->id}}">{{$question->topic}}</a></h3>
-                            <p>{!!$question->body!!}</p>
+                            <p>{{$question->body}}</p>
                             <small>
                                 <i>
-                                    Written on {{$question->created_at}} by {{$question->user->name}}
+                                    Written on {{$question->created_at}} by {{$question->user->name}} <span>@if($question->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
                                 </i>
                             </small>
                             <br>
@@ -48,7 +53,7 @@
                                                     {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
                                                 @endif
                                             @else
-                                                {!! Form::open(['action' => ['AnswersController@givePin', $answer->id, $question->id], 'method' => 'POST']) !!}
+                                                {!! Form::open(['action' => ['AnswersController@givePin', $answer->id, $question->id, 0], 'method' => 'POST']) !!}
                                                 @if($answer->is_pinned == 1) 
                                                     {{Form::button('<i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PINNED', ['type' => 'submit', 'class' => 'btn', 'data-toggle' => 'tooltip'])}}
                                                     
@@ -65,7 +70,7 @@
                                     <p>{{$answer->body}}</p>
                                     <a href="/admin/answers/{{$answer->id}}">
                                         <small>
-                                            Written on {{$answer->created_at}} by {{$answer->user->name}}
+                                            Written on {{$answer->created_at}} by {{$answer->user->name}} <span>@if($answer->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
                                         </small>
                                     </a>
                                     <br>
@@ -79,14 +84,14 @@
                         <div id="answercontainer-{{$question->id}}" class="col-12 post-card">
                             <div id="add-answer">
                                 <hr>
-                                {!! Form::open(['action' => ['AnswersController@store'], 'method' => 'POST']) !!}
+                                {!! Form::open(['action' => ['AnswersController@store', 0], 'method' => 'POST']) !!}
                                 <div class="form-group">
                                     {{Form::label('body','Answer')}}
                                     {{Form::text('body', '', ['class' => 'form-control'])}}
                                 </div>
                                 {{ Form::hidden('question_id', $question->id) }}
-                                {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-                                    <a onclick="return confirm('Are you sure you want to cancel?')" href="/admin/questions" class="btn btn-danger pull-right">Cancel</a>
+                                {{Form::submit('Submit', ['class' => 'btn btn-primary pull-right'])}}
+                                    <!--<a onclick="return confirm('Are you sure you want to cancel?')" href="/admin/questions" class="btn btn-danger pull-right">Cancel</a>-->
                                 {!! Form::close() !!}
                             </div>
                         </div>
