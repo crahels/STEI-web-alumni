@@ -19,6 +19,12 @@ class PostsController extends Controller
         return view('admin.showpost')->with('posts', $posts);
     }
 
+    public function indexMember()
+    {
+        $posts = Post::orderBy('created_at','desc')->get();
+        return view('home')->with('posts', $posts);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

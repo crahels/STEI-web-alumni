@@ -13,7 +13,7 @@ class MembersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin', ['except' => ['show', 'edit', 'update']]);
+        $this->middleware('admin', ['except' => ['show', 'edit', 'update', 'showMyProfile', 'editMember']]);
     }
 
     /**
@@ -64,6 +64,16 @@ class MembersController extends Controller
         }
     }
 
+    public function showMyProfile($id)
+    {
+        $user = Member::find($id);
+        if($user !== null){
+            return view('members.showprofile')->with('user', $user);
+        } else {
+            return abort(404);
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -77,6 +87,18 @@ class MembersController extends Controller
         $user = Member::find($id);
         if($user !== null && ($isMember || $isAdmin)){
             return view('users.editprofile')->with('user', $user);
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function editMember($id)
+    {
+        $isMember = Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $id;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+        $user = Member::find($id);
+        if($user !== null && ($isMember || $isAdmin)){
+            return view('members.editprofilemember')->with('user', $user);
         } else {
             return abort(404);
         }

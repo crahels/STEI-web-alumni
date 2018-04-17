@@ -1,5 +1,9 @@
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top">
+@if (Request::is('/'))
+    <nav class="navbar navbar-default navbar-fixed-top">
+@else
+    <nav class="navbar navbar-default" style="background-color: #222; padding: 1% 0;">
+@endif
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -9,7 +13,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top">Alumni STEI</a>
+            @if (Request::is('/'))
+                <a class="navbar-brand page-scroll" href="#page-top">Alumni STEI</a>
+            @else
+                <a class="navbar-brand page-scroll" href="/">Alumni STEI</a>
+            @endif
+            
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,6 +27,13 @@
                 <li class="hidden">
                     <a href="#page-top"></a>
                 </li>   
+                <li>
+                    @if (Request::is('/'))
+                        {{-- nothing --}}
+                    @else
+                        <a href="/">Home</a>
+                    @endif
+                </li>
                 <li>
                     @if(Request::is('artikel/*')) <!-- URL Artikel -->
                         <a class="page-change" href="#" style="background-color:green">Article</a>
@@ -33,13 +49,24 @@
                     @endif
                 </li>
                 <li>
-                    <a class="page-scroll" href="#about-us">About</a>
+                    @if (Request::is('/'))
+                        <a class="page-scroll" href="#">About</a>
+                    @endif                    
                 </li>
                 <li>
-                    <a class="page-scroll" href="#service">Services</a>
+                    @if (Request::is('/'))
+                        <a class="page-scroll" href="#service">Services</a>
+                    @endif       
                 </li>
                 <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
+                    @if (Request::is('/'))
+                        <a class="page-scroll" href="#team">New member</a>
+                    @endif                       
+                </li>
+                <li>
+                    @if (Request::is('/'))
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    @endif        
                 </li>
             </ul>
 
@@ -53,17 +80,25 @@
                                 {{Auth::guard('member')->user()->name}}</span>
                             </a>
 
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/logout"
-                                    onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="/profilemember/{{Auth::guard('member')->user()->id}}">
+                                    {{-- <a class="dropdown-item" href="/profilemember/{{Auth::guard('member')->user()->id}}"> --}}
+                                        Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/logout"
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
 
-                                <form id="logout-form" action="/logout" method="GET" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
+                                    <form id="logout-form" action="/logout" method="GET" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
                     @else
                         <a class="login" href="/login">Login</a>
@@ -95,3 +130,20 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
+
+    <!-- Styleswitcher
+================================================== -->
+<div class="colors-switcher">
+        <a id="show-panel" class="hide-panel"><i class="fa fa-tint"></i></a>        
+            <ul class="colors-list">
+                <li><a title="Light Red" onClick="setActiveStyleSheet('light-red'); return false;" class="light-red"></a></li>
+                <li><a title="Blue" class="blue" onClick="setActiveStyleSheet('blue'); return false;"></a></li>
+                <li class="no-margin"><a title="Light Blue" onClick="setActiveStyleSheet('light-blue'); return false;" class="light-blue"></a></li>
+                <li><a title="Green" class="green" onClick="setActiveStyleSheet('green'); return false;"></a></li>
+                
+                <li class="no-margin"><a title="light-green" class="light-green" onClick="setActiveStyleSheet('light-green'); return false;"></a></li>
+                <li><a title="Yellow" class="yellow" onClick="setActiveStyleSheet('yellow'); return false;"></a></li>
+            </ul>
+    </div>  
+<!-- Styleswitcher End
+================================================== -->

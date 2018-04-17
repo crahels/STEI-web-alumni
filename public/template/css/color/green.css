@@ -10,7 +10,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-    color: #ea321e;
+    color: #5BB12F;
     text-decoration: none;
 }
 
@@ -333,4 +333,9 @@ footer.style-1 {
 
 .page-change {
     color: #5BB12F;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #5BB12F;
 }
