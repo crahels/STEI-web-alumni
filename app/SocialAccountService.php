@@ -8,6 +8,34 @@ use App\Mail\SendVerificationEmail;
 
 class SocialAccountService
 {
+    public function editGoogleLink(ProviderUser $providerUser, Member $member)
+    {
+        $account = LinkedSocialAccount::where('provider_name', 'google')
+                   ->where('provider_id', $providerUser->getId())
+                   ->first();
+        
+        if ($account){
+            if($account->member->id == $member->id){
+                $account->delete();
+            } else {
+                return false;
+            }
+        }else{
+            $temp_provider = $member->accounts()->where('provider_name','=','google')->first();
+            if($temp_provider != null)
+                $temp_provider->delete();
+        }
+        $member->email = $providerUser->getEmail();
+        $member->save();
+
+        $member->accounts()->create([
+            'provider_id'   => $providerUser->getId(),
+            'provider_name' => 'google',
+        ]);
+        return true;
+        
+    }
+
     public function findOrLink(ProviderUser $providerUser, Member $member, $provider)
     {
         $account = LinkedSocialAccount::where('provider_name', $provider)

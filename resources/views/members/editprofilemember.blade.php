@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.apphome')
 
 @section('title', $user->name . ' | Update Profile')
 
@@ -21,10 +21,10 @@
                                 <div class="form-group">
                                     {{Form::label('profile_image','Profile Image')}}
                                     {{Form::file('profile_image')}}
-                                   
-                                    <!-- {{Form::label('email','Email')}} 
-                                    {{Form::text('email', $user->email , ['class' => 'form-control'])}} -->
- 
+                                    
+                                    {{Form::label('email','Email')}}
+                                    {{Form::text('email', $user->email , ['class' => 'form-control'])}}
+
                                     {{Form::label('phone_number','Phone Number')}}
                                     {{Form::text('phone_number', $user->phone_number, ['class' => 'form-control'])}}
 
@@ -39,7 +39,7 @@
                                 </div>
                                 {{Form::hidden('_method', 'PUT')}}
                                 {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-                                <a onclick="return confirm('Are you sure you want to cancel?')" href="/members/{{$user->id}}" class="btn btn-danger pull-right">Cancel</a>
+                                <a onclick="return confirm('Are you sure you want to cancel?')" href="/profilemember/{{$user->id}}" class="btn btn-danger pull-right">Cancel</a>
                                  {!! Form::close() !!}
                                 </div>
                             </div>

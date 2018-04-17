@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'PostsController@indexMember');
+
+Route::get('/profilemember/{id}', 'MembersController@showMyProfile');
+
+Route::get('/editMyProfile/{id}', 'MembersController@editMember');
 
 Route::get('/dashboard-member', function () {
     return view('dashboard-member');
@@ -70,4 +72,4 @@ Route::group( [ 'prefix' => 'admin' ], function()
 	$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 	$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 	$this->post('password/reset', 'Auth\ResetPasswordController@reset');
-});
+});	

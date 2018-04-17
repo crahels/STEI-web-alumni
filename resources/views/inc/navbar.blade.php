@@ -53,7 +53,7 @@
                             </div>
                         </li>
                     @else
-                        <li><a class="nav-link" href="/login">{{ __('Login') }}</a></li>
+                        <li><a class="login" href="/login">{{ __('Login') }}</a></li>
                     @endif
                       
                       <!-- <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li> -->

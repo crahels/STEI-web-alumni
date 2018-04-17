@@ -10,7 +10,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-    color: #ea321e;
+    color: #5BB12F;
     text-decoration: none;
 }
 
@@ -311,4 +311,31 @@ footer.style-1 {
 
 .dot1, .dot2 {
     background-color: #5BB12F;
+}
+
+.login:hover,
+.login:focus,
+.login:active {
+    color: #5BB12F;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:active {
+    color: #5BB12F;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #5BB12F;
+}
+
+.page-change {
+    color: #5BB12F;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #5BB12F;
 }
