@@ -23,10 +23,6 @@ Route::get('/about', function () {
 	return view('about');
 });
 
-Route::get('/qna', function () {
-	return view('/users/qna/temp');
-});
-
 Route::resource('members', 'MembersController');
 
 Route::post('/importcsv','AddMemberController@importCSV');
@@ -36,6 +32,7 @@ Route::resource('profile', 'MembersController');
 Route::resource('addmember', 'AddMemberController');
 Route::resource('posts', 'PostsController');
 Route::resource('article', 'PostsController');
+
 
 Route::get('/admin/dashboard', 'DashboardController@index');
 Route::get('/members/{user}/delete', 'MembersController@destroy');
