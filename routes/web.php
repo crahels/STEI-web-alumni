@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PostsController@indexMember');
+Route::get('/', 'HomeController@index');
 
 Route::get('/profilemember/{id}', 'MembersController@showMyProfile');
 
