@@ -37,10 +37,10 @@
             <!-- Carousel inner end-->
 
             <!-- Controls -->
-            <a class="left carousel-control" href="#main-slide" data-slide="prev">
+            <a class="left carousel-control" href="#main-slide" data-slide="prev" style="display: none; pointer: none;">
                 <span><i class="fa fa-angle-left"></i></span>
             </a>
-            <a class="right carousel-control" href="#main-slide" data-slide="next">
+            <a class="right carousel-control" href="#main-slide" data-slide="next" style="display: none; pointer: none;">
                 <span><i class="fa fa-angle-right"></i></span>
             </a>
         </div>
