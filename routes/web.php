@@ -23,6 +23,34 @@ Route::get('/about', function () {
 	return view('about');
 });
 
+//============================================== QNA TESTING
+
+Route::get('/forum', function () {
+	return view('users/qna/showquestion');
+});
+
+Route::get('/forum/add', function () {
+	return view('users/qna/addquestion');
+});
+
+Route::get('/forum/showeach', function () {
+	return view('users/qna/showeachquestion');
+});
+
+Route::get('/forum/editquestion', function () {
+	return view('users/qna/editquestion');
+});
+
+Route::get('/forum/showanswer', function () {
+	return view('users/qna/showquestion');
+});
+
+Route::get('/forum/editanswer', function () {
+	return view('users/qna/editanswer');
+});
+
+//============================================== END OF QNA TESTING
+
 Route::resource('members', 'MembersController');
 
 Route::post('/importcsv','AddMemberController@importCSV');
