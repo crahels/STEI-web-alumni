@@ -38,3 +38,22 @@
 .on-page {
     border-radius: 3px;
 }
+
+/* Clear the 1px gap on row and container */
+.row:before, div .row:after {
+    display: none;
+}
+  
+div.overlay {
+    opacity: 0.9;
+    background-color: black;
+    position: absolute;
+    left: 0; top: 0; height: 100%; width: 100%;
+}
+
+.img-responsive-article {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    opacity: 0.3;
+  }
