@@ -10,14 +10,6 @@
         <!-- Carousel -->
         <div id="main-slide" class="carousel slide" data-ride="carousel">
 
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#main-slide" data-slide-to="0" class="active"></li>
-                <li data-target="#main-slide" data-slide-to="1"></li>
-                <li data-target="#main-slide" data-slide-to="2"></li>
-            </ol>
-            <!--/ Indicators end-->
-
             <!-- Carousel inner -->
             <div class="carousel-inner">
                 <div class="item active">
