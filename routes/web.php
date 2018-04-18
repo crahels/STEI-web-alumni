@@ -23,6 +23,10 @@ Route::get('/about', function () {
 	return view('about');
 });
 
+Route::get('/qna', function () {
+	return view('/users/qna/temp');
+});
+
 Route::resource('members', 'MembersController');
 
 Route::post('/importcsv','AddMemberController@importCSV');

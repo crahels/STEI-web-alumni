@@ -46,7 +46,7 @@
                         @if(Request::is('forum/*')) <!-- URL Forum -->
                             <a class="page-change" href="#" style="background-color:green">Forum</a>
                         @else
-                            <a class="" href="#">Forum</a>
+                            <a class="" href="/dashboard-qna">Forum</a>
                         @endif
                     @endif
                 </li>
