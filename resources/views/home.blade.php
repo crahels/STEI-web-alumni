@@ -304,6 +304,19 @@
     <!-- Start Team Member Section -->
     <section id="team" class="team-member-section">
         <div class="container">
+        <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="section-title text-center">
+                            <h3>Greeting Speech</h3>
+                            <br>
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                            <br>
+                            <br>
+                            Yowinarto, Ketua Alumni STEI</p>
+                        </div>
+                </div>
+            </div>
+            
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
