@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'PostsController@indexMember');
 
 Route::get('/profilemember/{id}', 'MembersController@showMyProfile');
 
@@ -29,7 +29,7 @@ Route::post('/importmember','AddMemberController@importMember');
 Route::resource('profile', 'MembersController');
 Route::resource('addmember', 'AddMemberController');
 Route::resource('posts', 'PostsController');
-Route::resource('dashboard', 'PostsController');
+Route::resource('article', 'PostsController');
 
 Route::get('/admin/dashboard', 'DashboardController@index');
 Route::get('/members/{user}/delete', 'MembersController@destroy');
