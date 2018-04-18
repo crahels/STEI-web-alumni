@@ -2,6 +2,11 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600,400italic);
 @import url(http://fonts.googleapis.com/css?family=Oswald:300,400,700);
  
+/* Clear the 1px gap on row and container */
+div.row:before, div.row:after {
+  display: none
+}
+
 body {
     overflow-x: hidden;
     font-family: 'Open Sans', sans-serif;
@@ -1641,10 +1646,6 @@ footer.style-1 .footer-link li {
     padding: 0 2px;
     opacity: 0;
     text-align: center;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
 }
 
 .team-member:hover .team-details {
@@ -1675,7 +1676,7 @@ footer.style-1 .footer-link li {
 }
 
 .team-member .team-details li:hover a {
-    background: transparent;
+    background-color: transparent;
     border: 1px solid #ddd;
     color: #fff;
 }

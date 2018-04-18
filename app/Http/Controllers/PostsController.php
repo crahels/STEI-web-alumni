@@ -9,11 +9,6 @@ use \Auth;
 
 class PostsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin', ['except' => ['index', 'show', 'indexMember']]);
-    }
-    
     /**
      * Display a listing of the resource.
      *
@@ -21,33 +16,28 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $isMember = Auth::guard('member')->user() != null;
+        $posts = Post::orderBy('created_at','desc')->paginate(10);
         $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
-
-        if ($isAdmin) {
-            $posts = Post::orderBy('created_at','desc')->paginate(10); 
-        } else if ($isMember) {
-            $posts = Post::where('draft', 0)->orderBy('created_at','desc')->paginate(10);
-        } else {
-            $posts = Post::where('draft', 0)->where('public', 1)->orderBy('created_at','desc')->paginate(10);
+        $isMember = Auth::guard('member')->user() != null;
+        if ($isAdmin){
+            return view('admin.showpost')->with('posts', $posts);
         }
-
-        return view('admin.showpost')->with('posts', $posts);
+            
+        else if ($isMember){
+            $posts = Post::where('draft','=', '0')->paginate(10);
+            return view('article')->with('posts', $posts);
+        }
+        else { //guest
+            $posts = Post::where('draft','=', '0')->paginate(10);
+            $posts = Post::where('public','=', '1')->paginate(10);
+            return view('article')->with('posts', $posts);
+        }
+            
     }
 
     public function indexMember()
     {
-        $isMember = Auth::guard('member')->user() != null;
-        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
-
-        if ($isAdmin) {
-            $posts = Post::orderBy('created_at','desc')->get(); 
-        } else if ($isMember) {
-            $posts = Post::where('draft', 0)->orderBy('created_at','desc')->get();
-        } else {
-            $posts = Post::where('draft', 0)->where('public', 1)->orderBy('created_at','desc')->get();
-        }
-
+        $posts = Post::orderBy('created_at','desc')->get();
         return view('home')->with('posts', $posts);
     }
 
@@ -69,48 +59,42 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
+        ]);
 
-        if ($isAdmin) {
-            $this->validate($request, [
-                'title' => 'required',
-                'body' => 'required',
-                'cover_image' => 'image|nullable|max:1999'
-            ]);
-    
-            $public = '0';
-            $draft = '0';
-            if ($request->input('draft') === 'yes') {
-                $draft = '1';
-            } 
-    
-            if ($request->input('public') === 'yes') {
-                $public = '1';
-            }
-    
-            if ($request->hasFile('cover_image')) {
-                $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
-                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                $extension = $request->file('cover_image')->getClientOriginalExtension();
-                $filenameToStore = $filename.'_'.time().'.'.$extension;
-                $path = $request->file('cover_image')->storeAs('public/cover_images', $filenameToStore);            
-            } else {
-                $filenameToStore = 'noimage.jpg';
-            }
-    
-            $post = new Post;
-            $post->title = $request->input('title');
-            $post->body = $request->input('body');
-            $post->draft = $draft;
-            $post->public = $public;
-            $post->user_id = auth()->user()->id;
-            $post->cover_image = $filenameToStore;
-            $post->save();
-    
-            return redirect('/admin/posts')->with('success', 'Post Created');
-        } else {
-            return redirect('/');
+        $public = '0';
+        $draft = '0';
+        if ($request->input('draft') === 'yes') {
+            $draft = '1';
+        } 
+
+        if ($request->input('public') === 'yes') {
+            $public = '1';
         }
+
+        if ($request->hasFile('cover_image')) {
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            $filenameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $filenameToStore);            
+        } else {
+            $filenameToStore = 'noimage.jpg';
+        }
+
+        $post = new Post;
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->draft = $draft;
+        $post->public = $public;
+        $post->user_id = auth()->user()->id;
+        $post->cover_image = $filenameToStore;
+        $post->save();
+
+        return redirect('/admin/posts')->with('success', 'Post Created');
     }
 
     /**
@@ -137,17 +121,11 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
-
-        if ($isAdmin) {
-            $post = Post::find($id);
-            if ($post !== null) {
-                return view('admin.editpost')->with('post', $post);
-            } else {
-                return abort(404);
-            }
+        $post = Post::find($id);
+        if ($post !== null) {
+            return view('admin.editpost')->with('post', $post);
         } else {
-            return redirect('/');
+            return abort(404);
         }
     }
 
@@ -160,49 +138,43 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+        
+        $public = '0';
+        $draft = '0';
+        if ($request->input('draft') === 'yes') {
+            $draft = '1';
+        } 
 
-        if ($isAdmin) {
-            $this->validate($request, [
-                'title' => 'required',
-                'body' => 'required'
-            ]);
-            
-            $public = '0';
-            $draft = '0';
-            if ($request->input('draft') === 'yes') {
-                $draft = '1';
-            } 
-
-            if ($request->input('public') === 'yes') {
-                $public = '1';
-            }
-
-            if ($request->hasFile('cover_image')) {
-                $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
-                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                $extension = $request->file('cover_image')->getClientOriginalExtension();
-                $filenameToStore = $filename.'_'.time().'.'.$extension;
-                $path = $request->file('cover_image')->storeAs('public/cover_images', $filenameToStore);            
-            } 
-
-            $post = Post::find($id);
-            $post->title = $request->input('title');
-            $post->body = $request->input('body');
-            $post->draft = $draft;
-            $post->public = $public;
-            if ($request->hasFile('cover_image')) {
-                if($post->cover_image !== 'noimage.jpg'){
-                    Storage::delete('public/cover_images/' . $post->cover_image);
-                }
-                $post->cover_image = $filenameToStore;
-            }
-            $post->save();
-
-            return redirect('/admin/posts')->with('success', 'Post Updated');
-        } else {
-            return redirect('/');
+        if ($request->input('public') === 'yes') {
+            $public = '1';
         }
+
+        if ($request->hasFile('cover_image')) {
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            $filenameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $filenameToStore);            
+        } 
+
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->draft = $draft;
+        $post->public = $public;
+        if ($request->hasFile('cover_image')) {
+            if($post->cover_image !== 'noimage.jpg'){
+                Storage::delete('public/cover_images/' . $post->cover_image);
+            }
+            $post->cover_image = $filenameToStore;
+        }
+        $post->save();
+
+        return redirect('/admin/posts')->with('success', 'Post Updated');
     }
 
     /**
@@ -213,19 +185,13 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+        $post = Post::find($id);
+        $post->delete();
 
-        if ($isAdmin) {
-            $post = Post::find($id);
-            $post->delete();
-
-            if ($post->cover_image !== 'noimage.jpg') {
-                Storage::delete('public/cover_images/'.$post->cover_image);
-            }
-
-            return redirect('/admin/posts')->with('error', 'Post Deleted');
-        } else {
-            return redirect('/');
+        if ($post->cover_image !== 'noimage.jpg') {
+            Storage::delete('public/cover_images/'.$post->cover_image);
         }
+
+        return redirect('/admin/posts')->with('error', 'Post Deleted');
     }
 }
