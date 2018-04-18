@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Question;
 use App\Answer;
 use Illuminate\Http\Request;
+use \Auth;
 
 class AnswersController extends Controller
 {
@@ -54,8 +55,15 @@ class AnswersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $each)
     {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+         // if not member and admin then cannot edit this answer
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+
         $this->validate($request, [
             'body' => 'required',
         ]);
@@ -64,9 +72,18 @@ class AnswersController extends Controller
         $answer->question_id = $request->input('question_id');
         $answer->body = $request->input('body');
         $answer->user_id = auth()->user()->id;
+        if ($isAdmin) {
+            $answer->is_admin = 1;
+        } else {
+            $answer->is_admin = 0;
+        }
         $answer->save();
 
-        return redirect('/admin/questions')->with('success', 'Answer Saved');
+        if ($each == 1) {
+            return redirect('/admin/questions/' . $request->input('question_id'))->with('success', 'Answer Saved');
+        } else {
+            return redirect('/admin/questions')->with('success', 'Answer Saved');
+        }
     }
 
     /**
@@ -93,9 +110,24 @@ class AnswersController extends Controller
      */
     public function edit($id)
     {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+        // if not member and admin then cannot edit this question
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+        
         $answer = Answer::find($id);
+        $member = Auth::guard('member')->user();
+
         if ($answer !== null) {
-            return view('admin.editanswer')->with('answer', $answer);
+            // if admin can edit all kinds of answer
+            // if not admin can only edit his own answer
+            if ($isAdmin || ($answer->user()->id == $member->id && $answer->is_admin == 0)) {
+                return view('admin.editanswer')->with('answer', $answer);
+            } else {
+                return redirect('/admin/questions')->with('error', 'You can not edit this answer.');
+            }
         } else {
             return abort(404);
         }
@@ -109,31 +141,104 @@ class AnswersController extends Controller
      */
     public function giveRating($answer_id, $user_id)
     {
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+        $isMember = Auth::guard('member')->user() != null;
+
+        // if not member and admin then cannot rate this answer
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+        
         $answer = Answer::where('id', $answer_id)->first();
-        $found = 0;
-        foreach ($answer->users as $user) {
-            if ($user->id == $user_id) {
-                $found = 1;
-                break;
-            }
-        }
-
-        if ($found == 0) {
-            $answer->users()->attach($user_id);
-
+        // admin can give vote as much as he can
+        if ($isAdmin) {
             $answer->rating++;
+            $answer->timestamps = false;
             $answer->save();
             
             $questions = Question::orderBy('created_at','desc')->paginate(15);
             return redirect('/admin/questions')->with('questions', $questions)->with('success','Rating Added');
+        // member can only give vote once
         } else {
-            $answer->users()->detach($user_id);
+            $found = 0;
+            foreach ($answer->users as $user) {
+                if ($user->id == $user_id) {
+                    $found = 1;
+                    break;
+                }
+            }
 
-            $answer->rating--;
-            $answer->save();
-            
+            if ($found == 0) {
+                $answer->users()->attach($user_id);
+
+                $answer->rating++;
+                $answer->timestamps = false;
+                $answer->save();
+                
+                $questions = Question::orderBy('created_at','desc')->paginate(15);
+                return redirect('/admin/questions')->with('questions', $questions)->with('success','Rating Added');
+            } else {
+                $answer->users()->detach($user_id);
+
+                $answer->rating--;
+                $answer->timestamps = false;
+                $answer->save();
+                
+                $questions = Question::orderBy('created_at','desc')->paginate(15);
+                return redirect('/admin/questions')->with('questions', $questions)->with('error','Rating Deleted');
+            }
+        }
+    }
+
+     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Answer  $answer
+     * @return \Illuminate\Http\Response
+     */
+    public function givePin($answer_id, $question_id, $each)
+    {
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+        // if not admin then cannot pin this answer
+        if(!$isAdmin)
+            return redirect('/');
+        
+        $answer = Answer::where('id', $answer_id)->first();
+        // admin can give vote as much as he can
+        if ($isAdmin) {
+            if ($answer->is_pinned == 0) {
+                $answer_pinned = Answer::where(['is_pinned' => 1, 'question_id' => $question_id])->first();
+                if ($answer_pinned !== null) {
+                    $answer_pinned->is_pinned = 0;
+                    $answer_pinned->timestamps = false;
+                    $answer_pinned->save();
+                }
+                $answer->is_pinned = 1;
+                $answer->timestamps = false;
+                $answer->save();
+
+                $questions = Question::orderBy('created_at','desc')->paginate(15);
+                if ($each == 1) {
+                    return redirect('/admin/questions/' . $answer->question->id)->with('success','Answer Pinned');
+                } else {
+                    return redirect('/admin/questions')->with('questions', $questions)->with('success','Answer Pinned');
+                }
+            } else {
+                $answer->is_pinned = 0;
+                $answer->timestamps = false;
+                $answer->save();
+
+                $questions = Question::orderBy('created_at','desc')->paginate(15);
+                if ($each == 1) {
+                    return redirect('/admin/questions/' . $answer->question->id)->with('error','Answer Unpinned');
+                } else {
+                    return redirect('/admin/questions')->with('questions', $questions)->with('error','Answer Unpinned');
+                }
+            }
+        // others besides admin can not give vote
+        } else {
             $questions = Question::orderBy('created_at','desc')->paginate(15);
-            return redirect('/admin/questions')->with('questions', $questions)->with('error','Rating Deleted');
+            return redirect('/admin/questions')->with('questions', $questions)->with('error','You do not have right to pin this answer.');
         }
     }
 
@@ -146,15 +251,38 @@ class AnswersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+        // if not member and admin then cannot edit this question
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+
         $this->validate($request, [
             'body' => 'required',
         ]);
 
         $answer = Answer::find($id);
-        $answer->body = $request->input('body');
-        $answer->save();
+        $member = Auth::guard('member')->user();
 
-        return redirect('/admin/questions')->with('success', 'Answer Updated');
+        if ($isAdmin || ($answer->user()->id == $member->id && $answer->is_admin == 0)) {
+            if ($request->input('pin') === 'yes') {
+                $answer_pinned = Answer::where(['is_pinned' => 1, 'question_id' => $answer->question->id])->first();
+                if ($answer_pinned !== null) {
+                    $answer_pinned->is_pinned = 0;
+                    $answer_pinned->timestamps = false;
+                    $answer_pinned->save();
+                }
+                $answer->is_pinned = 1;
+            } else {
+                $answer->is_pinned = 0;
+            }
+            $answer->body = $request->input('body');
+            $answer->save();
+            return redirect('/admin/answers/' . $id)->with('success', 'Answer Updated');
+        } else {
+            return redirect('/admin/answers/' . $id)->with('error', 'You can not edit this answer.');
+        }
     }
 
     /**
@@ -165,9 +293,27 @@ class AnswersController extends Controller
      */
     public function destroy($id)
     {
-        $answer = Answer::find($id);
-        $answer->delete();
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
 
-        return redirect('/admin/questions')->with('error', 'Answer Deleted');
+        // if not member and admin then cannot delete this answer
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+        
+        $answer = Answer::find($id);
+        $member = Auth::guard('member')->user();
+
+        if ($answer !== null) {
+            // if admin can delete all kinds of answer
+            // if not admin can only delete his own answer
+            if ($isAdmin || ($answer->user()->id == $member->id && $answer->is_admin == 0)) {
+                $answer->delete();
+                return redirect('/admin/questions')->with('error', 'Answer Deleted');
+            } else {
+                return redirect('/admin/questions')->with('error', 'You can not delete this answer.');
+            }
+        } else {
+            return abort(404);
+        }
     }
 }
