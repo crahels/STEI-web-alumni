@@ -98,11 +98,17 @@
                     </div>
                 </div>
             </div><!-- /.col-md-4 --> --}}
-            
         </div><!-- /.row -->
-    
     </div><!-- /.container -->
 </section>
+
+<div class="container">
+    @if(Auth::guard('member')->user() != null || (Auth::user() != null && Auth::user()->IsAdmin == 1))
+    <div class="col-lg-12 text-center">
+        <button class="btn btn-primary text-center">Add Question</button>
+    </div>
+    @endif
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>

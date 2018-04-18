@@ -2038,10 +2038,14 @@ a>.on-page>.active {
 /*-----------------------------------------------*/
 
 .qna-header {
-	padding-top: 0px !important;
+	margin-top: 50px;
 }
 
 .qna-header .section-title h3,
 .qna-header .section-title p {
 	font-style: initial;
+}
+
+.qna-header .feature-2 {
+	padding-bottom: 30px;
 }
