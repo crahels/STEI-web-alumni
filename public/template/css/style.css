@@ -121,6 +121,7 @@ li {
 .navbar-default {
     border-color: transparent;
     background-color: #222;
+    border-radius: 0px;
 }
 
 .navbar-default .navbar-brand {
@@ -2030,3 +2031,11 @@ a>.on-page>.active {
     background-color: #28ABE3;
     border-radius: 3px;
 } */
+
+/*-----------------------------------------------*/
+/* QnA Style
+/*-----------------------------------------------*/
+
+.qna-header {
+	padding-top: 0px !important;
+}
