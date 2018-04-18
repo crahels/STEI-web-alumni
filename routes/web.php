@@ -17,10 +17,6 @@ Route::get('/profilemember/{id}', 'MembersController@showMyProfile');
 
 Route::get('/editMyProfile/{id}', 'MembersController@editMember');
 
-Route::get('/dashboard-member', function () {
-    return view('dashboard-member');
-});
-
 Route::get('/about', function () {
 	return view('about');
 });
@@ -33,8 +29,9 @@ Route::post('/importmember','AddMemberController@importMember');
 Route::resource('profile', 'MembersController');
 Route::resource('addmember', 'AddMemberController');
 Route::resource('posts', 'PostsController');
+Route::resource('dashboard', 'PostsController');
 
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('/admin/dashboard', 'DashboardController@index');
 Route::get('/members/{user}/delete', 'MembersController@destroy');
 
 Route::get('login', 'Auth\SocialAccountsController@index');

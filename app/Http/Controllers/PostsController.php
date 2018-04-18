@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
+use \Auth;
 
 class PostsController extends Controller
 {
@@ -16,7 +17,22 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::orderBy('created_at','desc')->paginate(10);
-        return view('admin.showpost')->with('posts', $posts);
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+        $isMember = Auth::guard('member')->user() != null;
+        if ($isAdmin){
+            return view('admin.showpost')->with('posts', $posts);
+        }
+            
+        else if ($isMember){
+            $posts = Post::where('draft','=', '0')->paginate(10);
+            return view('dashboard-user')->with('posts', $posts);
+        }
+        else { //guest
+            $posts = Post::where('draft','=', '0')->paginate(10);
+            $posts = Post::where('public','=', '1')->paginate(10);
+            return view('dashboard-user')->with('posts', $posts);
+        }
+            
     }
 
     public function indexMember()

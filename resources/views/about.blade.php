@@ -1,6 +1,6 @@
 @extends('layouts.apphome')
 
-@section('title', 'HOME')
+@section('title', 'About')
 
 @section('content')
 
@@ -46,13 +46,13 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
-                            <h1>About Us</h1>
-                            <h3>Sejarah</h3>
+                            <h1>About Us</h1><br>
+                            <h2>Sejarah</h2>
                                 <p>Sekolah Teknik Elektro dan Informatika (STEI-ITB) yang diresmikan pada 1 Januari 2006 merupakan gabungan dua departemen di ITB, yaitu Departemen Teknik Elektro dan Teknik Informatika (SK Rektor No. 012/SK/01/OT/2005). Kedua departemen ini mempunyai sejarah yang panjang dalam penyelenggaraan pendidikan tinggi Teknik Elektro (EL) sejak tahun 1974, dan Teknik Informatika (IF) sejak tahun 1982.</p>
                                 <p>Seiring dengan perkembangan Kurikulum 2008 dan kebutuhan masyarakat serta industri STEI ITB membuka dan menambah tiga program studi baru. Hal ini dibuktikan dengan terbitnya SK Rektor Nomor : 268/SK/K01/OT/2008 tentang Pembukaan Program Studi Sarjana Teknik Tenaga Listrik, Teknik Telekomunikasi, Sistem dan Teknologi Informasi tanggal 26 nopember 2008. Pada tahun 2016, Program Studi Teknik Biomedika resmi beroperasi. Oleh karena itu saat ini STEI menyelenggarakan pendidikan sejumlah 6 (enam) Program Sarjana Teknik (S1), yaitu Sarjana Teknik Elektro, Sarjana Teknik Informatika, Sarjana Teknik Tenaga Listrik, Sarjana Teknik Telekomunikasi, Sarjana Sistem dan Teknologi Informasi, dan Sarjana Teknik Biomedika yang masing – masing berlangsung 8 semester dengan total kredit 144 SKS. Selain itu STEI ITB juga menyelenggarakan Program Magister Teknik (S2) dan Program Doktor (S3).</p>
-                                <h3>Visi</h3>
+                                <h2>Visi</h2>
                                 <p>Menjadi Institusi pendidikan tinggi, pengembang ilmu pengetahuan Teknik Elektro dan Informatika yang unggul dan terkemuka di Indonesia dan diakui di dunia serta berperan aktif dalam usaha memajukan dan mensejahterakan bangsa.</p>
-                                <h3>Misi</h3>
+                                <h2>Misi</h2>
                                 <ol>
                                 <p>Menyelenggarakan pendidikan tinggi dan pendidikan berkelanjutan di bidang teknik Elektro dan Informatika dengan memanfaatkan teknologi komunikasi dan informasi .</p>
                                 <p>Mengikuti (memelihara) keterkinian (<em>state of the art</em>) serta mengembangkan ilmu pengetahuan Teknik Elektro dan Informatika melalui kegiatan penelitian yang inovatif.</p>
