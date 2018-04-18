@@ -25,12 +25,12 @@ class PostsController extends Controller
             
         else if ($isMember){
             $posts = Post::where('draft','=', '0')->paginate(10);
-            return view('dashboard-user')->with('posts', $posts);
+            return view('article')->with('posts', $posts);
         }
         else { //guest
             $posts = Post::where('draft','=', '0')->paginate(10);
             $posts = Post::where('public','=', '1')->paginate(10);
-            return view('dashboard-user')->with('posts', $posts);
+            return view('article')->with('posts', $posts);
         }
             
     }

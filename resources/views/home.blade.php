@@ -37,11 +37,11 @@
                 </div>
                 <!--/ Carousel item end -->
                 
-                @if (count($posts) > 0)
+                @if (count($homedata[0]) > 0)
                     @php
                         $i = 0;
                     @endphp
-                    @foreach ($posts as $post)
+                    @foreach ($homedata[0] as $post)
                         @if ($i < 3)
                             <div class="item">
                                 <img class="img-responsive" src="{{ asset('template/images/header-back.png') }}" alt="slider">
@@ -276,21 +276,21 @@
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
                     <i class="fa fa-male"></i>
-                    <div class="timer" id="item4" data-to="8423" data-speed="5000"></div>
+                    <div class="timer" id="item4" data-to="{{count($homedata[1])}}" data-speed="2000"></div>
                     <h5>Members</h5>                               
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
                     <i class="fa fa-check"></i>
-                    <div class="timer" id="item2" data-to="{{count($posts)}}" data-speed="2000"></div>
+                    <div class="timer" id="item2" data-to="{{count($homedata[0])}}" data-speed="2000"></div>
                     <h5>Article</h5>                               
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
                     <i class="fa fa-code"></i>
-                    <div class="timer" id="item3" data-to="18745" data-speed="5000"></div>
+                    <div class="timer" id="item3" data-to="{{count($homedata[2])}}" data-speed="2000"></div>
                     <h5>Forum</h5>                               
                     </div>
                 </div>
