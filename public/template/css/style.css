@@ -2033,9 +2033,15 @@ a>.on-page>.active {
 } */
 
 /*-----------------------------------------------*/
-/* QnA Style
+/* QnA Forum 									 */
+/* By: Stevanno									 */	
 /*-----------------------------------------------*/
 
 .qna-header {
 	padding-top: 0px !important;
+}
+
+.qna-header .section-title h3,
+.qna-header .section-title p {
+	font-style: initial;
 }
