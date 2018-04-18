@@ -42,10 +42,12 @@
                     @endif    
                 </li>
                 <li>
-                    @if(Request::is('forum/*')) <!-- URL Forum -->
-                        <a class="page-change" href="#" style="background-color:green">Forum</a>
-                    @else
-                        <a class="" href="#">Forum</a>
+                    @if(Auth::guard('member')->user() != null)
+                        @if(Request::is('forum/*')) <!-- URL Forum -->
+                            <a class="page-change" href="#" style="background-color:green">Forum</a>
+                        @else
+                            <a class="" href="#">Forum</a>
+                        @endif
                     @endif
                 </li>
                 @if (Request::is('about'))

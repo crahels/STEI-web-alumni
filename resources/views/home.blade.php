@@ -43,15 +43,15 @@
                     @endphp
                     @foreach ($homedata[0] as $post)
                         @if ($i < 3)
-                            <div class="item">
-                                <img class="img-responsive" src="{{ asset('template/images/header-back.png') }}" alt="slider">
+                            <div class="item overlay">
+                                <img class="img-responsive-article" src="/storage/cover_images/{{$post->cover_image}}" alt="slider">
                                 
                                 <div class="slider-content">
                                     <div class="col-md-12 text-center">
                                         <h1 class="animated1">
                                             <span>{{$post->title}}</span>
                                         </h1>
-                                        <p class="animated2">Generate a flood of new business with the<br> power of a digital media platform</p>
+                                        {{-- <p class="animated2">Generate a flood of new business with the<br> power of a digital media platform</p> --}}
                                         <a href="/posts/{{$post->id}}" class="page-scroll btn btn-primary animated3">Read More</a>
                                     </div>
                                 </div>
