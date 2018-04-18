@@ -16,16 +16,27 @@ before_script:
   - export http_proxy=http://yowinarto:06561330@cache.itb.ac.id:8080
   - export https_proxy=https://yowinarto:06561330@cache.itb.ac.id:8080
   - apt-get update -yqq
+  - apt-get install -my wget gnupg
   - curl -sL http://gitlab.informatika.org/IF3250-2018-K01-I-4/WebAlumniSTEI/raw/test_ci/ci/setup_7.x | bash -
   - apt-get install git nodejs libcurl4-gnutls-dev libicu-dev libmcrypt-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libpq-dev libsqlite3-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev -yqq
-  - docker-php-ext-install mbstring mcrypt pdo_mysql curl json intl gd xml zip bz2 opcache
-  - pecl install xdebug
-  - docker-php-ext-enable xdebug
+  - docker-php-ext-install mbstring pdo_mysql curl json intl gd xml zip bz2 opcache
+  - pear config-set http_proxy http://yowinarto:06561330@cache.itb.ac.id:8080
+  #- pear clear-cache
+  - pear version
+  - pear update-channels
+  - pear upgrade --force
+  - http_proxy=http://yowinarto:06561330@cache.itb.ac.id:8080 pecl channel-update pecl.php.net
+  #- http_proxy=http://yowinarto:06561330@cache.itb.ac.id:8080 pecl install mcrypt-1.0.1
+  #- docker-php-ext-enable mcrypt
+  #- http_proxy=http://yowinarto:06561330@cache.itb.ac.id:8080 pecl install xdebug
+  #- docker-php-ext-enable xdebug
   - curl -sS http://getcomposer.org/installer | php
-  - php composer.phar install
-  - npm install
+  - http_proxy=http://yowinarto:06561330@cache.itb.ac.id:8080 https_proxy="" php composer.phar install
+  #- npm config set strict-ssl false
+  #- npm config set registry "http://registry.npmjs.org/"
+  #- npm --proxy http://yowinarto:06561330@cache.itb.ac.id:8080 install
   - cp .env.testing .env
-  - npm run dev
+  #- npm run dev
   - php artisan key:generate
   - php artisan config:cache
   - php artisan migrate
