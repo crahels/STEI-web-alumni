@@ -106,13 +106,15 @@
     <div class="container qna-container">
         @if(Auth::guard('member')->user() != null || (Auth::user() != null && Auth::user()->IsAdmin == 1))
         <div class="col-lg-12 text-center">
-            <a class="btn btn-primary" href="questions/create">Add Question</a>
+            <a id="add-question-btn" class="btn btn-primary" href="questions/create">Add Question</a>
         </div>
         @endif
 
         @if (count($questions) > 0)
             @foreach ($questions as $question)
-                <div class="well" style="margin-top: 50px">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="well question-container col-8">
                     <div class="row">
                         <div class="col-12 post-card">
                             <h3><a href="/questions/{{$question->id}}">{{$question->topic}}</a></h3>
@@ -126,7 +128,7 @@
                             @if ($question->created_at != $question->updated_at)
                                 <small style="color:green;">(edited)</small>
                             @endif
-                            <input type="submit" id="btn-{{$question->id}}" class="hidden-button show-answer btn btn-primary" value="Show Answers"></input>
+                            <!-- <input type="submit" id="btn-{{$question->id}}" class="hidden-button show-answer btn btn-primary" value="Show Answers"></input> -->
                         </div>
                     </div>
                     <div id="answers-{{$question->id}}" class="row">
@@ -192,7 +194,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+            </div>
+                <div class="col-2"></div>
+            </div>
             @endforeach
             <ul class="pagination pull-right">{{$questions->links()}}</ul>
         @else
@@ -201,7 +205,7 @@
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
+<!-- <script>
     document.getElementById("nav-four").classList.add("active");
     document.getElementById("text-nav-four").classList.add("color-active");
 
@@ -231,5 +235,5 @@
             }
         });
     });
-</script>
+</script> -->
 @endsection

@@ -2038,6 +2038,10 @@ a>.on-page>.active {
 /* By: Stevanno									 */	
 /*-----------------------------------------------*/
 
+#add-question-btn {
+	margin-bottom: 30px;
+}
+
 .body-qna {
 	background-color: #fafafa;
 	height: 100%;
@@ -2063,4 +2067,9 @@ a>.on-page>.active {
 
 #add-q-button {
 	color: white;
+}
+
+.question-container {
+	border-radius: 0px;
+	background-color: white;
 }
