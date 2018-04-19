@@ -6,7 +6,7 @@ var $ = jQuery.noConflict();
 $(window).load(function () {
     
     "use strict";
-	$('#loader').delay(100).fadeOut();
+	$('#loader').delay(300).fadeOut();
 });
 
 

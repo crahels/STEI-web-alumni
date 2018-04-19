@@ -58,13 +58,13 @@
 </head>
 <body class="index">
     @include('inc.navbarhome')
-    @yield('content')
     <div id="loader">
         <div class="spinner">
             <div class="dot1"></div>
             <div class="dot2"></div>
         </div>
     </div>
+    @yield('content')
     <!-- jQuery Version 2.1.1 -->
     <script src="{{ asset('template/js/jquery-2.1.1.min.js') }}"></script>
 

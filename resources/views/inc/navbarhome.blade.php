@@ -48,7 +48,7 @@
 
                 {{-- Forum --}}
                 @if(Auth::guard('member')->user() != null)
-                    @if(Request::is('forum/')) <!-- URL Forum -->
+                    @if(Request::is('questions')) <!-- URL Forum -->
                         <li class="on-page">
                             <a href="#">Forum</a>
                         </li>
@@ -58,6 +58,8 @@
                         </li>
                     @endif
                 @endif
+
+                {{-- About --}}
                 @if (Request::is('about'))
                     <li class="on-page">
                         <a href="#">About</a>
