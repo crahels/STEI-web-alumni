@@ -4,8 +4,7 @@
 
 @section('content')
 
-<!--  START Side Menu>
-<END side menu !-->
+<br> <br> <br> <br> <br> <br>
 <div class="container-fluid">
   <div class="row">
     <nav class="col-3 sidebar">
