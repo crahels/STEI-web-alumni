@@ -1,6 +1,9 @@
 <!-- Navigation -->
 @if (Request::is('/') || Request::is('about'))
     <nav class="navbar navbar-default navbar-fixed-top">
+@else
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #222; padding: 1% 0;">
+@endif
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -133,141 +136,6 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-@else
-<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #222; padding: 1% 0;">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @if (Request::is('/'))
-                <a class="navbar-brand page-scroll" href="#page-top">Alumni STEI</a>
-            @else
-                <a class="navbar-brand page-scroll" href="/">Alumni STEI</a>
-            @endif
-            
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-left">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>   
-                <li>
-                    @if (Request::is('/'))
-                        {{-- nothing --}}
-                    @else
-                        <a href="/">Home</a>
-                    @endif
-                </li>
-                <li>
-                    @if(Request::is('artikel/*')) <!-- URL Artikel -->
-                        <a class="page-change" href="#" style="background-color:green">Article</a>
-                    @else
-                        <a class="" href="#">Article</a>
-                    @endif    
-                </li>
-                <li>
-                    @if(Auth::guard('member')->user() != null)
-                        @if(Request::is('forum/*')) <!-- URL Forum -->
-                            <a class="page-change" href="#" style="background-color:green">Forum</a>
-                        @else
-                            <a class="page-scroll" href="/forum">Forum</a>
-                        @endif
-                    @endif
-                </li>
-                @if (Request::is('about'))
-                    <li class="on-page">
-                        <a href="#">About</a>
-                    </li>
-                @else
-                    <li>
-                        <a class="page-scroll" href="/about">About</a>
-                    </li>
-                @endif
-                <li>
-                    @if (Request::is('/'))
-                        <a class="page-scroll" href="#service">Services</a>
-                    @endif       
-                </li>
-                <li>
-                    @if (Request::is('/'))
-                        <a class="page-scroll" href="#team">New member</a>
-                    @endif                       
-                </li>
-                <li>
-                    @if (Request::is('/'))
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    @endif        
-                </li>
-            </ul>
-
-            <!-- Login Dropdown -->
-            <ul class="navbar-nav ml-auto navbar-right" style="margin-top: 1.25%">
-                <!-- Authentication Links -->
-                @guest
-                    @if(Auth::guard('member')->user() != null)
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle login" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{Auth::guard('member')->user()->name}}</span>
-                            </a>
-
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <a class="dropdown-item" href="/profilemember/{{Auth::guard('member')->user()->id}}">
-                                    {{-- <a class="dropdown-item" href="/profilemember/{{Auth::guard('member')->user()->id}}"> --}}
-                                        Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/logout"
-                                        onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-
-                                    <form id="logout-form" action="/logout" method="GET" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @else
-                        <a class="login" href="/login">Login</a>
-                    @endif
-                    
-                    <!-- <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li> -->
-                @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}</span>
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                @endguest
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-@endif
 
     <!-- Styleswitcher
 ================================================== -->
