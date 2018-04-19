@@ -121,6 +121,7 @@ li {
 .navbar-default {
     border-color: transparent;
     background-color: #222;
+    border-radius: 0px;
 }
 
 .navbar-default .navbar-brand {
@@ -2030,3 +2031,21 @@ a>.on-page>.active {
     background-color: #28ABE3;
     border-radius: 3px;
 } */
+
+/*-----------------------------------------------*/
+/* QnA Forum 									 */
+/* By: Stevanno									 */	
+/*-----------------------------------------------*/
+
+.qna-header {
+	margin-top: 50px;
+}
+
+.qna-header .section-title h3,
+.qna-header .section-title p {
+	font-style: initial;
+}
+
+.qna-header .feature-2 {
+	padding-bottom: 30px;
+}

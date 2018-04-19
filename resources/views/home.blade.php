@@ -30,7 +30,7 @@
                             <h1 class="animated3">
                             <span>Web Alumni <strong>STEI</strong></span>
                             </h1>
-                            <p class="animated2">At vero eos et accusamus et iusto odio dignissimos<br> ducimus qui blanditiis praesentium voluptatum</p>	
+                            <p class="animated2">Website resmi alumni Sekolah Teknik Elektro dan Informatika<br>Institut Teknologi Bandung</p>	
                             <a href="#feature" class="page-scroll btn btn-primary animated1">Read More</a>
                         </div>
                     </div>

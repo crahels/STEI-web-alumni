@@ -23,9 +23,33 @@ Route::get('/about', function () {
 	return view('about');
 });
 
-Route::get('/qna', function () {
-	return view('/users/qna/temp');
+//============================================== QNA TESTING
+
+Route::get('/forum', function () {
+	return view('users/qna/showquestion');
 });
+
+Route::get('/forum/add', function () {
+	return view('users/qna/addquestion');
+});
+
+Route::get('/forum/showeach', function () {
+	return view('users/qna/showeachquestion');
+});
+
+Route::get('/forum/editquestion', function () {
+	return view('users/qna/editquestion');
+});
+
+Route::get('/forum/showanswer', function () {
+	return view('users/qna/showquestion');
+});
+
+Route::get('/forum/editanswer', function () {
+	return view('users/qna/editanswer');
+});
+
+//============================================== END OF QNA TESTING
 
 Route::resource('members', 'MembersController');
 
@@ -36,6 +60,7 @@ Route::resource('profile', 'MembersController');
 Route::resource('addmember', 'AddMemberController');
 Route::resource('posts', 'PostsController');
 Route::resource('article', 'PostsController');
+
 
 Route::get('/admin/dashboard', 'DashboardController@index');
 Route::get('/members/{user}/delete', 'MembersController@destroy');
