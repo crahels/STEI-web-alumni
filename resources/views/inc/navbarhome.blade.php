@@ -54,7 +54,7 @@
                         </li>
                     @else
                         <li>
-                            <a class="" href="/forum">Forum</a>
+                            <a class="" href="/questions">Forum</a>
                         </li>
                     @endif
                 @endif
@@ -85,12 +85,12 @@
             </ul>
 
             <!-- Login Dropdown -->
-            <ul class="navbar-nav ml-auto navbar-right" style="margin-top: 1.25%">
+            <div class="navbar-nav ml-auto navbar-right" style="margin-top: 1.25%">
                 <!-- Authentication Links -->
                 @guest
                     @if(Auth::guard('member')->user() != null)
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle login" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown login-dropdown" class="nav-link dropdown-toggle login" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{Auth::guard('member')->user()->name}}</span>
                             </a>
 
@@ -138,7 +138,7 @@
                         </div>
                     </li>
                 @endguest
-            </ul>
+                </div>
         </div>
         <!-- /.navbar-collapse -->
     </div>
@@ -148,16 +148,16 @@
     <!-- Styleswitcher
 ================================================== -->
 <div class="colors-switcher">
-        <a id="show-panel" class="hide-panel"><i class="fa fa-tint"></i></a>        
-            <ul class="colors-list">
-                <li><a title="Light Red" onClick="setActiveStyleSheet('light-red'); return false;" class="light-red"></a></li>
-                <li><a title="Blue" class="blue" onClick="setActiveStyleSheet('blue'); return false;"></a></li>
-                <li class="no-margin"><a title="Light Blue" onClick="setActiveStyleSheet('light-blue'); return false;" class="light-blue"></a></li>
-                <li><a title="Green" class="green" onClick="setActiveStyleSheet('green'); return false;"></a></li>
-                
-                <li class="no-margin"><a title="light-green" class="light-green" onClick="setActiveStyleSheet('light-green'); return false;"></a></li>
-                <li><a title="Yellow" class="yellow" onClick="setActiveStyleSheet('yellow'); return false;"></a></li>
-            </ul>
-    </div>  
+    <a id="show-panel" class="hide-panel"><i class="fa fa-tint"></i></a>        
+    <ul class="colors-list">
+        <li><a title="Light Red" onClick="setActiveStyleSheet('light-red'); return false;" class="light-red"></a></li>
+        <li><a title="Blue" class="blue" onClick="setActiveStyleSheet('blue'); return false;"></a></li>
+        <li class="no-margin"><a title="Light Blue" onClick="setActiveStyleSheet('light-blue'); return false;" class="light-blue"></a></li>
+        <li><a title="Green" class="green" onClick="setActiveStyleSheet('green'); return false;"></a></li>
+        
+        <li class="no-margin"><a title="light-green" class="light-green" onClick="setActiveStyleSheet('light-green'); return false;"></a></li>
+        <li><a title="Yellow" class="yellow" onClick="setActiveStyleSheet('yellow'); return false;"></a></li>
+    </ul>
+</div>  
 <!-- Styleswitcher End
 ================================================== -->

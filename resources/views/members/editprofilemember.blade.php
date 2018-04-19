@@ -17,7 +17,7 @@
                         class="img-circle img-responsive" id=""> </div>
                         
                             <div class=" col-md-9 col-lg-9 "> 
-                                {!! Form::open(['action' => ['MembersController@update',$user->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                {!! Form::open(['action' => ['MembersController@updateMyProfile',$user->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                                 <div class="form-group">
                                     {{Form::label('profile_image','Profile Image')}}
                                     {{Form::file('profile_image')}}
@@ -39,7 +39,7 @@
                                 </div>
                                 {{Form::hidden('_method', 'PUT')}}
                                 {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-                                <a onclick="return confirm('Are you sure you want to cancel?')" href="/profilemember/{{$user->id}}/edit" class="btn btn-danger pull-right">Cancel</a>
+                                <a onclick="return confirm('Are you sure you want to cancel?')" href="/profilemember/{{$user->id}}" class="btn btn-danger pull-right">Cancel</a>
                                  {!! Form::close() !!}
                                 </div>
                             </div>

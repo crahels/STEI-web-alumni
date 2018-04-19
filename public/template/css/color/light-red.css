@@ -339,3 +339,10 @@ footer.style-1 {
 .on-page {
     background-color: #FF432E;
 }
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+      color: #FF432E;
+    }
+}

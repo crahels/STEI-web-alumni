@@ -13,7 +13,7 @@
             <hr>
             <small>Written on {{$question->created_at}}</small><br>
             <small>Last Editted on {{$question->updated_at}}</small><br>
-            <small>by {{$question->user->name}}<span>@if($question->is_admin == 1) <span>as <span style="color:lightblue;">admin</span></span>@endif</span></small>
+            <small>by {{$question->user->name}}</small>
             <hr>
         </div>
         @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $question->user->id == Auth::guard('member')->user()->id && $question->is_admin == 0))

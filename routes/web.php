@@ -15,7 +15,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/profilemember/{id}', 'MembersController@showMyProfile');
 
-Route::get('/profilemember/{id}/edit', 'MembersController@showMyProfile');
+Route::get('/profilemember/{id}/edit', 'MembersController@updateMyProfile');
 
 Route::get('/editMyProfile/{id}', 'MembersController@editMember');
 
@@ -23,31 +23,31 @@ Route::get('/about', function () {
 	return view('about');
 });
 
-// //============================================== QNA TESTING
+//============================================== QNA TESTING
 
-// Route::get('/forum', function () {
-// 	return view('users/qna/showquestion');
-// });
+Route::get('/forum', function () {
+	return view('users/qna/showquestion');
+});
 
-// Route::get('/forum/add', function () {
-// 	return view('users/qna/addquestion');
-// });
+Route::get('/forum/add', function () {
+	return view('users/qna/addquestion');
+});
 
-// Route::get('/forum/showeach', function () {
-// 	return view('users/qna/showeachquestion');
-// });
+Route::get('/forum/showeach', function () {
+	return view('users/qna/showeachquestion');
+});
 
-// Route::get('/forum/editquestion', function () {
-// 	return view('users/qna/editquestion');
-// });
+Route::get('/forum/editquestion', function () {
+	return view('users/qna/editquestion');
+});
 
-// Route::get('/forum/showanswer', function () {
-// 	return view('users/qna/showquestion');
-// });
+Route::get('/forum/showanswer', function () {
+	return view('users/qna/showquestion');
+});
 
-// Route::get('/forum/editanswer', function () {
-// 	return view('users/qna/editanswer');
-// });
+Route::get('/forum/editanswer', function () {
+	return view('users/qna/editanswer');
+});
 
 //============================================== END OF QNA TESTING
 

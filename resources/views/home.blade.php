@@ -45,7 +45,6 @@
                         @if ($i < 3)
                             <div class="item overlay">
                                 <img class="img-responsive-article" src="/storage/cover_images/{{$post->cover_image}}" alt="slider">
-                                
                                 <div class="slider-content">
                                     <div class="col-md-12 text-center">
                                         <h1 class="animated1">
@@ -62,71 +61,8 @@
                         @else
                             @break
                         @endif
-                        <!--
-                        <div class="well">
-                            <div class="row">
-                                <div class="col-md-4 col-sm-4">
-                                    <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}">
-                                </div>
-                                <div class="col-md-8 col-sm-8">
-                                    <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
-                                    <small>Written on {{$post->created_at}} by {{$post->user->name}}</small>
-                                </div>
-                            </div>
-                        </div>
-                        -->
                     @endforeach
-                @else
-
                 @endif
-
-                {{-- <div class="item">
-                    <img class="img-responsive" src="{{ asset('template/images/header-back.png') }}" alt="slider">
-                    
-                    <div class="slider-content">
-                        <div class="col-md-12 text-center">
-                            <h1 class="animated1">
-                    		  <span>Welcome to <strong>Fame</strong></span>
-                    	    </h1>
-                            <p class="animated2">Generate a flood of new business with the<br> power of a digital media platform</p>
-                            <a href="#feature" class="page-scroll btn btn-primary animated3">Read More</a>
-                        </div>
-                    </div>
-                </div> --}}
-
-                <!--/ Carousel item end -->
-                
-
-                {{-- <div class="item">
-                    <img class="img-responsive" src="{{ asset('template/images/header-back.png') }}" alt="slider">
-                    
-                    <div class="slider-content">
-                        <div class="col-md-12 text-center">
-                            <h1 class="animated1">
-                                <span>Welcome to <strong>Fame</strong></span>
-                            </h1>
-                            <p class="animated2">Generate a flood of new business with the<br> power of a digital media platform</p>
-                            <a href="#feature" class="page-scroll btn btn-primary animated3">Read More</a>
-                        </div>
-                    </div>
-                </div> --}}
-
-                <!--/ Carousel item end -->
-
-                {{-- <div class="item">
-                    <img class="img-responsive" src="{{ asset('template/images/header-back.png') }}" alt="slider">
-                    
-                    <div class="slider-content">
-                        <div class="col-md-12 text-center">
-                            <h1 class="animated1">
-                                <span>Welcome to <strong>Fame</strong></span>
-                            </h1>
-                            <p class="animated2">Generate a flood of new business with the<br> power of a digital media platform</p>
-                            <a href="#feature" class="page-scroll btn btn-primary animated3">Read More</a>
-                        </div>
-                    </div>
-                </div> --}}
-                <!--/ Carousel item end -->
                 
                 <div class="item">
                     <img class="img-responsive" src="{{ asset('template/images/galaxy.jpg') }}" alt="slider">
@@ -330,7 +266,43 @@
                 <div class="col-md-12">
                     <div id="team-section">
                         <div class="our-team">
-                            <div class="team-member">
+                            @if (count($homedata[1]) > 0)
+                                {{-- @php
+                                    $i = 0;
+                                @endphp --}}
+                                @foreach ($homedata[1] as $member)
+                                    <div class="team-member">
+                                        <img src="/storage/profile_image/{{$member->profile_image}}" class="img-responsive" alt="">
+                                        <div class="team-details">
+                                            <h4>{{$member->name}}</h4>
+                                            <p>Alumni of STEI</p>
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-user"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    {{-- @if ($i < 3)
+                                        <div class="item overlay">
+                                            <img class="img-responsive-article" src="/storage/cover_images/{{$post->cover_image}}" alt="slider">
+                                            
+                                            <div class="slider-content">
+                                                <div class="col-md-12 text-center">
+                                                    <h1 class="animated1">
+                                                        <span>{{$post->title}}</span>
+                                                    </h1>
+                                                    <a href="/posts/{{$post->id}}" class="page-scroll btn btn-primary animated3">Read More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @php
+                                            $i = $i + 1;
+                                        @endphp
+                                    @else
+                                        @break
+                                    @endif --}}
+                                @endforeach
+                            @endif                            
+                            {{-- <div class="team-member">
                                 <img src="{{ asset('template/images/team/manage-1.png') }}" class="img-responsive" alt="">
                                 <div class="team-details">
                                     <h4>John Doe</h4>
@@ -418,7 +390,7 @@
                                         <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
