@@ -106,8 +106,15 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+        $isMember = Auth::guard('member')->user() != null;
+       
         if ($post !== null) {
-            return view('admin.showeachpost')->with('post', $post);
+            if ($isAdmin)
+                return view('admin.showeachpost')->with('post', $post);
+            else
+                return view('showarticle')->with('post', $post);
+           
         } else {
             return abort(404);
         }    

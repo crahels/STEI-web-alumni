@@ -4,8 +4,6 @@
 
 @section('content')
 
-<!--  START Side Menu>
-<END side menu !-->
 <div class="container-fluid">
   <div class="row">
     <nav class="col-3 sidebar">
@@ -43,13 +41,19 @@
   <script>
     feather.replace();
   </script>
+
+    <!-- START Main -->
     <main role="main" class="col-7">
+          <div class=" section-title text-center">
+              <h3>Welcome to Alumni STEI Article</h3>
+              <p>Get your newest and reliable news about Alumni STEI here</p>
+          </div>
         @if (count($posts) > 0)
             @foreach ($posts as $post)
                 <div class="well">
                     <div class="row">
                         <div class="col-8 post-card">
-                            <h3><a href="/admin/posts/{{$post->id}}">{{$post->title}}</a></h3>
+                            <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
                             <i>Written on {{$post->created_at}} by {{$post->user->name}}</i>
                         </div>
                         <div class="col-4 img-card">

@@ -2,7 +2,7 @@
 @if (Request::is('/') || Request::is('about'))
     <nav class="navbar navbar-default navbar-fixed-top">
 @else
-    <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #222; padding: 1% 0;">
+    <nav class="navbar navbar-default" style="background-color: #222; padding: 1% 0;">
 @endif
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -34,22 +34,30 @@
                         <a href="/">Home</a>
                     @endif
                 </li>
-                <li>
-                    @if(Request::is('artikel/*')) <!-- URL Artikel -->
-                        <a class="page-change" href="#" style="background-color:green">Article</a>
+
+                {{-- Article --}}
+                @if(Request::is('article'))
+                    <li class="on-page">
+                        <a href="#">Article</a>
+                    </li>
+                @else
+                    <li>
+                        <a href="/article">Article</a>
+                    </li>
+                @endif
+
+                {{-- Forum --}}
+                @if(Auth::guard('member')->user() != null)
+                    @if(Request::is('forum/')) <!-- URL Forum -->
+                        <li class="on-page">
+                            <a href="#">Forum</a>
+                        </li>
                     @else
-                        <a class="" href="#">Article</a>
-                    @endif    
-                </li>
-                <li>
-                    @if(Auth::guard('member')->user() != null)
-                        @if(Request::is('forum/*')) <!-- URL Forum -->
-                            <a class="page-change" href="#" style="background-color:green">Forum</a>
-                        @else
+                        <li>
                             <a class="" href="/forum">Forum</a>
-                        @endif
+                        </li>
                     @endif
-                </li>
+                @endif
                 @if (Request::is('about'))
                     <li class="on-page">
                         <a href="#">About</a>
