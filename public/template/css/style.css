@@ -2038,6 +2038,10 @@ a>.on-page>.active {
 /* By: Stevanno									 */	
 /*-----------------------------------------------*/
 
+#add-question-btn {
+	margin-bottom: 30px;
+}
+
 .body-qna {
 	background-color: #fafafa;
 	height: 100%;
@@ -2046,10 +2050,6 @@ a>.on-page>.active {
 
 .qna-container {
 	min-height: 1000px;
-}
-
-.qna-header {
-	margin-top: 50px;
 }
 
 .qna-header .section-title h3,
@@ -2061,6 +2061,15 @@ a>.on-page>.active {
 	padding-bottom: 30px;
 }
 
+.qna-header {
+	padding-top: 30px;
+}
+
 #add-q-button {
 	color: white;
+}
+
+.question-container {
+	border-radius: 0px;
+	background-color: white;
 }
