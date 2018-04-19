@@ -56,9 +56,15 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body class="index">
     @include('inc.navbarhome')
     @yield('content')
+    <div id="loader">
+        <div class="spinner">
+            <div class="dot1"></div>
+            <div class="dot2"></div>
+        </div>
+    </div>
     <!-- jQuery Version 2.1.1 -->
     <script src="{{ asset('template/js/jquery-2.1.1.min.js') }}"></script>
 
@@ -77,7 +83,7 @@
 
     <!-- Contact Form JavaScript -->
     <script src="{{ asset('template/js/jqBootstrapValidation.js') }}"></script>
-    <script src="{{ asset('template/js/contact_me.js') }}"></script>
+    {{-- <script src="{{ asset('template/js/contact_me.js') }}"></script> --}}
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('template/js/script.js') }}"></script>

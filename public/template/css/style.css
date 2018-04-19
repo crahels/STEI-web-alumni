@@ -1968,7 +1968,8 @@ iframe {
 	-moz-border-radius: 100%;
 	-o-border-radius: 100%;
 	-webkit-animation: bouncee 2.0s infinite ease-in-out;
-	animation: bouncee 2.0s infinite ease-in-out;
+    animation: bouncee 2.0s infinite ease-in-out;
+    background-color: #222;
 }
 
 .dot2 {

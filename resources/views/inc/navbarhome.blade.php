@@ -42,7 +42,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="/article">Article</a>
+                        <a class="page-scroll" href="/article">Article</a>
                     </li>
                 @endif
 
@@ -96,7 +96,7 @@
 
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="/profilemember/{{Auth::guard('member')->user()->id}}">
+                                    <a class="dropdown-item" href="/members/{{Auth::guard('member')->user()->id}}">
                                     {{-- <a class="dropdown-item" href="/profilemember/{{Auth::guard('member')->user()->id}}"> --}}
                                         Profile
                                     </a>
