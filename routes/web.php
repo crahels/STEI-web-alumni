@@ -15,7 +15,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/profilemember/{id}', 'MembersController@showMyProfile');
 
-Route::get('/profilemember/{id}/edit', 'MembersController@showMyProfile');
+Route::get('/profilemember/{id}/edit', 'MembersController@updateMyProfile');
 
 Route::get('/editMyProfile/{id}', 'MembersController@editMember');
 
