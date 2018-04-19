@@ -23,6 +23,13 @@ Route::get('/about', function () {
 	return view('about');
 });
 
+// route for member
+Route::resource('profile', 'MembersController');
+Route::resource('posts', 'PostsController');
+Route::resource('questions', 'QuestionsController');
+Route::resource('answers', 'AnswersController');
+Route::resource('members', 'MembersController');
+
 // //============================================== QNA TESTING
 
 // Route::get('/forum', function () {
@@ -107,4 +114,32 @@ Route::group( [ 'prefix' => 'admin' ], function()
 	$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 	$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 	$this->post('password/reset', 'Auth\ResetPasswordController@reset');
+
+	// admin route
+	Route::resource('profile', 'MembersController');
+	Route::resource('addmember', 'AddMemberController');
+	Route::resource('posts', 'PostsController');
+	Route::resource('questions', 'QuestionsController');
+	Route::resource('answers', 'AnswersController');
+	Route::resource('members', 'MembersController');
+	
+	Route::post('/importcsv','AddMemberController@importCSV');
+	Route::post('/importmember','AddMemberController@importMember');
+
+	Route::post('/answers/rate/{answer}/{user}', 'AnswersController@giveRating');
+	Route::post('/answers/pin/{answer}/{question}/{each}', 'AnswersController@givePin');
+	Route::get('/answers/add/{question}', 'AnswersController@giveAnswer');
+	Route::get('/dashboard', 'DashboardController@index');
+	Route::get('/members/{user}/delete', 'MembersController@destroy');
+	Route::post('/answers/{each}', 'AnswersController@store');
+
+	Route::get('/add', function () {
+		return view('admin.addmember');
+	})->middleware('admin');
+	
+	Route::get('/addCSV', function () {
+		return view('admin.addCSV');
+	})->middleware('admin');
+
+	Route::post('/answers/store_ajax', 'AnswersController@storeAjax');	
 });	
