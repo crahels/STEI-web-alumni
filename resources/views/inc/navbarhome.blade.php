@@ -31,22 +31,30 @@
                         <a href="/">Home</a>
                     @endif
                 </li>
-                <li>
-                    @if(Request::is('artikel/*')) <!-- URL Artikel -->
-                        <a class="page-change" href="#" style="background-color:green">Article</a>
+
+                {{-- Article --}}
+                @if(Request::is('article')) <!-- URL Artikel -->
+                    <li class="on-page">    
+                        <a href="#">Article</a>
+                    </li>
+                @else
+                    <li>    
+                        <a class="" href="/article">Article</a>
+                    </li>
+                @endif   
+
+                {{-- Forum --}}
+                @if(Auth::guard('member')->user() != null)
+                    @if(Request::is('forum/')) <!-- URL Forum -->
+                        <li class="on-page">
+                            <a href="#">Forum</a>
+                        </li>
                     @else
-                        <a class="" href="#">Article</a>
-                    @endif    
-                </li>
-                <li>
-                    @if(Auth::guard('member')->user() != null)
-                        @if(Request::is('forum/*')) <!-- URL Forum -->
-                            <a class="page-change" href="#" style="background-color:green">Forum</a>
-                        @else
-                            <a class="" href="/forum">Forum</a>
-                        @endif
+                        <li>
+                            <a class="" href="/dashboard-qna">Forum</a>
+                        </li>
                     @endif
-                </li>
+                @endif
                 @if (Request::is('about'))
                     <li class="on-page">
                         <a href="#">About</a>
