@@ -11,7 +11,7 @@ class QuestionsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin');
+        //$this->middleware('admin');
     }
 
     /**
@@ -21,10 +21,20 @@ class QuestionsController extends Controller
      */
     public function index()
     {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+         // if not member and admin then cannot edit this question
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+
         // order question by created_at in descending order
         $questions = Question::orderBy('created_at','desc')->paginate(15);
-
-        return view('admin.showquestion')->with('questions', $questions);
+        if ($isAdmin) {
+            return view('admin.showquestion')->with('questions', $questions);
+        } else {
+            return view('users.qna.showquestion')->with('questions', $questions);
+        }
     }
 
     /**
@@ -34,7 +44,18 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('admin.addquestion');
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+         // if not member and admin then cannot edit this question
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+        
+        if ($isAdmin) {
+            return view('admin.addquestion');
+        } else {
+            return view('users.qna.addquestion');
+        }
     }
 
     /**
@@ -70,7 +91,12 @@ class QuestionsController extends Controller
         }
         $question->save();
 
-        return redirect('/admin/questions')->with('success', 'Question Added');
+        if ($isAdmin) {
+            return redirect('/admin/questions')->with('success', 'Question Added');
+        } else {
+            return redirect('/questions')->with('success', 'Question Added');
+        }
+        
     }
 
     /**
@@ -81,9 +107,20 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+         // if not member and admin then cannot edit this question
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+
         $question = Question::find($id);
         if ($question !== null) {
-            return view('admin.showeachquestion')->with('question', $question);
+            if ($isAdmin) {
+                return view('admin.showeachquestion')->with('question', $question);
+            } else {
+                return view('users.qna.showeachquestion')->with('question', $question);
+            }
         } else {
             return abort(404);
         }
@@ -111,9 +148,13 @@ class QuestionsController extends Controller
             // if admin can edit all kinds of question
             // if not admin can only edit his own question
             if ($isAdmin || ($question->user()->id == $member->id && $question->is_admin == 0)) {
-                return view('admin.editquestion')->with('question', $question);
+                if ($isAdmin) {
+                    return view('admin.editquestion')->with('question', $question);
+                } else {
+                    return view('users.qna.editquestion')->with('question', $question);
+                }
             } else {
-                return redirect('/admin/questions')->with('error', 'You can not edit this question.');
+                return redirect('/')->with('error', 'You can not edit this question.');
             }
         } else {
             return abort(404);
@@ -148,9 +189,13 @@ class QuestionsController extends Controller
             $question->topic = $request->input('topic');
             $question->body = $request->input('body');
             $question->save();
-            return redirect('/admin/questions/' . $id)->with('success', 'Question Updated');
+            if ($isAdmin) {
+                return redirect('/admin/questions/' . $id)->with('success', 'Question Updated');
+            } else {
+                return redirect('/questions/' . $id)->with('success', 'Question Updated');
+            }
         } else {
-            return redirect('/admin/questions/' . $id)->with('error', 'You can not edit this question.');
+            return redirect('/')->with('error', 'You can not edit this question.');
         }
     }
 
@@ -181,9 +226,13 @@ class QuestionsController extends Controller
                 if ($answer !== null) {
                     $answer->delete();
                 }
-                return redirect('/admin/questions')->with('error', 'Question Deleted');
+                if ($isAdmin) {
+                    return redirect('/admin/questions')->with('error', 'Question Deleted');
+                } else {
+                    return redirect('/questions')->with('error', 'Question Deleted');
+                }
             } else {
-                return redirect('/admin/questions')->with('error', 'You can not delete this question.');
+                return redirect('/')->with('error', 'You can not delete this question.');
             }
         } else {
             return abort(404);

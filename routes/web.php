@@ -39,13 +39,12 @@ Route::get('logout', 'Auth\SocialAccountsController@logout');
 Route::get('link/{provider}', 'Auth\LinkAccountController@redirectToProvider');
 Route::get('link/{provider}/delete', 'Auth\LinkAccountController@deleteLink');
 
-/*Route::get('/add', function () {
-	return view('admin.addmember');
-})->middleware('admin');
-
-Route::get('/addCSV', function () {
-	return view('admin.addCSV');
-})->middleware('admin');*/
+// route for member
+Route::resource('profile', 'MembersController');
+Route::resource('posts', 'PostsController');
+Route::resource('questions', 'QuestionsController');
+Route::resource('answers', 'AnswersController');
+Route::resource('members', 'MembersController');
 
 //Admin page
 Route::group( [ 'prefix' => 'admin' ], function()
