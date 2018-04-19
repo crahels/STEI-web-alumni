@@ -2,7 +2,7 @@
 @if (Request::is('/') || Request::is('about'))
     <nav class="navbar navbar-default navbar-fixed-top">
 @else
-    <nav class="navbar navbar-default" style="background-color: #222; padding: 1% 0;">
+    <nav class="navbar navbar-default" style="background-color: #222; padding: 1% 0; margin-bottom: 0px">
 @endif
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
