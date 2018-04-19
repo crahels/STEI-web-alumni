@@ -106,7 +106,7 @@
     <div class="container qna-container">
         @if(Auth::guard('member')->user() != null || (Auth::user() != null && Auth::user()->IsAdmin == 1))
         <div class="col-lg-12 text-center">
-            <a class="btn btn-primary" href="forum/create">Add Question</a>
+            <a class="btn btn-primary" href="questions/create">Add Question</a>
         </div>
         @endif
 
@@ -115,7 +115,7 @@
                 <div class="well" style="margin-top: 50px">
                     <div class="row">
                         <div class="col-12 post-card">
-                            <h3><a href="/admin/questions/{{$question->id}}">{{$question->topic}}</a></h3>
+                            <h3><a href="/questions/{{$question->id}}">{{$question->topic}}</a></h3>
                             <p>{{$question->body}}</p>
                             <small>
                                 <i>
@@ -164,7 +164,7 @@
 
                                 <div class="col-9 pull-right">
                                     <p>{{$answer->body}}</p>
-                                    <a href="/admin/answers/{{$answer->id}}">
+                                    <a href="/answers/{{$answer->id}}">
                                         <small>
                                             Written on {{$answer->created_at}} by {{$answer->user->name}} <span>@if($answer->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
                                         </small>
