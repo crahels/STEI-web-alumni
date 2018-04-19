@@ -16,7 +16,7 @@ class AnswersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin');
+        //$this->middleware('admin');
     }
 
     /**
@@ -99,7 +99,11 @@ class AnswersController extends Controller
                 return redirect('/admin/questions')->with('success', 'Answer Saved');
             }
         } else {
-            return redirect('/questions')->with('success', 'Answer Saved');
+            if ($each == 1) {
+                return redirect('/questions/' . $request->input('question_id'))->with('success', 'Answer Saved');
+            } else {
+                return redirect('/questions')->with('success', 'Answer Saved');
+            }
         }
     }
 

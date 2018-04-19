@@ -20,7 +20,7 @@
             {{Form::hidden('_method', 'PUT')}}
             <div class="bottomButton">
                 {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-                <a onclick="return confirm('Are you sure you want to leave?')" class="onclick btn btn-danger pull-right" href="/admin/questions/{{$question->id}}">
+                <a onclick="return confirm('Are you sure you want to leave?')" class="onclick btn btn-danger pull-right" href="/questions/{{$question->id}}">
                     Cancel
                 </a>
             </div>
