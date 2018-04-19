@@ -42,13 +42,13 @@
                     </li>
                 @else
                     <li>
-                        <a href="/article">Article</a>
+                        <a class="page-scroll" href="/article">Article</a>
                     </li>
                 @endif
 
                 {{-- Forum --}}
                 @if(Auth::guard('member')->user() != null)
-                    @if(Request::is('forum/')) <!-- URL Forum -->
+                    @if(Request::is('questions')) <!-- URL Forum -->
                         <li class="on-page">
                             <a href="#">Forum</a>
                         </li>
@@ -58,6 +58,8 @@
                         </li>
                     @endif
                 @endif
+
+                {{-- About --}}
                 @if (Request::is('about'))
                     <li class="on-page">
                         <a href="#">About</a>
@@ -96,7 +98,7 @@
 
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="/profilemember/{{Auth::guard('member')->user()->id}}">
+                                    <a class="dropdown-item" href="/members/{{Auth::guard('member')->user()->id}}">
                                     {{-- <a class="dropdown-item" href="/profilemember/{{Auth::guard('member')->user()->id}}"> --}}
                                         Profile
                                     </a>

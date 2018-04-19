@@ -65,13 +65,6 @@
         </div><!-- /.container -->
     </section>
    <!-- End About Us Section -->
-
-
-    <div id="loader">
-        <div class="spinner">
-            <div class="dot1"></div>
-            <div class="dot2"></div>
-        </div>
-    </div>
+   
 </body>
 @endsection

@@ -13,11 +13,9 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/profilemember/{id}', 'MembersController@showMyProfile');
+// Route::get('/profilemember/{id}', 'MembersController@showMyProfile');
 
-Route::get('/profilemember/{id}/edit', 'MembersController@updateMyProfile');
-
-Route::get('/editMyProfile/{id}', 'MembersController@editMember');
+// Route::get('/editMyProfile/{id}', 'MembersController@editMember');
 
 Route::get('/about', function () {
 	return view('about');
@@ -56,7 +54,7 @@ Route::resource('members', 'MembersController');
 Route::post('/importcsv','AddMemberController@importCSV');
 Route::post('/importmember','AddMemberController@importMember');
 
-Route::resource('profile', 'MembersController');
+//Route::resource('profile', 'MembersController');
 Route::resource('addmember', 'AddMemberController');
 Route::resource('posts', 'PostsController');
 Route::resource('article', 'PostsController');
@@ -109,12 +107,11 @@ Route::group( [ 'prefix' => 'admin' ], function()
 	$this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 	// admin route
-	Route::resource('profile', 'MembersController');
+	//Route::resource('profile', 'MembersController');
 	Route::resource('addmember', 'AddMemberController');
 	Route::resource('posts', 'PostsController');
 	Route::resource('questions', 'QuestionsController');
 	Route::resource('answers', 'AnswersController');
-	Route::resource('members', 'MembersController');
 	
 	Route::post('/importcsv','AddMemberController@importCSV');
 	Route::post('/importmember','AddMemberController@importMember');

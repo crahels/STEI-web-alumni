@@ -1,8 +1,9 @@
-@extends('layouts.app')
+@extends((Auth::user() != null && Auth::user()->IsAdmin == 1) ? 'layouts.app' : 'layouts.apphome')
 
 @section('title', $user->name . ' | Update Profile')
 
 @section('content')
+<div class="container">
     <h2 class="sub-title">Edit Profile</h2>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >  
@@ -39,7 +40,7 @@
                                 </div>
                                 {{Form::hidden('_method', 'PUT')}}
                                 {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-                                <a onclick="return confirm('Are you sure you want to cancel?')" href="/admin/members/{{$user->id}}" class="btn btn-danger pull-right">Cancel</a>
+                                <a onclick="return confirm('Are you sure you want to cancel?')" href="/members/{{$user->id}}" class="btn btn-danger pull-right">Cancel</a>
                                  {!! Form::close() !!}
                                 </div>
                             </div>
@@ -47,12 +48,6 @@
                 </div>
             </div>
         </div>
-        <link rel="stylesheet" type="text/css" href="css/file-upload.css" />
-<script src="js/file-upload.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.file-upload').file_upload();
-    });
-</script>
+</div>
 
 @endsection

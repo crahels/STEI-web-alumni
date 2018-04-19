@@ -17,7 +17,7 @@
                         class="img-circle img-responsive" id=""> </div>
                         
                             <div class=" col-md-9 col-lg-9 "> 
-                                {!! Form::open(['action' => ['MembersController@updateMyProfile',$user->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                {!! Form::open(['action' => ['MembersController@update',$user->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                                 <div class="form-group">
                                     {{Form::label('profile_image','Profile Image')}}
                                     {{Form::file('profile_image')}}

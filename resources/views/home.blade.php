@@ -97,6 +97,19 @@
         <section id="service" class="services-section">
             <div class="container">
                 <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="section-title text-center">
+                            <h3>Greeting Speech</h3>
+                            <br>
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                            <br>
+                            <br>
+                            Yowinarto, Ketua Alumni STEI</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-12">
                         <div class="section-title text-center">
                             <h3>Our Services</h3>
@@ -212,21 +225,21 @@
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
                     <i class="fa fa-male"></i>
-                    <div class="timer" id="item4" data-to="{{count($homedata[1])}}" data-speed="2000"></div>
+                    <div class="timer" id="item4" data-to="{{count($homedata[1])}}" data-speed="2500"></div>
                     <h5>Members</h5>                               
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
                     <i class="fa fa-check"></i>
-                    <div class="timer" id="item2" data-to="{{count($homedata[0])}}" data-speed="2000"></div>
+                    <div class="timer" id="item2" data-to="{{count($homedata[0])}}" data-speed="2500"></div>
                     <h5>Article</h5>                               
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
                     <i class="fa fa-code"></i>
-                    <div class="timer" id="item3" data-to="{{count($homedata[2])}}" data-speed="2000"></div>
+                    <div class="timer" id="item3" data-to="{{count($homedata[2])}}" data-speed="2500"></div>
                     <h5>Forum</h5>                               
                     </div>
                 </div>
@@ -239,20 +252,7 @@
 
     <!-- Start Team Member Section -->
     <section id="team" class="team-member-section">
-        <div class="container">
-        <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="section-title text-center">
-                            <h3>Greeting Speech</h3>
-                            <br>
-                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                            <br>
-                            <br>
-                            Yowinarto, Ketua Alumni STEI</p>
-                        </div>
-                </div>
-            </div>
-            
+        <div class="container">            
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
@@ -277,7 +277,7 @@
                                             <h4>{{$member->name}}</h4>
                                             <p>Alumni of STEI</p>
                                             <ul>
-                                                <li><a href="#"><i class="fa fa-user"></i></a></li>
+                                                <li><a href="/members/{{$member->id}}"><i class="fa fa-user"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -411,7 +411,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form name="sentMessage" id="contactForm" novalidate>
+                    <form name="sentMessage" id="contactForm" action="{{ asset('template/mail/contact_me.php') }}" method="POST" novalidate>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -498,14 +498,5 @@
             </div>
         </footer>
     </section>
-
-
-    <div id="loader">
-        <div class="spinner">
-            <div class="dot1"></div>
-            <div class="dot2"></div>
-        </div>
-    </div>
-
 </body>
 @endsection

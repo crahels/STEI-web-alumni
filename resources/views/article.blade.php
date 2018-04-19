@@ -3,7 +3,6 @@
 @section('title', 'Posts')
 
 @section('content')
-
 <div class="container-fluid">
   <div class="row">
     <nav class="col-3 sidebar">
