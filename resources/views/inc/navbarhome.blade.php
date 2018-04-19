@@ -54,7 +54,7 @@
                         </li>
                     @else
                         <li>
-                            <a class="" href="/forum">Forum</a>
+                            <a class="" href="/questions">Forum</a>
                         </li>
                     @endif
                 @endif

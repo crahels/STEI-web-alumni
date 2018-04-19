@@ -13,11 +13,11 @@
             <hr>
             <small>Written on {{$question->created_at}}</small><br>
             <small>Last Editted on {{$question->updated_at}}</small><br>
-            <small>by {{$question->user->name}}<span>@if($question->is_admin == 1) <span>as <span style="color:lightblue;">admin</span></span>@endif</span></small>
+            <small>by {{$question->user->name}}</small>
             <hr>
         </div>
         @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $question->user()->id == Auth::guard('member')->user()->id && $question->is_admin == 0))
-            <a href="/admin/questions/{{$question->id}}/edit" class="btn btn-warning">
+            <a href="/questions/{{$question->id}}/edit" class="btn btn-warning">
                 Edit
             </a>
             {!!Form::open(['action' => ['QuestionsController@destroy', $question->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
@@ -62,7 +62,7 @@
 
                         <div class="col-12">
                             <p>{{$answer->body}}</p>
-                            <a href="/admin/answers/{{$answer->id}}">
+                            <a href="/answers/{{$answer->id}}">
                                 <small>
                                     Written on {{$answer->created_at}} by {{$answer->user->name}} <span>@if($answer->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
                                 </small>
