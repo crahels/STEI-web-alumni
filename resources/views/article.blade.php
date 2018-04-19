@@ -4,7 +4,6 @@
 
 @section('content')
 
-
 <div class="container-fluid">
   <div class="row">
     <nav class="col-3 sidebar">
@@ -45,6 +44,10 @@
 
     <!-- START Main -->
     <main role="main" class="col-7">
+          <div class=" section-title text-center">
+              <h3>Welcome to Alumni STEI Article</h3>
+              <p>Get your newest and reliable news about Alumni STEI here</p>
+          </div>
         @if (count($posts) > 0)
             @foreach ($posts as $post)
                 <div class="well">
