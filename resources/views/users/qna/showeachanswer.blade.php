@@ -59,7 +59,7 @@
             <small>by {{$answer->user->name}}<span>@if($answer->is_admin == 1) <span>as <span style="color:blue;">admin</span></span>@endif</span></small>
             <hr>
         </div>-->
-        @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $answer->user()->id == Auth::guard('member')->user()->id && $answer->is_admin == 0))
+        @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $answer->user->id == Auth::guard('member')->user()->id && $answer->is_admin == 0))
             <a href="/answers/{{$answer->id}}/edit" class="btn btn-warning">
                 Edit
             </a>
