@@ -87,7 +87,7 @@ class AnswersController extends Controller
             $answer->user_id = Auth::user()->id;
             $answer->is_admin = 1;
         } else {
-            $answer->user_id = Auth::guard('member')->user()->id;
+            $answer->member_id = Auth::guard('member')->user()->id;
             $answer->is_admin = 0;
         }
         $answer->save();
@@ -125,12 +125,11 @@ class AnswersController extends Controller
         $answer = new Answer;
         $answer->question_id = $request->question_id;
         $answer->body = $request->body;
-        $answer->user_id = auth()->user()->id;
         if ($isAdmin) {
             $answer->user_id = Auth::user()->id;
             $answer->is_admin = 1;
         } else {
-            $answer->user_id =  Auth::guard('member')->user()->id;
+            $answer->member_id =  Auth::guard('member')->user()->id;
             $answer->is_admin = 0;
         }
         $answer->save();
@@ -229,7 +228,7 @@ class AnswersController extends Controller
         // member can only give vote once
         } else {
             $found = 0;
-            foreach ($answer->users as $user) {
+            foreach ($answer->members as $user) {
                 if ($user->id == $user_id) {
                     $found = 1;
                     break;
@@ -237,7 +236,7 @@ class AnswersController extends Controller
             }
 
             if ($found == 0) {
-                $answer->users()->attach($user_id);
+                $answer->members()->attach($user_id);
 
                 $answer->rating++;
                 $answer->timestamps = false;
@@ -246,7 +245,7 @@ class AnswersController extends Controller
                 $questions = Question::orderBy('created_at','desc')->paginate(15);
                 return redirect('/questions')->with('questions', $questions)->with('success','Rating Added');
             } else {
-                $answer->users()->detach($user_id);
+                $answer->members()->detach($user_id);
 
                 $answer->rating--;
                 $answer->timestamps = false;

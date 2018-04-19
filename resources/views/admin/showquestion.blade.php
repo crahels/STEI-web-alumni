@@ -23,7 +23,11 @@
                             <p>{{$question->body}}</p>
                             <small>
                                 <i>
-                                    Written on {{$question->created_at}} by {{$question->user->name}} <span>@if($question->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
+                                    @if ($question->is_admin == 1)
+                                        Written on {{$question->created_at}} by {{$question->user->name}} as <span style="color:blue;">admin</span>
+                                    @else
+                                        Written on {{$question->created_at}} by {{$question->member->name}}
+                                    @endif
                                 </i>
                             </small>
                             <br>
@@ -47,7 +51,7 @@
                                             </span>
                                             @if(Auth::guard('member')->user() != null)
                                                 {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id], 'method' => 'POST']) !!}
-                                                @if ($answer->users->contains(Auth::guard('member')->user()->id)) 
+                                                @if ($answer->members->contains(Auth::guard('member')->user()->id)) 
                                                     {{Form::submit('VOTE', ['class' => 'btn'])}}
                                                 @else
                                                     {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
@@ -70,7 +74,11 @@
                                     <p>{{$answer->body}}</p>
                                     <a href="/admin/answers/{{$answer->id}}">
                                         <small>
-                                            Written on {{$answer->created_at}} by {{$answer->user->name}} <span>@if($answer->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
+                                            @if ($answer->is_admin == 1) 
+                                                Written on {{$answer->created_at}} by {{$answer->user->name}} as <span style="color:blue;">admin</span>
+                                            @else
+                                                Written on {{$answer->created_at}} by {{$answer->member->name}}
+                                            @endif
                                         </small>
                                     </a>
                                     <br>
@@ -84,14 +92,23 @@
                         <div id="answercontainer-{{$question->id}}" class="col-12 post-card">
                             <div id="add-answer">
                                 <hr>
-                                <form id="answer-{{$question->id}}" action="#">
+                                {!! Form::open(['action' => ['AnswersController@store', 0], 'method' => 'POST']) !!}
+                                <div class="form-group">
+                                    {{Form::label('body','Answer')}}
+                                    {{Form::text('body', '', ['class' => 'form-control'])}}
+                                </div>
+                                {{ Form::hidden('question_id', $question->id) }}
+                                {{Form::submit('Submit', ['class' => 'btn btn-primary pull-right'])}}
+                                    <!--<a onclick="return confirm('Are you sure you want to cancel?')" href="/admin/questions" class="btn btn-danger pull-right">Cancel</a>-->
+                                {!! Form::close() !!}
+                                <!--<form id="answer-{{$question->id}}" action="#">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="form-group">
                                         <label for="body">Answer</label>
                                         <input type="text" class="form-control" id="bodyanswer-{{$question->id}}" name="body">
                                     </div>
                                     <input id="submitanswer-{{$question->id}}" type="submit" class="btn btn-primary pull-right" value="Submit">
-                                </form>
+                                </form>-->
                                 
                             </div>
                         </div>
@@ -143,13 +160,13 @@
             }
         });
 
-        $("input[id^='submitanswer']" ).click(function() {
+        /*$("input[id^='submitanswer']" ).click(function() {
             var element  = this.id;
             var question_id = element.split("-")[1];
             var body = $('#bodyanswer-' + question_id).val();
-        });
+        });*/
 
-        $("form[id^='answer']").submit(function(e) {
+        /*$("form[id^='answer']").submit(function(e) {
             e.preventDefault();
 
             var element  = this.id;
@@ -177,11 +194,7 @@
                     console.log("gagal");
                 }
             });
-            /*$.post('/answers/store_ajax', {question_id: question_id_ans, body:body_ans}, function(data) {
-                console.log(data);
-                //$('#bodyanswer-' + question_id).val(data);
-            });*/
-        });
+        });*/
     });
 </script>
 @endsection

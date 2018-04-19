@@ -38,8 +38,4 @@ class User extends Authenticatable
     public function answers() {
         return $this->hasMany('App\Answer');
     }
-
-    public function rate_answers() {
-        return $this->belongsToMany('App\Answer', 'ratings', 'user_id', 'answer_id')->withPivot('id');
-    }
 }
