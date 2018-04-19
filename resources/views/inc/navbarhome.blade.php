@@ -54,7 +54,7 @@
                         </li>
                     @else
                         <li>
-                            <a class="" href="/dashboard-qna">Forum</a>
+                            <a class="" href="/forum">Forum</a>
                         </li>
                     @endif
                 @endif

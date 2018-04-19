@@ -3,6 +3,7 @@
 @section('title', 'Questions')
 
 @section('content')
+<div class="body-qna">
     <main role="main" class="col-7">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">List of Questions</h1>
@@ -101,6 +102,7 @@
             <p>No question</p>
         @endif
     </main>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>

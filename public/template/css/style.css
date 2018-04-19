@@ -2037,6 +2037,16 @@ a>.on-page>.active {
 /* By: Stevanno									 */	
 /*-----------------------------------------------*/
 
+.body-qna {
+	background-color: #fafafa;
+	height: 100%;
+	width: 100%;
+}
+
+.qna-container {
+	min-height: 1000px;
+}
+
 .qna-header {
 	margin-top: 50px;
 }
@@ -2048,4 +2058,8 @@ a>.on-page>.active {
 
 .qna-header .feature-2 {
 	padding-bottom: 30px;
+}
+
+#add-q-button {
+	color: white;
 }
