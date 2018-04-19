@@ -85,12 +85,12 @@
             </ul>
 
             <!-- Login Dropdown -->
-            <ul class="navbar-nav ml-auto navbar-right" style="margin-top: 1.25%">
+            <div class="navbar-nav ml-auto navbar-right" style="margin-top: 1.25%">
                 <!-- Authentication Links -->
                 @guest
                     @if(Auth::guard('member')->user() != null)
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle login" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown login-dropdown" class="nav-link dropdown-toggle login" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{Auth::guard('member')->user()->name}}</span>
                             </a>
 
@@ -138,7 +138,7 @@
                         </div>
                     </li>
                 @endguest
-            </ul>
+                </div>
         </div>
         <!-- /.navbar-collapse -->
     </div>
