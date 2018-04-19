@@ -61,10 +61,11 @@ class QuestionsController extends Controller
         $question = new Question;
         $question->topic = $request->input('topic');
         $question->body = $request->input('body');
-        $question->user_id = auth()->user()->id;
         if ($isAdmin) {
+			$question->user_id = Auth::user()->id;
             $question->is_admin = 1;
         } else {
+			$question->user_id = Auth::guard('member')->user()->id;
             $question->is_admin = 0;
         }
         $question->save();

@@ -89,5 +89,7 @@ Route::group( [ 'prefix' => 'admin' ], function()
 	
 	Route::get('/addCSV', function () {
 		return view('admin.addCSV');
-	})->middleware('admin');	
+	})->middleware('admin');
+
+	Route::post('/answers/store_ajax', 'AnswersController@storeAjax');	
 });

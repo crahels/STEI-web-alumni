@@ -71,10 +71,11 @@ class AnswersController extends Controller
         $answer = new Answer;
         $answer->question_id = $request->input('question_id');
         $answer->body = $request->input('body');
-        $answer->user_id = auth()->user()->id;
         if ($isAdmin) {
+            $answer->user_id = Auth::user()->id;
             $answer->is_admin = 1;
         } else {
+            $answer->user_id = Auth::guard('member')->user()->id;
             $answer->is_admin = 0;
         }
         $answer->save();
@@ -84,6 +85,43 @@ class AnswersController extends Controller
         } else {
             return redirect('/admin/questions')->with('success', 'Answer Saved');
         }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeAjax(Request $request)
+    {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+         // if not member and admin then cannot edit this answer
+        //if(!($isMember || $isAdmin))
+        //    return response()->json([], 404);
+
+        $this->validate($request, [
+            'body' => 'required',
+        ]);
+
+        $answer = new Answer;
+        $answer->question_id = $request->question_id;
+        $answer->body = $request->body;
+        $answer->user_id = auth()->user()->id;
+        if ($isAdmin) {
+            $answer->user_id = Auth::user()->id;
+            $answer->is_admin = 1;
+        } else {
+            $answer->user_id =  Auth::guard('member')->user()->id;
+            $answer->is_admin = 0;
+        }
+        $answer->save();
+        
+        return response()->json([
+            'status' => 'Job Done'
+        ], 200);
     }
 
     /**

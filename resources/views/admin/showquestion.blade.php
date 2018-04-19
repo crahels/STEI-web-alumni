@@ -84,15 +84,15 @@
                         <div id="answercontainer-{{$question->id}}" class="col-12 post-card">
                             <div id="add-answer">
                                 <hr>
-                                {!! Form::open(['action' => ['AnswersController@store', 0], 'method' => 'POST']) !!}
-                                <div class="form-group">
-                                    {{Form::label('body','Answer')}}
-                                    {{Form::text('body', '', ['class' => 'form-control'])}}
-                                </div>
-                                {{ Form::hidden('question_id', $question->id) }}
-                                {{Form::submit('Submit', ['class' => 'btn btn-primary pull-right'])}}
-                                    <!--<a onclick="return confirm('Are you sure you want to cancel?')" href="/admin/questions" class="btn btn-danger pull-right">Cancel</a>-->
-                                {!! Form::close() !!}
+                                <form id="answer-{{$question->id}}" action="#">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <div class="form-group">
+                                        <label for="body">Answer</label>
+                                        <input type="text" class="form-control" id="bodyanswer-{{$question->id}}" name="body">
+                                    </div>
+                                    <input id="submitanswer-{{$question->id}}" type="submit" class="btn btn-primary pull-right" value="Submit">
+                                </form>
+                                
                             </div>
                         </div>
                     </div>
@@ -104,8 +104,14 @@
         @endif
     </main>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     document.getElementById("nav-four").classList.add("active");
     document.getElementById("text-nav-four").classList.add("color-active");
 
@@ -115,26 +121,66 @@
     $(document).ready(function() {
         $("input[id^='btn']" ).click(function() {
             var element  = this.id;
-            classname = element.split("-")[1];
+            var question_id = element.split("-")[1];
 
-            if ($('#btn-' + classname).hasClass('show-button')) {
-                $('#answers-' + classname).hide();
+            if ($('#btn-' + question_id).hasClass('show-button')) {
+                $('#answers-' + question_id).hide();
 
-                $('#btn-' + classname).val('Show Answers');
-                $('#btn-' + classname).removeClass('show-button');
-                $('#btn-' + classname).addClass('hidden-button');
+                $('#btn-' + question_id).val('Show Answers');
+                $('#btn-' + question_id).removeClass('show-button');
+                $('#btn-' + question_id).addClass('hidden-button');
 
-            } else if ($('#btn-' + classname).hasClass('hidden-button')) {
-                $('#answers-' + classname).show();
+            } else if ($('#btn-' + question_id).hasClass('hidden-button')) {
+                $('#answers-' + question_id).show();
                 //$('#answercontainer-' + classname).show();
             
-                var top = $('#answercontainer-' + classname).position().top;
+                var top = $('#answercontainer-' + question_id).position().top;
                 $('html').scrollTop(top);
 
-                $('#btn-' + classname).val('Hide Answers');
-                $('#btn-' + classname).removeClass('hidden-button');
-                $('#btn-' + classname).addClass('show-button');
+                $('#btn-' + question_id).val('Hide Answers');
+                $('#btn-' + question_id).removeClass('hidden-button');
+                $('#btn-' + question_id).addClass('show-button');
             }
+        });
+
+        $("input[id^='submitanswer']" ).click(function() {
+            var element  = this.id;
+            var question_id = element.split("-")[1];
+            var body = $('#bodyanswer-' + question_id).val();
+        });
+
+        $("form[id^='answer']").submit(function(e) {
+            e.preventDefault();
+
+            var element  = this.id;
+            var question_id_ans = element.split("-")[1];
+            var body_ans = $('#bodyanswer-' + question_id_ans).val();
+            
+            var dataString = "question_id=" + question_id_ans + "&body=" + body_ans;
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    'Accept': 'application/json'
+                },
+                url: "answers/store_ajax",
+                type: "POST",
+                data: {
+                    body: body_ans,
+                    question_id: question_id_ans
+                },
+                success: function(data) {
+                    console.log(data);
+                    console.log("berhasil");
+                },
+                error: function(data) {
+                    console.log(data);
+                    console.log("gagal");
+                }
+            });
+            /*$.post('/answers/store_ajax', {question_id: question_id_ans, body:body_ans}, function(data) {
+                console.log(data);
+                //$('#bodyanswer-' + question_id).val(data);
+            });*/
         });
     });
 </script>
