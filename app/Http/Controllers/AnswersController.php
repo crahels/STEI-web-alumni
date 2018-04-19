@@ -16,7 +16,7 @@ class AnswersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin');
+        //$this->middleware('admin');
     }
 
     /**
@@ -99,7 +99,11 @@ class AnswersController extends Controller
                 return redirect('/admin/questions')->with('success', 'Answer Saved');
             }
         } else {
-            return redirect('/questions')->with('success', 'Answer Saved');
+            if ($each == 1) {
+                return redirect('/questions/' . $request->input('question_id'))->with('success', 'Answer Saved');
+            } else {
+                return redirect('/questions')->with('success', 'Answer Saved');
+            }
         }
     }
 
@@ -188,7 +192,7 @@ class AnswersController extends Controller
         if ($answer !== null) {
             // if admin can edit all kinds of answer
             // if not admin can only edit his own answer
-            if ($isAdmin || ($answer->user()->id == $member->id && $answer->is_admin == 0)) {
+            if ($isAdmin || ($answer->user->id == $member->id && $answer->is_admin == 0)) {
                 if ($isAdmin) {
                     return view('admin.editanswer')->with('answer', $answer);
                 } else {
@@ -334,7 +338,7 @@ class AnswersController extends Controller
         $answer = Answer::find($id);
         $member = Auth::guard('member')->user();
 
-        if ($isAdmin || ($answer->user()->id == $member->id && $answer->is_admin == 0)) {
+        if ($isAdmin || ($answer->user->id == $member->id && $answer->is_admin == 0)) {
             if ($request->input('pin') === 'yes') {
                 $answer_pinned = Answer::where(['is_pinned' => 1, 'question_id' => $answer->question->id])->first();
                 if ($answer_pinned !== null) {
@@ -379,7 +383,7 @@ class AnswersController extends Controller
         if ($answer !== null) {
             // if admin can delete all kinds of answer
             // if not admin can only delete his own answer
-            if ($isAdmin || ($answer->user()->id == $member->id && $answer->is_admin == 0)) {
+            if ($isAdmin || ($answer->user->id == $member->id && $answer->is_admin == 0)) {
                 $answer->delete();
                 if ($isAdmin) {
                     return redirect('/admin/questions')->with('error', 'Answer Deleted');
