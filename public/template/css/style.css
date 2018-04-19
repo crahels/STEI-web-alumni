@@ -1853,7 +1853,7 @@ iframe {
     position:fixed;
     z-index:1993;
     top:90px;
-    right:0;
+    right:-100px;
     background-color:#fff;
     border-radius:2px 0 0 2px;
     border:1px solid rgba(0,0,0,.1);

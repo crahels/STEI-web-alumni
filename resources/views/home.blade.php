@@ -5,7 +5,6 @@
 @section('content')
 
 <body class="index">
-    
     <!-- Start Home Page Slider -->
     <section id="page-top">
         <!-- Carousel -->
@@ -31,7 +30,7 @@
                             <span>Web Alumni <strong>STEI</strong></span>
                             </h1>
                             <p class="animated2">Website resmi alumni Sekolah Teknik Elektro dan Informatika<br>Institut Teknologi Bandung</p>	
-                            <a href="#feature" class="page-scroll btn btn-primary animated1">Read More</a>
+                            <a href="#service" class="page-scroll btn btn-primary animated1">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -69,11 +68,9 @@
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
                             <h1 class="animated2">
-                                <span>The way of <strong>Success</strong></span>
+                                <span>View more <strong>Article</strong></span>
                             </h1>
-                            <p class="animated1">At vero eos et accusamus et iusto odio dignissimos<br> ducimus qui blanditiis praesentium voluptatum</p>	
-                             <a class="animated3 slider btn btn-primary btn-min-block" href="#">Get Now</a><a class="animated3 slider btn btn-default btn-min-block" href="#">Live Demo</a>
-                                
+                             <a class="animated3 slider btn btn-primary btn-min-block" href="/article">Click me</a>
                         </div>
                     </div>
                 </div>
@@ -224,21 +221,21 @@
                 </div>   --}}
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
-                    <i class="fa fa-male"></i>
+                    <i class="fa fa-users"></i>
                     <div class="timer" id="item4" data-to="{{count($homedata[1])}}" data-speed="2500"></div>
                     <h5>Members</h5>                               
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
-                    <i class="fa fa-check"></i>
+                    <i class="fa fa-newspaper-o"></i>
                     <div class="timer" id="item2" data-to="{{count($homedata[0])}}" data-speed="2500"></div>
                     <h5>Article</h5>                               
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
-                    <i class="fa fa-code"></i>
+                    <i class="fa fa-comments"></i>
                     <div class="timer" id="item3" data-to="{{count($homedata[2])}}" data-speed="2500"></div>
                     <h5>Forum</h5>                               
                     </div>
@@ -256,9 +253,9 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
-                            <h3>Our New Members</h3>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate</p>
-                        </div>
+                        <h3>Our New Members</h3>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                    </div>
                 </div>
             </div>
             
@@ -267,39 +264,24 @@
                     <div id="team-section">
                         <div class="our-team">
                             @if (count($homedata[1]) > 0)
-                                {{-- @php
+                                @php
                                     $i = 0;
-                                @endphp --}}
+                                @endphp 
                                 @foreach ($homedata[1] as $member)
-                                    <div class="team-member">
-                                        <img src="/storage/profile_image/{{$member->profile_image}}" class="img-responsive" alt="">
-                                        <div class="team-details">
-                                            <h4>{{$member->name}}</h4>
-                                            <p>Alumni of STEI</p>
-                                            <ul>
-                                                <li><a href="/members/{{$member->id}}"><i class="fa fa-user"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    {{-- @if ($i < 3)
-                                        <div class="item overlay">
-                                            <img class="img-responsive-article" src="/storage/cover_images/{{$post->cover_image}}" alt="slider">
-                                            
-                                            <div class="slider-content">
-                                                <div class="col-md-12 text-center">
-                                                    <h1 class="animated1">
-                                                        <span>{{$post->title}}</span>
-                                                    </h1>
-                                                    <a href="/posts/{{$post->id}}" class="page-scroll btn btn-primary animated3">Read More</a>
-                                                </div>
+                                    @if ($i < 5)
+                                        <div class="team-member">
+                                            <img src="/storage/profile_image/{{$member->profile_image}}" class="img-responsive" alt="">
+                                            <div class="team-details">
+                                                <h4>{{$member->name}}</h4>
+                                                <p>Alumni of STEI</p>
+                                                <ul>
+                                                    <li><a href="/article"><i class="fa fa-user"></i></a></li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        @php
-                                            $i = $i + 1;
-                                        @endphp
-                                    @else
+                                    @else   
                                         @break
-                                    @endif --}}
+                                    @endif
                                 @endforeach
                             @endif                            
                             {{-- <div class="team-member">

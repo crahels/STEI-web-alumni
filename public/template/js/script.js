@@ -4,9 +4,9 @@ var $ = jQuery.noConflict();
 
 // Page Loader
 $(window).load(function () {
-    
+
     "use strict";
-	$('#loader').delay(300).fadeOut();
+	$('#loader').fadeOut();
 });
 
 

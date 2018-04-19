@@ -150,7 +150,7 @@
     <!-- Styleswitcher
 ================================================== -->
 <div class="colors-switcher">
-    <a id="show-panel" class="hide-panel"><i class="fa fa-tint"></i></a>        
+    <a id="show-panel" class="show-panel"><i class="fa fa-tint"></i></a>        
     <ul class="colors-list">
         <li><a title="Light Red" onClick="setActiveStyleSheet('light-red'); return false;" class="light-red"></a></li>
         <li><a title="Blue" class="blue" onClick="setActiveStyleSheet('blue'); return false;"></a></li>
