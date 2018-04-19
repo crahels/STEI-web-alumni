@@ -42,6 +42,8 @@
   <script>
     feather.replace();
   </script>
+
+    <!-- START Main -->
     <main role="main" class="col-7">
         @if (count($posts) > 0)
             @foreach ($posts as $post)

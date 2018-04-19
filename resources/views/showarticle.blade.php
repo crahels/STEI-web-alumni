@@ -42,8 +42,8 @@
     feather.replace();
   </script>
     
-      
-    <span>
+  <main role="main" class="col-7">
+  <span>
         <h1 class="post-title">{{$post->title}}</h1>
         <h5 class="post-title">&nbsp;
             @if ($post->draft == '1')
@@ -84,5 +84,6 @@
         <a href="/posts" class="btn btn-info pull-down">&#8592; Back</a>
         
     </div>
+  </main>
 
 @endsection
