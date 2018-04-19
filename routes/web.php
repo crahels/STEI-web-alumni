@@ -23,13 +23,6 @@ Route::get('/about', function () {
 	return view('about');
 });
 
-// route for member
-Route::resource('profile', 'MembersController');
-Route::resource('posts', 'PostsController');
-Route::resource('questions', 'QuestionsController');
-Route::resource('answers', 'AnswersController');
-Route::resource('members', 'MembersController');
-
 // //============================================== QNA TESTING
 
 // Route::get('/forum', function () {
@@ -67,7 +60,7 @@ Route::resource('profile', 'MembersController');
 Route::resource('addmember', 'AddMemberController');
 Route::resource('posts', 'PostsController');
 Route::resource('article', 'PostsController');
-Route::resource('forum', 'QuestionsController');
+Route::resource('questions', 'QuestionsController');
 Route::resource('answers', 'AnswersController');
 
 Route::post('/answers/rate/{answer}/{user}', 'AnswersController@giveRating');
