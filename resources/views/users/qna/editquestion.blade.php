@@ -3,12 +3,15 @@
 @section('title', 'Edit Question')
 
 @section('content')
-<div class="row create-post-container">
-    <div class="col-3 header-create-post">
-        <h1>Edit <br>Question</h1>
-    </div>
-    <div class="col-8 post">
-        {!! Form::open(['action' => ['QuestionsController@update', $question->id], 'method' => 'POST']) !!}
+<div class="body-qna">
+    <section class="services-section text-center">
+        <div class="section-title">
+            <h3> Edit Question </h3>
+        </div>
+    </section>
+    <div class="qna-container">
+        <div class="add-question-container" style="margin: 0px 300px">
+            {!! Form::open(['action' => ['QuestionsController@update', $question->id], 'method' => 'POST']) !!}
             <div class="form-group">
                 {{Form::label('topic', 'Topic')}}
                 {{Form::text('topic', $question->topic, ['class' => 'form-control', 'placeholder' => 'Topic'])}}
@@ -25,6 +28,7 @@
                 </a>
             </div>
         {!! Form::close() !!}
+        </div>
     </div>
 </div>
 @endsection
