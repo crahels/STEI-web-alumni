@@ -519,7 +519,8 @@ li {
 }
 
 #main-slide .carousel-indicators {
-	bottom: 30px;
+    bottom: 30px;
+    z-index: 100;
 }
 
 .carousel-indicators li{

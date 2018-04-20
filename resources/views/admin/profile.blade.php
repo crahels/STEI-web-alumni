@@ -3,7 +3,7 @@
 @section('title', $user->name . ' | Profile')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: 3%">
     <div class="row edit-profile">
         <div class="col-4 edit-prof-pic">
             <img alt="User Pic" src="/storage/profile_image/{{$user->profile_image}}" class="img-circle img-responsive"

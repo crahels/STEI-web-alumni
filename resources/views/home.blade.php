@@ -275,7 +275,7 @@
                                                 <h4>{{$member->name}}</h4>
                                                 <p>Alumni of STEI</p>
                                                 <ul>
-                                                    <li><a href="/article"><i class="fa fa-user"></i></a></li>
+                                                <li><a href="/members/{{$member->id}}"><i class="fa fa-user"></i></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -418,7 +418,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-xs-12">
-                        <span class="copyright">Copyright &copy; <a href="http://guardiantheme.com">ThemeFisher</a> 2015</span>
+                        <span class="copyright">Copyright &copy; 2018 <a href="https://themefisher.com/">ThemeFisher</a></span>
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <div class="footer-social text-center">

@@ -28,8 +28,7 @@ class PostsController extends Controller
             return view('article')->with('posts', $posts);
         }
         else { //guest
-            $posts = Post::where('draft','=', '0')->paginate(10);
-            $posts = Post::where('public','=', '1')->paginate(10);
+            $posts = Post::where('draft','=', '0')->where('public','=', '1')->paginate(10);
             return view('article')->with('posts', $posts);
         }
             

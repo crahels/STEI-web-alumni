@@ -56,7 +56,6 @@ class MembersController extends Controller
      */
     public function show($id)
     {
-        return view('/');
         $user = Member::find($id);
         if($user !== null){
             return view('admin.profile')->with('user', $user);
