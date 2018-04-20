@@ -57,3 +57,7 @@ div.overlay {
     height: auto;
     opacity: 0.3;
 }
+
+.lowercase {
+    text-transform: lowercase;
+}

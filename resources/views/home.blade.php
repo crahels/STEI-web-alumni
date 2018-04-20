@@ -5,7 +5,6 @@
 @section('content')
 
 <body class="index">
-    
     <!-- Start Home Page Slider -->
     <section id="page-top">
         <!-- Carousel -->
@@ -31,7 +30,7 @@
                             <span>Web Alumni <strong>STEI</strong></span>
                             </h1>
                             <p class="animated2">Website resmi alumni Sekolah Teknik Elektro dan Informatika<br>Institut Teknologi Bandung</p>	
-                            <a href="#feature" class="page-scroll btn btn-primary animated1">Read More</a>
+                            <a href="#service" class="page-scroll btn btn-primary animated1">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -69,11 +68,9 @@
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
                             <h1 class="animated2">
-                                <span>The way of <strong>Success</strong></span>
+                                <span>View more <strong>Article</strong></span>
                             </h1>
-                            <p class="animated1">At vero eos et accusamus et iusto odio dignissimos<br> ducimus qui blanditiis praesentium voluptatum</p>	
-                             <a class="animated3 slider btn btn-primary btn-min-block" href="#">Get Now</a><a class="animated3 slider btn btn-default btn-min-block" href="#">Live Demo</a>
-                                
+                             <a class="animated3 slider btn btn-primary btn-min-block" href="/article">Click me</a>
                         </div>
                     </div>
                 </div>
@@ -224,21 +221,21 @@
                 </div>   --}}
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
-                    <i class="fa fa-male"></i>
+                    <i class="fa fa-users"></i>
                     <div class="timer" id="item4" data-to="{{count($homedata[1])}}" data-speed="2500"></div>
                     <h5>Members</h5>                               
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
-                    <i class="fa fa-check"></i>
+                    <i class="fa fa-newspaper-o"></i>
                     <div class="timer" id="item2" data-to="{{count($homedata[0])}}" data-speed="2500"></div>
                     <h5>Article</h5>                               
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
-                    <i class="fa fa-code"></i>
+                    <i class="fa fa-comments"></i>
                     <div class="timer" id="item3" data-to="{{count($homedata[2])}}" data-speed="2500"></div>
                     <h5>Forum</h5>                               
                     </div>
@@ -256,9 +253,9 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
-                            <h3>Our New Members</h3>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate</p>
-                        </div>
+                        <h3>Our New Members</h3>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                    </div>
                 </div>
             </div>
             
@@ -267,39 +264,24 @@
                     <div id="team-section">
                         <div class="our-team">
                             @if (count($homedata[1]) > 0)
-                                {{-- @php
+                                @php
                                     $i = 0;
-                                @endphp --}}
+                                @endphp 
                                 @foreach ($homedata[1] as $member)
-                                    <div class="team-member">
-                                        <img src="/storage/profile_image/{{$member->profile_image}}" class="img-responsive" alt="">
-                                        <div class="team-details">
-                                            <h4>{{$member->name}}</h4>
-                                            <p>Alumni of STEI</p>
-                                            <ul>
-                                                <li><a href="/members/{{$member->id}}"><i class="fa fa-user"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    {{-- @if ($i < 3)
-                                        <div class="item overlay">
-                                            <img class="img-responsive-article" src="/storage/cover_images/{{$post->cover_image}}" alt="slider">
-                                            
-                                            <div class="slider-content">
-                                                <div class="col-md-12 text-center">
-                                                    <h1 class="animated1">
-                                                        <span>{{$post->title}}</span>
-                                                    </h1>
-                                                    <a href="/posts/{{$post->id}}" class="page-scroll btn btn-primary animated3">Read More</a>
-                                                </div>
+                                    @if ($i < 5)
+                                        <div class="team-member">
+                                            <img src="/storage/profile_image/{{$member->profile_image}}" class="img-responsive" alt="">
+                                            <div class="team-details">
+                                                <h4>{{$member->name}}</h4>
+                                                <p>Alumni of STEI</p>
+                                                <ul>
+                                                    <li><a href="/article"><i class="fa fa-user"></i></a></li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        @php
-                                            $i = $i + 1;
-                                        @endphp
-                                    @else
+                                    @else   
                                         @break
-                                    @endif --}}
+                                    @endif
                                 @endforeach
                             @endif                            
                             {{-- <div class="team-member">
@@ -405,41 +387,8 @@
                 <div class="col-lg-12">
                     <div class="section-title text-center">
                         <h3>Contact With Us</h3>
-                        <p class="white-text">Duis aute irure dolor in reprehenderit in voluptate</p>
+                        <h5 class="white-text lowercase"><strong>admin@admin.com</strong></h5>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <form name="sentMessage" id="contactForm" action="{{ asset('template/mail/contact_me.php') }}" method="POST" novalidate>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="col-lg-12 text-center">
-                                <div id="success"></div>
-                                <button type="submit" class="btn btn-primary">Send Message</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
             <div class="row">
@@ -447,10 +396,9 @@
                     <div class="footer-contact-info">
                         <h4>Contact info</h4>
                         <ul>
-                            <li><strong>E-mail :</strong> your-email@mail.com</li>
-                            <li><strong>Phone :</strong> +8801-6778776</li>
-                            <li><strong>Mobile :</strong> +8801-45565378</li>
-                            <li><strong>Web :</strong> yourdomain.com</li>
+                            <li><strong>E-mail :</strong> admin@admin.com</li>
+                            <li><strong>Phone :</strong> +62-22-2502260</li>
+                            <br>
                         </ul>
                     </div>
                 </div>
@@ -458,10 +406,9 @@
                     <div class="footer-contact-info">
                         <h4>Working Hours</h4>
                         <ul>
-                            <li><strong>Mon-Wed :</strong> 9 am to 5 pm</li>
-                            <li><strong>Thurs-Fri :</strong> 12 pm to 10 pm</li>
-                            <li><strong>Sat :</strong> 9 am to 3 pm</li>
-                            <li><strong>Sunday :</strong> Closed</li>
+                            <li><strong>Mon-Fri :</strong> 8 am to 5 pm</li>
+                            <li><strong>Sat-Sunday :</strong> Closed</li>
+                            <br>
                         </ul>
                     </div>
                 </div>
@@ -471,28 +418,21 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-xs-12">
-                        <span class="copyright">Copyright &copy; <a href="http://guardiantheme.com">GuardinTheme</a> 2015</span>
+                        <span class="copyright">Copyright &copy; <a href="http://guardiantheme.com">ThemeFisher</a> 2015</span>
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <div class="footer-social text-center">
                             <ul>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                {{-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li> --}}
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-4 col-xs-12">
-                        <div class="footer-link">
-                            <ul class="pull-right">
-                                <li><a href="#">Privacy Policy</a>
-                                </li>
-                                <li><a href="#">Terms of Use</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="col-md-4 col-xs-12" style="text-align: right">
+                        <span class="copyright">Developed by <strong>STEI-ITB</strong> © 2018</span>
                     </div>
                 </div>
             </div>
