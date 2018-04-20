@@ -118,7 +118,7 @@
                     <div class="row">
                         <div class="col-12 post-card">
                             <h3><a href="/questions/{{$question->id}}">{{$question->topic}}</a></h3>
-                            <p>{{$question->body}}</p>
+                            <p style="font-size: 1.3em">{{$question->body}}</p>
                             <small>
                                 <i>
                                     Written on {{$question->created_at}} by {{$question->name}}
