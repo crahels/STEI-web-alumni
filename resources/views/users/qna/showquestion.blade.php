@@ -133,17 +133,17 @@
                     </div>
                     <div id="answers-{{$question->id}}" class="row">
                         @foreach ($question->answers->sortByDesc('rating')->sortByDesc('is_pinned') as $answer)
-                            <div class="col-12 post-card" style="display:inline;">
+                            <div class="col-12 post-card">
                                 <hr>
-                                <div class="col-3" style="float:left;">
+                                <div class="col-2 pull-left">
                                     <div>
-                                        <center>
-                                            <small style="font-size:1.1em;">vote<span>@if($answer->rating > 1)<span>s</span>@endif</span>
-                                            </small><br>
-                                            <span class="sum-rating">
+                                        <!-- <center> -->
+                                            <small style="font-size:0.8em">vote<span>@if($answer->rating > 1)<span>s</span>@endif</span>
+                                            </small>
+                                            <span class="sum-rating" style="font-size: 0.8em">
                                                 {{$answer->rating}}
                                             </span>
-                                            @if(Auth::guard('member')->user() != null)
+                                            <!-- @if(Auth::guard('member')->user() != null)
                                                 {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id], 'method' => 'POST']) !!}
                                                 @if ($answer->users->contains(Auth::guard('member')->user()->id)) 
                                                     {{Form::submit('VOTE', ['class' => 'btn'])}}
@@ -159,12 +159,12 @@
                                                     {{Form::button('<i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PIN', ['type' => 'submit', 'class' => 'btn btn-warning', 'data-toggle' => 'tooltip'])}}
                                                 @endif
                                             @endif
-                                            {!! Form::close() !!}
-                                        </center>
+                                            {!! Form::close() !!} -->
+                                        <!-- </center> -->
                                     </div>
                                 </div>
 
-                                <div class="col-9 pull-right">
+                                <div class="col-10">
                                     <p>{{$answer->body}}</p>
                                     <a href="/answers/{{$answer->id}}">
                                         <small>
@@ -180,7 +180,7 @@
                         @endforeach
                         
                         <div id="answercontainer-{{$question->id}}" class="col-12 post-card">
-                            <div id="add-answer">
+                             <!-- <div id="add-answer">
                                 <hr>
                                 {!! Form::open(['action' => ['AnswersController@store', 0], 'method' => 'POST']) !!}
                                 <div class="form-group">
@@ -189,9 +189,9 @@
                                 </div>
                                 {{ Form::hidden('question_id', $question->id) }}
                                 {{Form::submit('Submit', ['class' => 'btn btn-primary pull-right'])}}
-                                    <!--<a onclick="return confirm('Are you sure you want to cancel?')" href="/admin/questions" class="btn btn-danger pull-right">Cancel</a>-->
+                                    <!--<a onclick="return confirm('Are you sure you want to cancel?')" href="/admin/questions" class="btn btn-danger pull-right">Cancel</a>
                                 {!! Form::close() !!}
-                            </div>
+                            </div> -->
                         </div>
                     </div>
             </div>
