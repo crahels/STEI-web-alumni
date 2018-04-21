@@ -14,7 +14,7 @@
     <div class="profile-content">
       <h1 id="profile-header"> MY PROFILE </h1>
       <div class="profile-info">
-        <div class=" col-md-9 col-lg-9 "> 
+        <div class="col-md-9 col-lg-9"> 
             <table class="table table-user-information">
                 <tbody>
                     <tr>

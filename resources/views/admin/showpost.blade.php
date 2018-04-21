@@ -19,8 +19,8 @@
                 <div class="well">
                     <div class="row">
                         <div class="col-8 post-card">
-                            <h3><a href="/admin/posts/{{$post->id}}">{{$post->title}}</a></h3>
-                            <i>Written on {{$post->created_at->format('d M Y')}} by {{$post->user->name}}</i>
+                            <h3 class="title-question"><a href="/admin/posts/{{$post->id}}">{{$post->title}}</a></h3>
+                            <i class="text-footer">Written on {{$post->created_at->format('d M Y')}} by {{$post->user->name}}</i>
                         </div>
                         <div class="col-4 img-card">
                             <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}">

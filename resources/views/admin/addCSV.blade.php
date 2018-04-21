@@ -8,6 +8,8 @@
 					{{Form::label('list_members','Members')}}
 					{{Form::file('list_members',['class' => 'form-control-file'])}}
 			</div>
+			<br>
+			<br>
 			{{Form::hidden('_method', 'POST')}}
 			{{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
 			<a onclick="return confirm('Are you sure you want to leave?')" class="btn btn-danger pull-right" href="/admin/members">

@@ -14,13 +14,10 @@
     <div class="profile-content">
       <h1 id="profile-header"> EDIT PROFILE </h1>
       <div class="profile-info">
-        <div class=" col-md-9 col-lg-9 "> 
+        <div class="col-md-9 col-lg-9"> 
             {!! Form::open(['action' => ['MembersController@update',$user->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             <table class="table table-user-information">
-                    <!--<tr>
-                        <td>Email</td>
-                        <td>{{Form::text('email', $user->email , ['class' => 'form-control'])}}</td>                         
-                    </tr>-->
+                <tbody>
                     <tr>
                         <td>Profile Image</td>
                         <td>{{Form::file('profile_image')}}</td>                         
@@ -40,7 +37,7 @@
                     <tr>
                         <td>Address</td>
                         <td>{{Form::text('address', $user->address, ['class' => 'form-control'])}}</td>
-                    </tr>                    
+                    </tr>                   
                 </tbody>
             </table>
             {{Form::hidden('_method', 'PUT')}}

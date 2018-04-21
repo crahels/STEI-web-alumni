@@ -5,7 +5,7 @@
 @section('content')
 <div class="row create-post-container">
     <div class="col-3 header-create-post">
-        <h1>Create<br>Post</h1>
+        <h1>Create <br>Post</h1>
     </div>
     <div class="col-8 post">
         {!! Form::open(['action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}

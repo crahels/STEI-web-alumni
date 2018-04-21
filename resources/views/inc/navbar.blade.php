@@ -2,8 +2,8 @@
     <div class="container">
         <img src="{{URL::asset('storage/logo_itb.png')}}" alt="logo_ins">
         <a class="navbar-brand" href="/admin/">
-            <i style="font-weight: lighter; font-style: initial; font-size: 1.3em">Web Alumni</i>
-            <b style="font-size: 1.5em">STEI</b>
+            <i style="font-weight: lighter; font-style: initial;" class="web-alumni">Web Alumni</i>
+            <b class="stei">STEI</b>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,7 @@
                     @if(Auth::guard('member')->user() != null)
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{Auth::guard('member')->user()->name}}</span>
+                                <span>{{Auth::guard('member')->user()->name}}</span>
                             </a>
   
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -63,7 +63,7 @@
                   @else
                       <li class="nav-item dropdown">
                           <a id="navbarDropdown" name="dropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                              {{ Auth::user()->name }}</span>
+                              <span>{{ Auth::user()->name }}</span>
                           </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
