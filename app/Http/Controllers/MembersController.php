@@ -23,8 +23,10 @@ class MembersController extends Controller
      */
     public function index()
     {
+        $countQuestions = Member::withCount('questions')->get();
+        $countAnswers = Member::withCount('answers')->get();
         $members = Member::orderBy('nim','asc')->paginate(20);
-        return view('members.list')->with('members', $members);
+        return view('members.list')->with('members', $members)->with('countQuestions', $countQuestions)->with('countAnswers', $countAnswers);
     }
 
     /**
