@@ -86,15 +86,14 @@
                 <div id="answercontainer-{{$question->id}}" class="col-9 post-card">
                     <div id="add-answer">
                         <hr>
-                        {!! Form::open(['action' => ['AnswersController@store', 1], 'method' => 'POST']) !!}
-                        <div class="form-group">
-                            {{Form::label('body','Answer')}}
-                            {{Form::text('body', '', ['class' => 'form-control'])}}
-                        </div>
-                        {{ Form::hidden('question_id', $question->id) }}
-                        {{Form::submit('Submit', ['class' => 'btn btn-primary pull-right'])}}
-                            <!--<a onclick="return confirm('Are you sure you want to cancel?')" href="/admin/questions" class="btn btn-danger pull-right">Cancel</a>-->
-                        {!! Form::close() !!}
+                        <form id="answer-{{$question->id}}" action="#">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <div class="form-group answer-box">
+                                <label for="body">Answer</label>
+                                <input type="text" class="form-control" id="bodyanswer-{{$question->id}}" name="body"><br>
+                                <input id="submitanswer-{{$question->id}}" type="submit" class="btn btn-primary pull-right" value="Submit">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -103,4 +102,71 @@
     <a href="/admin/questions" class="btn btn-info pull-down">&#8592; Back</a>-->
     </div>
 </div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(document).ready(function() {
+        $("form[id^='answer']").submit(function(e) {
+            e.preventDefault();
+
+            var element  = this.id;
+            var question_id_ans = element.split("-")[1];
+            var body_ans = $('#bodyanswer-' + question_id_ans).val();
+            
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    'Accept': 'application/json'
+                },
+                url: "{{ url('admin/answer/store_ajax') }}",
+                type: "POST",
+                data: {
+                    body: body_ans,
+                    question_id: question_id_ans
+                },
+                success: function(data) {
+                    console.log(data);
+                    $('#bodyanswer-' + question_id_ans).val('');
+                    $(
+                        '<div class="col-9 post-card">' +
+                            '<hr>' +
+                            '<div class="col-3" style="float:left;">' +
+                                '<div>' +
+                                    '<center>' +
+                                        '<small style="font-size:1.1em;">vote' + 
+                                        '</small><br>' + 
+                                        '<span class="sum-rating">' +
+                                            '0' + 
+                                        '</span>' +
+                                        '<form method="POST" action="/admin/answers/pin/' + data.id + '/' + data.question_id + '/1">' +
+                                        '<input type="hidden" name="_token" value="{{ csrf_token() }}">' +
+                                        '{{Form::button("<i class=\"fa fa-thumb-tack\"></i>&nbsp;&nbsp;PIN", ["type" => "submit", "class" => "btn btn-warning", "data-toggle" => "tooltip"])}}' +
+                                        '</form>' +
+                                    '</center>' +
+                                '</div>' +
+                            '</div>' +
+
+                            '<div class="col-12">' +
+                                '<p>' + data.body + '</p>' +
+                                '<a href="/admin/answers/' + data.id + '">' + 
+                                    '<small>' +
+                                        'Written on ' + data.created_at + ' by ' + data.user.name + ' as <span style="color:blue;">admin</span>' + 
+                                    '</small>' +
+                                '</a>' +
+                                '<br>' +
+                            '</div>' +
+                        '</div>'
+                    ).insertBefore("#answercontainer-" + question_id_ans);
+                },
+                error: function(data) {
+                }
+            });
+        });
+    });
+</script>
 @endsection

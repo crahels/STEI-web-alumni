@@ -34,47 +34,45 @@
                             @if ($question->created_at != $question->updated_at)
                                 <small style="color:green;">(edited)</small>
                             @endif
-                            <input type="submit" id="btn-{{$question->id}}" class="hidden-button show-answer btn btn-primary" value="Show Answers"></input>
+                            <input type="submit" id="btn-{{$question->id}}" class="hidden-button show-answer btn btn-primary" value="Show Answers">
                         </div>
                     </div>
                     <div id="answers-{{$question->id}}" class="row">
                         @foreach ($question->answers->sortByDesc('rating')->sortByDesc('is_pinned') as $answer)
-                            <div class="col-12 post-card" style="display:inline;">
+                            <div class="col-12 post-card">
                                 <hr>
                                 <div class="col-3" style="float:left;">
-                                    <div>
-                                        <center>
-                                            <small style="font-size:1.1em;">vote<span>@if($answer->rating > 1)<span>s</span>@endif</span>
-                                            </small><br>
-                                            <span class="sum-rating">
-                                                {{$answer->rating}}
-                                            </span>
-                                            @if(Auth::guard('member')->user() != null)
-                                                {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id], 'method' => 'POST']) !!}
-                                                @if ($answer->members->contains(Auth::guard('member')->user()->id)) 
-                                                    {{Form::submit('VOTE', ['class' => 'btn'])}}
-                                                @else
-                                                    {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
-                                                @endif
+                                    <center>
+                                        <small style="font-size:1.1em;">vote<span>@if($answer->rating > 1)<span>s</span>@endif</span>
+                                        </small><br>
+                                        <span class="sum-rating">
+                                            {{$answer->rating}}
+                                        </span>
+                                        @if(Auth::guard('member')->user() != null)
+                                            {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id], 'method' => 'POST']) !!}
+                                            @if ($answer->members->contains(Auth::guard('member')->user()->id)) 
+                                                {{Form::submit('VOTE', ['class' => 'btn'])}}
                                             @else
-                                                {!! Form::open(['action' => ['AnswersController@givePin', $answer->id, $question->id, 0], 'method' => 'POST']) !!}
-                                                @if($answer->is_pinned == 1) 
-                                                    {{Form::button('<i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PINNED', ['type' => 'submit', 'class' => 'btn', 'data-toggle' => 'tooltip'])}}
-                                                    
-                                                @else
-                                                    {{Form::button('<i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PIN', ['type' => 'submit', 'class' => 'btn btn-warning', 'data-toggle' => 'tooltip'])}}
-                                                @endif
+                                                {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
                                             @endif
-                                            {!! Form::close() !!}
-                                        </center>
-                                    </div>
+                                        @else
+                                            {!! Form::open(['action' => ['AnswersController@givePin', $answer->id, $question->id, 0], 'method' => 'POST']) !!}
+                                            @if($answer->is_pinned == 1) 
+                                                {{Form::button('<i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PINNED', ['type' => 'submit', 'class' => 'btn', 'data-toggle' => 'tooltip'])}}
+                                                
+                                            @else
+                                                {{Form::button('<i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PIN', ['type' => 'submit', 'class' => 'btn btn-warning', 'data-toggle' => 'tooltip'])}}
+                                            @endif
+                                        @endif
+                                        {!! Form::close() !!}
+                                    </center>
                                 </div>
-
-                                <div class="col-9 pull-right">
+        
+                                <div class="col-12">
                                     <p>{{$answer->body}}</p>
                                     <a href="/admin/answers/{{$answer->id}}">
                                         <small>
-                                            @if ($answer->is_admin == 1) 
+                                            @if ($answer->is_admin == 1)
                                                 Written on {{$answer->created_at}} by {{$answer->user->name}} as <span style="color:blue;">admin</span>
                                             @else
                                                 Written on {{$answer->created_at}} by {{$answer->member->name}}
@@ -88,28 +86,17 @@
                                 </div>
                             </div>
                         @endforeach
-                        
                         <div id="answercontainer-{{$question->id}}" class="col-12 post-card">
                             <div id="add-answer">
                                 <hr>
-                                {!! Form::open(['action' => ['AnswersController@store', 0], 'method' => 'POST']) !!}
-                                <div class="form-group">
-                                    {{Form::label('body','Answer')}}
-                                    {{Form::text('body', '', ['class' => 'form-control'])}}
-                                </div>
-                                {{ Form::hidden('question_id', $question->id) }}
-                                {{Form::submit('Submit', ['class' => 'btn btn-primary pull-right'])}}
-                                    <!--<a onclick="return confirm('Are you sure you want to cancel?')" href="/admin/questions" class="btn btn-danger pull-right">Cancel</a>-->
-                                {!! Form::close() !!}
-                                <!--<form id="answer-{{$question->id}}" action="#">
+                                <form id="answer-{{$question->id}}" action="#">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <div class="form-group">
+                                    <div class="form-group answer-box">
                                         <label for="body">Answer</label>
-                                        <input type="text" class="form-control" id="bodyanswer-{{$question->id}}" name="body">
+                                        <input type="text" class="form-control" id="bodyanswer-{{$question->id}}" name="body"><br>
+                                        <input id="submitanswer-{{$question->id}}" type="submit" class="btn btn-primary pull-right" value="Submit">
                                     </div>
-                                    <input id="submitanswer-{{$question->id}}" type="submit" class="btn btn-primary pull-right" value="Submit">
-                                </form>-->
-                                
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -160,26 +147,19 @@
             }
         });
 
-        /*$("input[id^='submitanswer']" ).click(function() {
-            var element  = this.id;
-            var question_id = element.split("-")[1];
-            var body = $('#bodyanswer-' + question_id).val();
-        });*/
-
-        /*$("form[id^='answer']").submit(function(e) {
+        $("form[id^='answer']").submit(function(e) {
             e.preventDefault();
 
             var element  = this.id;
             var question_id_ans = element.split("-")[1];
             var body_ans = $('#bodyanswer-' + question_id_ans).val();
             
-            var dataString = "question_id=" + question_id_ans + "&body=" + body_ans;
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     'Accept': 'application/json'
                 },
-                url: "answers/store_ajax",
+                url: "answer/store_ajax",
                 type: "POST",
                 data: {
                     body: body_ans,
@@ -187,14 +167,42 @@
                 },
                 success: function(data) {
                     console.log(data);
-                    console.log("berhasil");
+                    $('#bodyanswer-' + question_id_ans).val('');
+                    $(
+                        '<div class="col-12 post-card">' +
+                            '<hr>' +
+                            '<div class="col-3" style="float:left;">' +
+                                '<div>' +
+                                    '<center>' +
+                                        '<small style="font-size:1.1em;">vote' + 
+                                        '</small><br>' + 
+                                        '<span class="sum-rating">' +
+                                            '0' + 
+                                        '</span>' +
+                                        '<form method="POST" action="/admin/answers/pin/' + data.id + '/' + data.question_id + '/0">' +
+                                        '<input type="hidden" name="_token" value="{{ csrf_token() }}">' +
+                                        '{{Form::button("<i class=\"fa fa-thumb-tack\"></i>&nbsp;&nbsp;PIN", ["type" => "submit", "class" => "btn btn-warning", "data-toggle" => "tooltip"])}}' +
+                                        '</form>' +
+                                    '</center>' +
+                                '</div>' +
+                            '</div>' +
+
+                            '<div class="col-9">' +
+                                '<p>' + data.body + '</p>' +
+                                '<a href="/admin/answers/' + data.id + '">' + 
+                                    '<small>' +
+                                        'Written on ' + data.created_at + ' by ' + data.user.name + ' as <span style="color:blue;">admin</span>' + 
+                                    '</small>' +
+                                '</a>' +
+                                '<br>' +
+                            '</div>' +
+                        '</div>'
+                    ).insertBefore("#answercontainer-" + question_id_ans);
                 },
                 error: function(data) {
-                    console.log(data);
-                    console.log("gagal");
                 }
             });
-        });*/
+        });
     });
 </script>
 @endsection

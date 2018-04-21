@@ -114,9 +114,9 @@ class AnswersController extends Controller
         $isMember = Auth::guard('member')->user() != null;
         $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
 
-         // if not member and admin then cannot edit this answer
-        //if(!($isMember || $isAdmin))
-        //    return response()->json([], 404);
+        //if not member and admin then cannot edit this answer
+        if(!($isMember || $isAdmin))
+            return response()->json([], 404);
 
         $this->validate($request, [
             'body' => 'required',
@@ -134,9 +134,9 @@ class AnswersController extends Controller
         }
         $answer->save();
         
-        return response()->json([
-            'status' => 'Job Done'
-        ], 200);
+        $resp = $answer;
+        $resp->user = $answer->user;
+        return response()->json($resp, 200);
     }
 
     /**

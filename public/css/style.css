@@ -877,6 +877,10 @@ anchors are inline so you need ot make them block to go full width
   color: white;
 }
 
+.answer-box {
+  padding-bottom: 10%;
+}
+
 .edit-prof-pic {
 	background-color: #92c6f9;
 }
