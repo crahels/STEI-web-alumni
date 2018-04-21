@@ -11,8 +11,8 @@
 
         <div class="footer-article">
             <hr>
-            <small>Written on {{$question->created_at}}</small><br>
-            <small>Last Editted on {{$question->updated_at}}</small><br>
+            <small>Written on {{$question->created_at->format('d M Y')}}</small><br>
+            <small>Last Editted on {{$question->updated_at->format('d M Y')}}</small><br>
             @if ($question->is_admin == 1)
                 <small>by {{$question->user->name}} as <span style="color:lightblue;">admin</span></small>
             @else
@@ -69,9 +69,9 @@
                             <a href="/admin/answers/{{$answer->id}}">
                                 <small>
                                     @if ($answer->is_admin == 1)
-                                        Written on {{$answer->created_at}} by {{$answer->user->name}} as <span style="color:blue;">admin</span>
+                                        Written on {{$answer->created_at->format('d M Y')}} by {{$answer->user->name}} as <span style="color:blue;">admin</span>
                                     @else
-                                        Written on {{$answer->created_at}} by {{$answer->member->name}}
+                                        Written on {{$answer->created_at->format('d M Y')}} by {{$answer->member->name}}
                                     @endif
                                 </small>
                             </a>

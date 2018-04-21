@@ -31,8 +31,8 @@
                 Post
             </h5>
         @endif
-        <small>Written on {{$post->created_at}}</small><br>
-        <small>Last Editted on {{$post->updated_at}}</small><br>
+        <small>Written on {{$post->created_at->format('d M Y')}}</small><br>
+        <small>Last Editted on {{$post->updated_at->format('d M Y')}}</small><br>
         <small>by {{$post->user->name}}</small>
         <hr>
 

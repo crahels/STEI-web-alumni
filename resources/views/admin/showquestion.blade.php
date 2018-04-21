@@ -24,9 +24,9 @@
                             <small>
                                 <i>
                                     @if ($question->is_admin == 1)
-                                        Written on {{$question->created_at}} by {{$question->user->name}} as <span style="color:blue;">admin</span>
+                                        Written on {{$question->created_at->format('d M Y')}} by {{$question->user->name}} as <span style="color:blue;">admin</span>
                                     @else
-                                        Written on {{$question->created_at}} by {{$question->member->name}}
+                                        Written on {{$question->created_at->format('d M Y')}} by {{$question->member->name}}
                                     @endif
                                 </i>
                             </small>
@@ -75,9 +75,9 @@
                                     <a href="/admin/answers/{{$answer->id}}">
                                         <small>
                                             @if ($answer->is_admin == 1) 
-                                                Written on {{$answer->created_at}} by {{$answer->user->name}} as <span style="color:blue;">admin</span>
+                                                Written on {{$answer->created_at->format('d M Y')}} by {{$answer->user->name}} as <span style="color:blue;">admin</span>
                                             @else
-                                                Written on {{$answer->created_at}} by {{$answer->member->name}}
+                                                Written on {{$answer->created_at->format('d M Y')}} by {{$answer->member->name}}
                                             @endif
                                         </small>
                                     </a>

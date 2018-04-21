@@ -23,10 +23,8 @@ class MembersController extends Controller
      */
     public function index()
     {
-        $countQuestions = Member::withCount('questions')->get();
-        $countAnswers = Member::withCount('answers')->get();
         $members = Member::orderBy('nim','asc')->paginate(20);
-        return view('members.list')->with('members', $members)->with('countQuestions', $countQuestions)->with('countAnswers', $countAnswers);
+        return view('members.list')->with('members', $members);
     }
 
     /**
@@ -57,8 +55,10 @@ class MembersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {        
         $user = Member::find($id);
+        $user['countQuestions'] = $user->questions->count();
+        $user['countAnswers'] = $user->answers->count();
         if($user !== null){
             return view('admin.profile')->with('user', $user);
         } else {
