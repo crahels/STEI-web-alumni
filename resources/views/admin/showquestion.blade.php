@@ -166,12 +166,11 @@
                     question_id: question_id_ans
                 },
                 success: function(data) {
-                    console.log(data);
                     $('#bodyanswer-' + question_id_ans).val('');
                     $(
                         '<div class="col-12 post-card">' +
                             '<hr>' +
-                            '<div class="col-2 vote-block">' +
+                            '<div class="col-4 vote-block">' +
                                 '<div>' +
                                     '<center>' +
                                         '<small class="text-vote">vote' + 
@@ -187,7 +186,7 @@
                                 '</div>' +
                             '</div>' +
 
-                            '<div class="col-10 pull-right">' +
+                            '<div class="col-8 pull-right">' +
                                 '<p>' + data.body + '</p>' +
                                 '<a href="/admin/answers/' + data.id + '">' + 
                                     '<small class="text-footer">' +
@@ -200,6 +199,9 @@
                     ).insertBefore("#answercontainer-" + question_id_ans);
                 },
                 error: function(data) {
+                    $('<div class="alert alert-danger">Fail To Save</div>').insertAfter(".top-of-page");
+                    var top = $('.top-of-page').position().top;
+                    $('html').scrollTop(top);
                 }
             });
         });

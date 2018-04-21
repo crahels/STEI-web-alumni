@@ -21,6 +21,7 @@
 <body>
         @include('inc.navbar')
         <div class="container">
+            <div class="top-of-page"></div>
             @include('inc.messages')
             @yield('content')
         </div>
