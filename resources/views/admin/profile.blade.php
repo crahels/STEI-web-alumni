@@ -40,6 +40,14 @@
                         <td>Address</td>
                         <td>{{$user->address}}</td>
                     </tr>
+                    <tr>
+                        <td>Questions Asked</td>
+                        <td>{{$user->countQuestions}}</td>
+                    </tr>
+                    <tr>
+                        <td>Answers Posted</td>
+                        <td>{{$user->countAnswers}}</td>
+                    </tr>
                     @if(Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $user->id)
                         @if(Auth::guard('member')->user()->email != null)
                             <tr>

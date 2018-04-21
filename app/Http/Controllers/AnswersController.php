@@ -133,7 +133,7 @@ class AnswersController extends Controller
             $answer->is_admin = 0;
         }
         $answer->save();
-        
+        $answer->created = $answer->created_at->format('d M Y');
         $resp = $answer;
         $resp->user = $answer->user;
         return response()->json($resp, 200);

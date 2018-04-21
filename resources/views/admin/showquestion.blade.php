@@ -24,9 +24,9 @@
                             <small>
                                 <i>
                                     @if ($question->is_admin == 1)
-                                        Written on {{$question->created_at}} by {{$question->user->name}} as <span style="color:blue;">admin</span>
+                                        Written on {{$question->created_at->format('d M Y')}} by {{$question->user->name}} as <span style="color:blue;">admin</span>
                                     @else
-                                        Written on {{$question->created_at}} by {{$question->member->name}}
+                                        Written on {{$question->created_at->format('d M Y')}} by {{$question->member->name}}
                                     @endif
                                 </i>
                             </small>
@@ -72,10 +72,10 @@
                                     <p>{{$answer->body}}</p>
                                     <a href="/admin/answers/{{$answer->id}}">
                                         <small>
-                                            @if ($answer->is_admin == 1)
-                                                Written on {{$answer->created_at}} by {{$answer->user->name}} as <span style="color:blue;">admin</span>
+                                            @if ($answer->is_admin == 1) 
+                                                Written on {{$answer->created_at->format('d M Y')}} by {{$answer->user->name}} as <span style="color:blue;">admin</span>
                                             @else
-                                                Written on {{$answer->created_at}} by {{$answer->member->name}}
+                                                Written on {{$answer->created_at->format('d M Y')}} by {{$answer->member->name}}
                                             @endif
                                         </small>
                                     </a>
@@ -91,7 +91,7 @@
                                 <hr>
                                 <form id="answer-{{$question->id}}" action="#">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <div class="form-group answer-box">
+                                    <div class="form-group">
                                         <label for="body">Answer</label>
                                         <input type="text" class="form-control" id="bodyanswer-{{$question->id}}" name="body"><br>
                                         <input id="submitanswer-{{$question->id}}" type="submit" class="btn btn-primary pull-right" value="Submit">
@@ -191,7 +191,7 @@
                                 '<p>' + data.body + '</p>' +
                                 '<a href="/admin/answers/' + data.id + '">' + 
                                     '<small>' +
-                                        'Written on ' + data.created_at + ' by ' + data.user.name + ' as <span style="color:blue;">admin</span>' + 
+                                        'Written on ' + data.created + ' by ' + data.user.name + ' as <span style="color:blue;">admin</span>' + 
                                     '</small>' +
                                 '</a>' +
                                 '<br>' +

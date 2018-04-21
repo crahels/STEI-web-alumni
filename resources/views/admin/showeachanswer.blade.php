@@ -33,11 +33,11 @@
                     </tr>
                     <tr>
                         <td>Written On</td>
-                        <td>:&nbsp;{{$answer->created_at}}</td>
+                        <td>:&nbsp;{{$answer->created_at->format('d M Y')}}</td>
                     </tr>
                     <tr>
                         <td>Last Editted On</td>
-                        <td>:&nbsp;{{$answer->updated_at}}</td>
+                        <td>:&nbsp;{{$answer->updated_at->format('d M Y')}}</td>
                     </tr>
                     <tr>
                         <td>Written By</td>

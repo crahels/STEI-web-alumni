@@ -55,8 +55,10 @@ class MembersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {        
         $user = Member::find($id);
+        $user['countQuestions'] = $user->questions->count();
+        $user['countAnswers'] = $user->answers->count();
         if($user !== null){
             return view('admin.profile')->with('user', $user);
         } else {
