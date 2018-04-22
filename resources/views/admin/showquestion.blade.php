@@ -199,6 +199,7 @@
                     ).insertBefore("#answercontainer-" + question_id_ans);
                 },
                 error: function(data) {
+                    console.log(data);
                     $('<div class="alert alert-danger">Fail To Save</div>').insertAfter(".top-of-page");
                     var top = $('.top-of-page').position().top;
                     $('html').scrollTop(top);
