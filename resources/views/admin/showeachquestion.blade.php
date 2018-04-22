@@ -3,7 +3,7 @@
 @section('content')
 <div class="row show-question">
     <div class="col-3 left-question">
-        <h1 class="title-question">{{$question->topic}}zz</h1>
+        <h1 class="title-question">{{$question->topic}}</h1>
 
         <div>
             {{$question->body}}
@@ -57,7 +57,7 @@
                                         {{Form::button('<div class="btn-pinned"><i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PINNED</div>', ['type' => 'submit', 'class' => 'btn', 'data-toggle' => 'tooltip'])}}
                                         
                                     @else
-                                        {{Form::button('<div class="btn-pinned"><i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PIN</div>', ['type' => 'submit', 'class' => 'btn btn-warning', 'data-toggle' => 'tooltip'])}}
+                                        {{Form::button('<div class="btn-pinned"><i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PIN</div>', ['type' => 'submit', 'class' => 'btn btn-warning', 'data-toggle' => 'tooltip', 'id' => 'btn-pinned-' . $answer->id])}}
                                     @endif
                                 @endif
                                 {!! Form::close() !!}
@@ -98,8 +98,6 @@
                 </div>
             </div>
         </div>
-    <!--<br><br><br>
-    <a href="/admin/questions" class="btn btn-info pull-down">&#8592; Back</a>-->
     </div>
 </div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -130,9 +128,10 @@
                     question_id: question_id_ans
                 },
                 success: function(data) {
+                    console.log(data.question_id);
                     $('#bodyanswer-' + question_id_ans).val('');
                     $(
-                        '<div class="col-11 post-card">' +
+                        '<div class="col-11 post-card" name="answer-added">' +
                             '<hr>' +
                             '<div class="col-2 vote-block">' +
                                 '<center>' +

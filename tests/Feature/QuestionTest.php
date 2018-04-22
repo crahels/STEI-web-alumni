@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Question;
 use App\User;
 use App\Member;
+use App\Answer;
 
 class QuestionTest extends TestCase
 {
@@ -125,4 +126,33 @@ class QuestionTest extends TestCase
 
         $user->delete();
     }
+
+    /**
+     * test pin answer
+     *
+     * @return void
+     */
+    /*public function testPinAnswer()
+    {
+        $user = factory(User::class)->create();
+        $question = factory(question::class)->create([
+            'user_id' => $user->id
+        ]);
+        $answer = factory(answer::class)->create([
+            'user_id' => $user->id,
+            'question_id' => $question->id
+        ]);
+        
+        $response = $this->actingAs($user)
+                         ->visit('admin/questions/' . $question->id)
+                         ->withHeaders([
+                            'X-CSRF-TOKEN' => $user->remember_token,
+                         ])
+                         ->json('POST', 'admin/answers/pin/' . $answer->id . '/' . $question->id . '/1', ['_token' => $user->remember_token])
+                         ->assertResponseStatus(201);
+        
+        $answer->delete();
+        $question->delete();
+        $user->delete();
+    }*/
 }
