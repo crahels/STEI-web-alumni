@@ -80,7 +80,7 @@ class MembersController extends Controller
         if($user !== null && ($isMember || $isAdmin)){
             return view('admin.editprofile')->with('user', $user);
         } else {
-            return abort(404);
+            return redirect('/');
         }
     }
 

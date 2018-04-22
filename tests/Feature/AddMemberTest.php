@@ -23,13 +23,13 @@ class AddMemberTest extends TestCase
         $user = factory(User::class)->create();
         
         $response = $this->actingAs($user)
-                         ->visit('/add')
+                         ->visit('admin/add')
                          ->type($member->name, 'name')
                          ->type($member->nim, 'nim')
                          ->type($member->email, 'email')
                          ->type('08988147532', 'phone_number')
                          ->press('Submit')
-                         ->seePageIs('/members');
+                         ->seePageIs('admin/members');
         
         $member = Member::where('nim', $member->nim)->first();
         $member->delete();
@@ -48,13 +48,13 @@ class AddMemberTest extends TestCase
         $user = factory(User::class)->create();
         
         $response = $this->actingAs($user)
-                         ->visit('/add')
+                         ->visit('admin/add')
                          ->type('', 'name')
                          ->type($member->nim, 'nim')
                          ->type($member->email, 'email')
                          ->type('08988147532', 'phone_number')
                          ->press('Submit')
-                         ->seePageIs('/add');
+                         ->seePageIs('admin/add');
         
         $user->delete();
 
@@ -71,13 +71,13 @@ class AddMemberTest extends TestCase
         $user = factory(User::class)->create();
         
         $response = $this->actingAs($user)
-                         ->visit('/add')
+                         ->visit('admin/add')
                          ->type($member->name, 'name')
                          ->type($member->nim, 'nim')
                          ->type('', 'email')
                          ->type('08988147532', 'phone_number')
                          ->press('Submit')
-                         ->seePageIs('/add');
+                         ->seePageIs('admin/add');
         
         $user->delete();
 
@@ -94,13 +94,13 @@ class AddMemberTest extends TestCase
         $user = factory(User::class)->create();
         
         $response = $this->actingAs($user)
-                         ->visit('/add')
+                         ->visit('admin/add')
                          ->type($member->name, 'name')
                          ->type($member->nim, 'nim')
                          ->type($member->email, 'email')
                          ->type('', 'phone_number')
                          ->press('Submit')
-                         ->seePageIs('/add');
+                         ->seePageIs('admin/add');
         
         $user->delete();
     }
@@ -115,7 +115,7 @@ class AddMemberTest extends TestCase
         $user = factory(User::class)->create();
         
         $response = $this->actingAs($user)
-                         ->visit('/addCSV')
+                         ->visit('admin/addCSV')
                          ->attach('storage/app/public/test.csv', 'list_members')
                          ->press('Submit')
                          ->see('Members Imported');
@@ -142,7 +142,7 @@ class AddMemberTest extends TestCase
         $user = factory(User::class)->create();
         
         $response = $this->actingAs($user)
-                         ->visit('/addCSV')
+                         ->visit('admin/addCSV')
                          ->press('Submit')
                          ->see('No CSV File');
         
@@ -159,7 +159,7 @@ class AddMemberTest extends TestCase
         $user = factory(User::class)->create();
         
         $response = $this->actingAs($user)
-                         ->visit('/addCSV')
+                         ->visit('admin/addCSV')
                          ->attach('storage/app/public/logo_itb.png', 'list_members')
                          ->press('Submit')
                          ->see('Wrong File Extension');

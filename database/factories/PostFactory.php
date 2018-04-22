@@ -7,6 +7,8 @@ $factory->define(App\Post::class, function (Faker $faker) {
         'title' => 'Post for Testing',
         'body' => 'Post Body',
         'user_id' => '0',
-        'cover_image' => 'noimage.jpg'
+        'cover_image' => 'noimage.jpg',
+        'draft' => 1,
+        'public' => 1
     ];
 });
