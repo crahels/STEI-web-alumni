@@ -62,3 +62,63 @@ div.overlay {
 .lowercase {
     text-transform: lowercase;
 }
+
+.user-services {
+    margin-top: 3%;
+}
+
+.user-services-questions {
+    text-align: center;
+    color: #fff;
+    font-size: 300%;
+}   
+
+.user-services-answers {
+    text-align: center;
+    color: #fff;
+    font-size: 300%;
+}
+
+.user-services-article {
+    text-align: center;
+    color: #fff;
+    font-size: 300%;
+}
+
+.user-services-questions-text {
+    text-align: center;
+    color: #fff;
+    font-size: 115%;
+}   
+
+.user-services-answers-text {
+    text-align: center;
+    color: #fff;
+    font-size: 115%;
+}
+
+.user-services-article-text {
+    text-align: center;
+    color: #fff;
+    font-size: 115%;
+}
+
+.profile-navigation-container {
+    text-align: center;
+    margin-top: 4em;
+}
+
+.profile-navigation {
+    padding: 8px 12px;
+    background: #fff;
+    border: 1px solid #fff;
+    color: #666;
+    font-size: 16px;
+    border-radius: 50%;
+}
+
+.profile-navigation:hover {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    color: #fff;
+}

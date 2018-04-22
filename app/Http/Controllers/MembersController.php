@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SendReverificationEmail;
 use App\Member;
 use \Auth;
+use App\Post;
+use App\Question;
+use App\Answer;
 
 class MembersController extends Controller
 {
@@ -56,12 +59,21 @@ class MembersController extends Controller
      */
     public function show($id)
     {
+
+        $posts = Post::where('user_id', $id)->get();
+
+        $questions = Question::where('user_id', $id)->get();
+
+        $answers = Answer::where('user_id', $id)->get();
+        
         $user = Member::find($id);
-        if($user !== null){
-            return view('admin.profile')->with('user', $user);
-        } else {
+        if($user == null){
             return abort(404);
         }
+
+        $userdata = [$posts, $questions, $answers, $user];
+
+        return view('admin.profile')->with('userdata', $userdata);        
     }
 
 
