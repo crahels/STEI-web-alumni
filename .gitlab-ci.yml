@@ -25,11 +25,18 @@ before_script:
   - pear version
   - pear update-channels
   - pear upgrade --force
-  - http_proxy=http://yowinarto:06561330@cache.itb.ac.id:8080 pecl channel-update pecl.php.net
+  - wget http://pecl.php.net/get/xdebug-2.6.0.tgz
+  - tar xzf xdebug-2.6.0.tgz
+  - cd xdebug-2.6.0/
+  - phpize
+  - ./configure
+  - make && make install
+  - docker-php-ext-enable xdebug
+  - cd ..
+  #- http_proxy=http://yowinarto:06561330@cache.itb.ac.id:8080 pecl channel-update pecl.php.net
   #- http_proxy=http://yowinarto:06561330@cache.itb.ac.id:8080 pecl install mcrypt-1.0.1
   #- docker-php-ext-enable mcrypt
   #- http_proxy=http://yowinarto:06561330@cache.itb.ac.id:8080 pecl install xdebug
-  #- docker-php-ext-enable xdebug
   - curl -sS http://getcomposer.org/installer | php
   - http_proxy=http://yowinarto:06561330@cache.itb.ac.id:8080 https_proxy="" php composer.phar install
   #- npm config set strict-ssl false
