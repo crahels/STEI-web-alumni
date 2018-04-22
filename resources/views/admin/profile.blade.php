@@ -14,7 +14,7 @@
     <div class="profile-content">
       <h1 id="profile-header"> MY PROFILE </h1>
       <div class="profile-info">
-        <div class=" col-md-9 col-lg-9 "> 
+        <div class="col-md-9 col-lg-9"> 
             <table class="table table-user-information">
                 <tbody>
                     <tr>
@@ -39,6 +39,14 @@
                     <tr>
                         <td>Address</td>
                         <td>{{$user->address}}</td>
+                    </tr>
+                    <tr>
+                        <td>Questions Asked</td>
+                        <td>{{$user->countQuestions}}</td>
+                    </tr>
+                    <tr>
+                        <td>Answers Posted</td>
+                        <td>{{$user->countAnswers}}</td>
                     </tr>
                     @if(Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $user->id)
                         @if(Auth::guard('member')->user()->email != null)

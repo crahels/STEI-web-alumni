@@ -20,7 +20,7 @@ class AuthTest extends TestCase
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)
-                         ->get('/dashboard');
+                         ->get('admin/dashboard');
 
         $response->assertResponseStatus(200);
 
@@ -34,7 +34,7 @@ class AuthTest extends TestCase
      */
     public function testDashboardFail()
     {
-        $response = $this->get('/dashboard');
+        $response = $this->get('admin/dashboard');
 
         $response->assertResponseStatus(302);
     }
@@ -48,7 +48,7 @@ class AuthTest extends TestCase
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)
-                         ->get('/members');
+                         ->get('admin/members');
 
         $response->assertResponseStatus(200);
 
@@ -62,7 +62,7 @@ class AuthTest extends TestCase
      */
     public function testLoadMembersFail()
     {
-        $response = $this->get('/members');
+        $response = $this->get('admin/members');
 
         $response->assertResponseStatus(302);
     }
@@ -76,7 +76,7 @@ class AuthTest extends TestCase
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)
-                         ->get('/posts');
+                         ->get('admin/posts');
 
         $response->assertResponseStatus(200);
 
@@ -90,9 +90,9 @@ class AuthTest extends TestCase
      */
     public function testLoadPostsFail()
     {
-        $response = $this->get('/posts');
+        $response = $this->get('admin/posts');
 
-        $response->assertResponseStatus(302);
+        $response->assertResponseStatus(200);
     }
 
     /**
@@ -104,7 +104,7 @@ class AuthTest extends TestCase
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)
-                         ->get('/add');
+                         ->get('admin/add');
 
         $response->assertResponseStatus(200);
 
@@ -118,7 +118,7 @@ class AuthTest extends TestCase
      */
     public function testLoadAddMemberFail()
     {
-        $response = $this->get('/add');
+        $response = $this->get('admin/add');
 
         $response->assertResponseStatus(302);
     }
@@ -132,7 +132,7 @@ class AuthTest extends TestCase
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)
-                         ->get('/addCSV');
+                         ->get('admin/addCSV');
 
         $response->assertResponseStatus(200);
 
@@ -146,7 +146,7 @@ class AuthTest extends TestCase
      */
     public function testLoadAddCSVFail()
     {
-        $response = $this->get('/addCSV');
+        $response = $this->get('admin/addCSV');
 
         $response->assertResponseStatus(302);
     }
@@ -160,7 +160,7 @@ class AuthTest extends TestCase
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)
-                         ->get('/posts/create');
+                         ->get('admin/posts/create');
 
         $response->assertResponseStatus(200);
 
@@ -174,7 +174,7 @@ class AuthTest extends TestCase
      */
     public function testLoadCreatePostFail()
     {
-        $response = $this->get('/posts/create');
+        $response = $this->get('admin/posts/create');
 
         $response->assertResponseStatus(302);
     }
@@ -190,15 +190,15 @@ class AuthTest extends TestCase
 
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)
-                         ->get('/members/' . $member->id);
+                         ->get('admin/members/' . $member->id);
 
         $response->assertResponseStatus(200);
 
-        $response = $this->get('/members/' . $member->id . '/edit');
+        $response = $this->get('admin/members/' . $member->id . '/edit');
 
         $response->assertResponseStatus(200);
 
-        $response = $this->get('/members/' . $member->id . '/delete');
+        $response = $this->get('admin/members/' . $member->id . '/delete');
 
         $response->assertResponseStatus(302);
 
@@ -217,15 +217,15 @@ class AuthTest extends TestCase
     {
         $member = factory(Member::class)->create();
 
-        $response = $this->get('/members/' . $member->id);
+        $response = $this->get('admin/members/' . $member->id);
 
         $response->assertResponseStatus(200);
 
-        $response = $this->get('/members/' . $member->id . '/edit');
+        $response = $this->get('admin/members/' . $member->id . '/edit');
 
-        $response->assertResponseStatus(200);
+        $response->assertResponseStatus(302);
 
-        $response = $this->get('/members/' . $member->id . '/delete');
+        $response = $this->get('admin/members/' . $member->id . '/delete');
         
         $response->assertResponseStatus(302);
 

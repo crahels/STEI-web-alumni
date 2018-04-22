@@ -24,15 +24,14 @@ class ProfileTest extends TestCase
         $user = factory(User::class)->create();
         
         $response = $this->actingAs($user)
-                         ->visit('/members/' . $member->id . '/edit')
-                         ->type($member_dummy->email, 'email')
+                         ->visit('admin/members/' . $member->id . '/edit')
                          ->type('08988147526', 'phone_number')
                          ->type($member_dummy->company, 'company')
                          ->type($member_dummy->interest, 'interest')
                          ->type($member_dummy->address, 'address')
                          ->attach('storage/app/public/logo_itb.png', 'profile_image')
                          ->press('Submit')
-                         ->seePageIs('/members/' . $member->id);
+                         ->seePageIs('admin/members/' . $member->id);
         
         $user->delete();
         $member->delete();
@@ -50,14 +49,13 @@ class ProfileTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user)
-                         ->visit('/members/' . $member->id . '/edit')
-                         ->type($member_dummy->email, 'email')
+                         ->visit('admin/members/' . $member->id . '/edit')
                          ->type('08988147526', 'phone_number')
                          ->type('', 'company')
                          ->type($member_dummy->interest, 'interest')
                          ->type($member_dummy->address, 'address')
                          ->press('Submit')
-                         ->seePageIs('/members/' . $member->id . '/edit');
+                         ->seePageIs('admin/members/' . $member->id . '/edit');
         
         $user->delete();
         $member->delete();
@@ -75,14 +73,13 @@ class ProfileTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user)
-                         ->visit('/members/' . $member->id . '/edit')
-                         ->type($member_dummy->email, 'email')
+                         ->visit('admin/members/' . $member->id . '/edit')
                          ->type('08988147526', 'phone_number')
                          ->type($member_dummy->company, 'company')
                          ->type($member_dummy->interest, 'interest')
                          ->type('', 'address')
                          ->press('Submit')
-                         ->seePageIs('/members/' . $member->id);
+                         ->seePageIs('admin/members/' . $member->id);
         
         $user->delete();
         $member->delete();
@@ -100,14 +97,13 @@ class ProfileTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user)
-                         ->visit('/members/' . $member->id . '/edit')
-                         ->type($member_dummy->email, 'email')
+                         ->visit('admin/members/' . $member->id . '/edit')
                          ->type('08988147526', 'phone_number')
                          ->type($member_dummy->company, 'company')
                          ->type('', 'interest')
                          ->type($member_dummy->address, 'address')
                          ->press('Submit')
-                         ->seePageIs('/members/' . $member->id . '/edit');
+                         ->seePageIs('admin/members/' . $member->id . '/edit');
         
         $user->delete();
         $member->delete();

@@ -16,7 +16,7 @@
                         <div class="col-12 post-card">
                             <h3><a href="/questions/{{$question->id}}">{{$question->topic}}</a></h3>
                             <p>{{$question->body}}</p>
-                            <small><i>Written on {{$question->created_at}} by {{$question->user->name}}</i></small><br>
+                            <small><i>Written on {{$question->created_at->format('d M Y')}} by {{$question->user->name}}</i></small><br>
                             <a href="/answers/add/{{$question->id}}" class="btn btn-primary" style="float:right;">
                                 Give Answer
                             </a>
@@ -27,7 +27,7 @@
                                 <hr>
                                 <div class="col-10" style="float:left;">
                                     <p>{{$answer->body}}</p>
-                                    <a href="/answers/{{$answer->id}}"><small>Written on {{$answer->created_at}} by {{$answer->user->name}}</small></a><br>
+                                    <a href="/answers/{{$answer->id}}"><small>Written on {{$answer->created_at->format('d M Y')}} by {{$answer->user->name}}</small></a><br>
                                     @if ($answer->created_at != $answer->updated_at)
                                         <small style="color:green;">(edited)</small>
                                     @endif

@@ -39,13 +39,12 @@ Route::get('logout', 'Auth\SocialAccountsController@logout');
 Route::get('link/{provider}', 'Auth\LinkAccountController@redirectToProvider');
 Route::get('link/{provider}/delete', 'Auth\LinkAccountController@deleteLink');
 
-/*Route::get('/add', function () {
-	return view('admin.addmember');
-})->middleware('admin');
-
-Route::get('/addCSV', function () {
-	return view('admin.addCSV');
-})->middleware('admin');*/
+// route for member
+Route::resource('profile', 'MembersController');
+Route::resource('posts', 'PostsController');
+Route::resource('questions', 'QuestionsController');
+Route::resource('answers', 'AnswersController');
+Route::resource('members', 'MembersController');
 
 //Admin page
 Route::group( [ 'prefix' => 'admin' ], function()
@@ -77,9 +76,11 @@ Route::group( [ 'prefix' => 'admin' ], function()
 	Route::post('/importmember','AddMemberController@importMember');
 
 	Route::post('/answers/rate/{answer}/{user}', 'AnswersController@giveRating');
+	Route::post('/answers/pin/{answer}/{question}/{each}', 'AnswersController@givePin');
 	Route::get('/answers/add/{question}', 'AnswersController@giveAnswer');
 	Route::get('/dashboard', 'DashboardController@index');
 	Route::get('/members/{user}/delete', 'MembersController@destroy');
+	Route::post('/answers/{each}', 'AnswersController@store');
 
 	Route::get('/add', function () {
 		return view('admin.addmember');
@@ -87,5 +88,7 @@ Route::group( [ 'prefix' => 'admin' ], function()
 	
 	Route::get('/addCSV', function () {
 		return view('admin.addCSV');
-	})->middleware('admin');	
+	})->middleware('admin');
+
+	Route::post('/answer/store_ajax', 'AnswersController@storeAjax');	
 });

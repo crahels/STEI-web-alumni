@@ -9,6 +9,22 @@
   /* Hide default HTML checkbox */
   .switch input {display:none;}
   
+  .sum-rating {
+    font-size: 2.5vw;
+  }
+  
+  .text-vote {
+    font-size: 1.0vw;
+  }
+
+  .title-question {
+    font-size: 1.5vw;
+  }
+
+  .btn-pinned {
+    font-size: 1.0vw;
+  }
+
   /* The slider */
   .slider {
 	position: absolute;
@@ -115,11 +131,11 @@ div.row:before, div.row:after {
 }
 
 .sidebar .nav-link .sideMenu {
-	margin-left: 10px;
+	margin-left: 1%;
 }
 
 .sidebar .sideMenu {
-	margin-left: 10px;
+	margin-left: 1%;
 	font-style: initial;
 }
 
@@ -128,14 +144,19 @@ div.row:before, div.row:after {
 	margin: 0px;
 }
 
+.btn {
+  display: inline-block;
+}
+
 #bannerMember {
-	max-width: 615px;
+  /*max-width: 615px;*/
+  width: 100%;
 }
 
 .bio {
-	font-size: 1.2em;
+	font-size: 1.2vw;
 	text-align: justify;
-    text-justify: inter-word;
+  text-justify: inter-word;
 }
 
 .nav-pills .nav-item {
@@ -148,11 +169,11 @@ div.row:before, div.row:after {
 }
 
 .nav-pills .manualAdd {
-	margin-left: 150px;
+	margin-left: 10%;
 }
 
 .nav-pills .CSVAdd {
-	margin-right: 150px;
+	margin-right: 10%;
 }
 
 .addMenu {
@@ -166,7 +187,7 @@ div.row:before, div.row:after {
 }
 
 .addMemberForm {
-	margin: 40px 200px;
+	margin: 4% 15%;
 }
 
 .addMemberForm label {
@@ -197,7 +218,7 @@ div.row:before, div.row:after {
 }
 
 .addCSVForm {
-	margin: 50px 200px;
+  margin: 4% 15%;
 }
 
 [hidden] {
@@ -228,7 +249,8 @@ div.row:before, div.row:after {
 }
 
 .header-create-post {
-	height: 650px;
+  height: 1000px;
+  font-size: 1.0vw;
 	background-color: #92c6f9;
 }
 
@@ -237,7 +259,7 @@ div.row:before, div.row:after {
 	font-size: 4em;
 	text-align: right;
 	font-weight: bold;
-	margin-right: 20px;
+  margin-right: 5%;
 }
 
 /* Clear the 1px gap on row and container */
@@ -536,6 +558,10 @@ header.masthead-custom h1 {
   font-size: 3rem;
 }
 
+.table-text {
+  font-size: 1.0em;
+}
+
 header.masthead-custom p {
   font-weight: 300;
 }
@@ -723,6 +749,10 @@ a {
   color: #18BC9C;
 }
 
+.text-footer {
+  font-size: 1.0vw;
+}
+
 a:focus, a:hover, a:active {
   color: #128f76;
 }
@@ -737,6 +767,11 @@ a:focus, a:hover, a:active {
 
 .bg-secondary {
   background-color: #2C3E50 !important;
+}
+
+.vote-block {
+  float: left;
+  display: block;
 }
 
 .text-primary {
@@ -782,20 +817,102 @@ Forces image to be 100% width and not max width of 100%
   height:400px;
 }
 
+.web-alumni {
+  font-size: 1.3em;
+}
+
+.stei {
+  font-size: 1.5em;
+}
+
 /* Smaller than standard 960 (devices and browsers) */
-@media only screen and (max-width: 1159px) {}
+@media only screen and (max-width: 1159px) {
+}
 
 /* Tablet Portrait size to standard 960 (devices and browsers) */
-@media only screen and (min-width: 968px) and (max-width: 1159px) {}
+@media only screen and (min-width: 968px) and (max-width: 1159px) {
+  .hide-navbar {
+    display: none;
+  }
+}
 
 /* All Mobile Sizes (devices and browser) */
-@media only screen and (max-width: 967px) {}
+@media only screen and (max-width: 967px) {
+  .title-question {
+    font-size: 1.5vw;
+  }
+  .hide-navbar {
+    display: none;
+  }
+}
 
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
-@media only screen and (min-width: 680px) and (max-width: 967px) {}
+@media only screen and (min-width: 680px) and (max-width: 967px) {
+  .sideMenu {
+    display: none;
+  } 
+  .bio {
+    font-size: 2.5vw;
+  }
+  .header-create-post {
+    font-size: 1.0vw;
+  }
+  .table-text {
+    font-size: 0.8em;
+  }  
+  .title-question {
+    font-size: 2.0vw;
+  }
+  .text-vote {
+    display: none;
+  }
+  .sum-rating {
+    display: none;
+  }
+  .btn-pinned {
+    font-size: 1.5vw;
+  }
+  .text-footer {
+    font-size: 1.2vw;
+  }
+}
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-@media only screen and (max-width: 679px) {}
+@media only screen and (max-width: 679px) {
+  .sideMenu {
+    display: none;
+  } 
+  .bio {
+    font-size: 4.0vw;
+  }
+  .table-text {
+    font-size: 0.4em;
+  }
+  .header-create-post {
+    font-size: 1.0vw;
+  }
+  .title-question {
+    font-size: 3.0vw;
+  }
+  .text-vote {
+    display: none;
+  }
+  .sum-rating {
+    display: none;
+  }
+  .btn-pinned {
+    font-size: 2.0vw;
+  }
+  .text-footer {
+    font-size: 2.0vw;
+  }
+  .web-alumni {
+    font-size: 1.0em;
+  }
+  .stei {
+    font-size: 1.25em;
+  }
+}
 
 /* 
 anchors are inline so you need ot make them block to go full width
@@ -854,11 +971,33 @@ anchors are inline so you need ot make them block to go full width
 }
 
 .edit-profile-button {
-  margin-bottom: 20px;
+  margin-bottom: 10%;
 }
 
 .edit-profile {
 	height: 650px;
+}
+
+.show-question {
+	height: 400px;
+}
+
+.left-question {
+  color: white;
+  background-color: #003365;
+  height: 650px;
+}
+
+.edit-button {
+  padding-left: 1%;
+}
+
+.delete-button {
+  padding-right: 1%;
+}
+
+.answer-box {
+  padding-bottom: 10%;
 }
 
 .edit-prof-pic {
@@ -886,7 +1025,7 @@ anchors are inline so you need ot make them block to go full width
 }
 
 .profile-content {
-	margin-left: 30px;
+	margin-left: 0.5%;
 }
 
 .profile-info {

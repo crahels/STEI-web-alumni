@@ -22,12 +22,12 @@ class ArticleTest extends TestCase
         $user = factory(User::class)->create();
         
         $response = $this->actingAs($user)
-                         ->visit('/posts/create')
+                         ->visit('admin/posts/create')
                          ->type('Post for Testing', 'title')
                          ->type('Post Body', 'body')
                          ->attach('storage/app/public/logo_itb.png', 'cover_image')
                          ->press('Submit')
-                         ->seePageIs('/posts')
+                         ->seePageIs('admin/posts')
                          ->see('Post Created');
         
         $dummy = Post::where('title', 'Post for Testing')->first();
@@ -46,12 +46,12 @@ class ArticleTest extends TestCase
         $user = factory(User::class)->create();
         
         $response = $this->actingAs($user)
-                         ->visit('/posts/create')
+                         ->visit('admin/posts/create')
                          ->type('', 'title')
                          ->type('Post Body', 'body')
                          ->attach('storage/app/public/logo_itb.png', 'cover_image')
                          ->press('Submit')
-                         ->seePageIs('/posts/create')
+                         ->seePageIs('admin/posts/create')
                          ->see('The title field is required.');
 
         $user->delete();
@@ -67,12 +67,12 @@ class ArticleTest extends TestCase
         $user = factory(User::class)->create();
         
         $response = $this->actingAs($user)
-                         ->visit('/posts/create')
+                         ->visit('admin/posts/create')
                          ->type('Post for Testing', 'title')
                          ->type('', 'body')
                          ->attach('storage/app/public/logo_itb.png', 'cover_image')
                          ->press('Submit')
-                         ->seePageIs('/posts/create')
+                         ->seePageIs('admin/posts/create')
                          ->see('The body field is required.');
 
         $user->delete();
@@ -88,11 +88,11 @@ class ArticleTest extends TestCase
         $user = factory(User::class)->create();
         
         $response = $this->actingAs($user)
-                         ->visit('/posts/create')
+                         ->visit('admin/posts/create')
                          ->type('Post for Testing', 'title')
                          ->type('Post Body', 'body')
                          ->press('Submit')
-                         ->seePageIs('/posts')
+                         ->seePageIs('admin/posts')
                          ->see('Post Created');
 
         $dummy = Post::where('title', 'Post for Testing')->first();
@@ -114,12 +114,12 @@ class ArticleTest extends TestCase
         ]);
         
         $response = $this->actingAs($user)
-                         ->visit('/posts/' . $post->id . '/edit')
+                         ->visit('admin/posts/' . $post->id . '/edit')
                          ->type('Post for Testing', 'title')
                          ->type('Post Body', 'body')
                          ->attach('storage/app/public/logo_itb.png', 'cover_image')
                          ->press('Submit')
-                         ->seePageIs('/posts')
+                         ->seePageIs('admin/posts')
                          ->see('Post Updated');
                          
         $post->delete();
@@ -140,12 +140,12 @@ class ArticleTest extends TestCase
         ]);
         
         $response = $this->actingAs($user)
-                         ->visit('/posts/' . $post->id . '/edit')
+                         ->visit('admin/posts/' . $post->id . '/edit')
                          ->type('', 'title')
                          ->type('Post Body', 'body')
                          ->attach('storage/app/public/logo_itb.png', 'cover_image')
                          ->press('Submit')
-                         ->seePageIs('/posts/' . $post->id . '/edit')
+                         ->seePageIs('admin/posts/' . $post->id . '/edit')
                          ->see('The title field is required.');
         
         $post->delete();
@@ -165,12 +165,12 @@ class ArticleTest extends TestCase
         ]);
         
         $response = $this->actingAs($user)
-                         ->visit('/posts/' . $post->id . '/edit')
+                         ->visit('admin/posts/' . $post->id . '/edit')
                          ->type('Post for Testing', 'title')
                          ->type('', 'body')
                          ->attach('storage/app/public/logo_itb.png', 'cover_image')
                          ->press('Submit')
-                         ->seePageIs('/posts/' . $post->id . '/edit')
+                         ->seePageIs('admin/posts/' . $post->id . '/edit')
                          ->see('The body field is required.');
 
         $post->delete();
@@ -190,11 +190,11 @@ class ArticleTest extends TestCase
         ]);
         
         $response = $this->actingAs($user)
-                         ->visit('/posts/' . $post->id . '/edit')
+                         ->visit('admin/posts/' . $post->id . '/edit')
                          ->type('Post for Testing', 'title')
                          ->type('Post Body', 'body')
                          ->press('Submit')
-                         ->seePageIs('/posts')
+                         ->seePageIs('admin/posts')
                          ->see('Post Updated');
 
         $post->delete();

@@ -8,17 +8,19 @@
     <main role="main" class="col-7">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">List of Posts</h1>
-            <a class="btn btn-primary" href="/admin/posts/create">
-                Create Post
-            </a>
+            @if(!Auth::guest() &&  Auth::user()->IsAdmin == 1)
+                <a class="btn btn-primary" href="/admin/posts/create">
+                    Create Post
+                </a>
+            @endif
         </div>
         @if (count($posts) > 0)
             @foreach ($posts as $post)
                 <div class="well">
                     <div class="row">
                         <div class="col-8 post-card">
-                            <h3><a href="/admin/posts/{{$post->id}}">{{$post->title}}</a></h3>
-                            <i>Written on {{$post->created_at}} by {{$post->user->name}}</i>
+                            <h3 class="title-question"><a href="/admin/posts/{{$post->id}}">{{$post->title}}</a></h3>
+                            <i class="text-footer">Written on {{$post->created_at->format('d M Y')}} by {{$post->user->name}}</i>
                         </div>
                         <div class="col-4 img-card">
                             <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}">

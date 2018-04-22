@@ -23,7 +23,7 @@ class LoginTest extends TestCase
             'password' => 'laraveltesting'
         ]);
 
-        $this->visit('/register')
+        $this->visit('admin/register')
              ->type($user->name, 'name')
              ->type($user->email, 'email')
              ->type($user->password, 'password')
@@ -45,11 +45,11 @@ class LoginTest extends TestCase
             'password' => 'laraveltesting'
         ]);
 
-        $this->visit('/login')
+        $this->visit('admin/login')
              ->type($user->email, 'email')
              ->type($user->password, 'password')
              ->press('Login')
-             ->seePageIs('/dashboard');
+             ->seePageIs('admin/dashboard');
 
         $user = User::where('email', $user->email)->first();
         $user->delete();
@@ -64,10 +64,10 @@ class LoginTest extends TestCase
     {
         $user = factory(User::class)->make();
 
-        $this->visit('/login')
+        $this->visit('admin/login')
              ->type($user->email, 'email')
              ->type($user->password, 'password')
              ->press('Login')
-             ->seePageIs('/login');
+             ->seePageIs('admin/login');
     }
 }

@@ -15,7 +15,7 @@
             </div>
             <div class="form-group">
                 {{Form::label('body', 'Question')}}
-                {{Form::textarea('body', $question->body, ['class' => 'form-control', 'id' => 'article-ckeditor', 'placeholder' => 'Question'])}}
+                {{Form::textarea('body', $question->body, ['class' => 'form-control', 'placeholder' => 'Question'])}}
             </div>
             {{Form::hidden('_method', 'PUT')}}
             <div class="bottomButton">

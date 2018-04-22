@@ -4,13 +4,15 @@
   
     <span>
         <h1 class="post-title">{{$post->title}}</h1>
-        <h5 class="post-title">&nbsp;
-            @if ($post->draft == '1')
-                <span style="color:red;">Draft</span>
-            @else
-                <span style="color:green;">Published</span>
-            @endif
-        </h5>
+        @if(!Auth::guest() && Auth::user()->IsAdmin == 1)
+            <h5 class="post-title">&nbsp;
+                @if ($post->draft == '1')
+                    <span style="color:red;">Draft</span>
+                @else
+                    <span style="color:green;">Published</span>
+                @endif
+            </h5>
+        @endif
     </span>  
     
     <div class="body-article">
@@ -19,16 +21,18 @@
 
     <div class="footer-article">
         <hr>
-        <h5>
-            @if ($post->public == '1')
-                Public 
-            @else
-                Private 
-            @endif  
-            Post
-        </h5>
-        <small>Written on {{$post->created_at}}</small><br>
-        <small>Last Editted on {{$post->updated_at}}</small><br>
+        @if(!Auth::guest() && Auth::user()->IsAdmin == 1)
+            <h5>
+                @if ($post->public == '1')
+                    Public 
+                @else
+                    Private 
+                @endif  
+                Post
+            </h5>
+        @endif
+        <small>Written on {{$post->created_at->format('d M Y')}}</small><br>
+        <small>Last Editted on {{$post->updated_at->format('d M Y')}}</small><br>
         <small>by {{$post->user->name}}</small>
         <hr>
 
@@ -39,8 +43,8 @@
                 {{Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure you want to delete?')"])}}
             {!!Form::close() !!}
         @endif
-        <br><br><br>
-        <a href="/admin/posts" class="btn btn-info pull-down">&#8592; Back</a>
+        <!--<br><br><br>
+        <a href="/admin/posts" class="btn btn-info pull-down">&#8592; Back</a>-->
         
     </div>
 @endsection

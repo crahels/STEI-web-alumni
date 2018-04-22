@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question;
+use App\Answer;
+use \Auth;
 
 class QuestionsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin');
+        //$this->middleware('admin');
     }
 
     /**
@@ -19,8 +21,20 @@ class QuestionsController extends Controller
      */
     public function index()
     {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+         // if not member and admin then cannot edit this question
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+
+        // order question by created_at in descending order
         $questions = Question::orderBy('created_at','desc')->paginate(15);
-        return view('admin.showquestion')->with('questions', $questions);
+        if ($isAdmin) {
+            return view('admin.showquestion')->with('questions', $questions);
+        } else {
+            return view('users.qna.showquestion')->with('questions', $questions);
+        }
     }
 
     /**
@@ -30,7 +44,18 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('admin.addquestion');
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+         // if not member and admin then cannot edit this question
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+        
+        if ($isAdmin) {
+            return view('admin.addquestion');
+        } else {
+            return view('users.qna.addquestion');
+        }
     }
 
     /**
@@ -41,6 +66,13 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+         // if not member and admin then cannot edit this question
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+
         $this->validate($request, [
             'topic' => 'required',
             'body' => 'required'
@@ -50,10 +82,21 @@ class QuestionsController extends Controller
         $question = new Question;
         $question->topic = $request->input('topic');
         $question->body = $request->input('body');
-        $question->user_id = auth()->user()->id;
+        if ($isAdmin) {
+			$question->user_id = Auth::user()->id;
+            $question->is_admin = 1;
+        } else {
+			$question->member_id = Auth::guard('member')->user()->id;
+            $question->is_admin = 0;
+        }
         $question->save();
 
-        return redirect('/admin/questions')->with('success', 'Question Added');
+        if ($isAdmin) {
+            return redirect('/admin/questions')->with('success', 'Question Added');
+        } else {
+            return redirect('/questions')->with('success', 'Question Added');
+        }
+        
     }
 
     /**
@@ -64,9 +107,20 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+         // if not member and admin then cannot edit this question
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+
         $question = Question::find($id);
         if ($question !== null) {
-            return view('admin.showeachquestion')->with('question', $question);
+            if ($isAdmin) {
+                return view('admin.showeachquestion')->with('question', $question);
+            } else {
+                return view('users.qna.showeachquestion')->with('question', $question);
+            }
         } else {
             return abort(404);
         }
@@ -80,9 +134,28 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+        // if not member and admin then cannot edit this question
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+        
         $question = Question::find($id);
+        $member = Auth::guard('member')->user();
+
         if ($question !== null) {
-            return view('admin.editquestion')->with('question', $question);
+            // if admin can edit all kinds of question
+            // if not admin can only edit his own question
+            if ($isAdmin || ($question->user()->id == $member->id && $question->is_admin == 0)) {
+                if ($isAdmin) {
+                    return view('admin.editquestion')->with('question', $question);
+                } else {
+                    return view('users.qna.editquestion')->with('question', $question);
+                }
+            } else {
+                return redirect('/')->with('error', 'You can not edit this question.');
+            }
         } else {
             return abort(404);
         }
@@ -97,17 +170,33 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+        // if not member and admin then cannot edit this question
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+        
         $this->validate($request, [
             'topic' => 'required',
             'body' => 'required'
         ]);
 
         $question = Question::find($id);
-        $question->topic = $request->input('topic');
-        $question->body = $request->input('body');
-        $question->save();
+        $member = Auth::guard('member')->user();
 
-        return redirect('/admin/questions')->with('success', 'Question Updated');
+        if ($isAdmin || ($question->user()->id == $member->id && $question->is_admin == 0)) {
+            $question->topic = $request->input('topic');
+            $question->body = $request->input('body');
+            $question->save();
+            if ($isAdmin) {
+                return redirect('/admin/questions/' . $id)->with('success', 'Question Updated');
+            } else {
+                return redirect('/questions/' . $id)->with('success', 'Question Updated');
+            }
+        } else {
+            return redirect('/')->with('error', 'You can not edit this question.');
+        }
     }
 
     /**
@@ -118,9 +207,35 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        $question = Question::find($id);
-        $question->delete();
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
 
-        return redirect('/admin/questions')->with('error', 'Question Deleted');
+        // if not member and admin then cannot delete this question
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+        
+        $question = Question::find($id);
+        $member = Auth::guard('member')->user();
+
+        if ($question !== null) {
+            // if admin can delete all kinds of question
+            // if not admin can only delete his own question
+            if ($isAdmin || ($question->user()->id == $member->id && $question->is_admin == 0)) {
+                $question->delete();
+                $answer = Answer::where('question_id', $id);
+                if ($answer !== null) {
+                    $answer->delete();
+                }
+                if ($isAdmin) {
+                    return redirect('/admin/questions')->with('error', 'Question Deleted');
+                } else {
+                    return redirect('/questions')->with('error', 'Question Deleted');
+                }
+            } else {
+                return redirect('/')->with('error', 'You can not delete this question.');
+            }
+        } else {
+            return abort(404);
+        }
     }
 }

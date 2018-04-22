@@ -30,4 +30,16 @@ class Member extends Authenticatable
     public function verifyToken(){
         return $this->hasOne('App\VerifyToken');
     }   
+
+    public function rate_answers() {
+        return $this->belongsToMany('App\Answer', 'ratings', 'user_id', 'answer_id')->withPivot('id');
+    }
+
+    public function questions() {
+        return $this->hasMany('App\Question');
+    }
+
+    public function answers() {
+        return $this->hasMany('App\Answer');
+    }
 }

@@ -16,83 +16,55 @@ class RouteTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertResponseStatus(200);
     }
 
     public function testAdd()
     {
-        $response = $this->get('/add');
+        $response = $this->get('admin/add');
 
-        $response->assertStatus(302);
+        $response->assertResponseStatus(302);
     }
 
     public function testAddCSV()
     {
-        $response = $this->get('/addCSV');
+        $response = $this->get('admin/addCSV');
 
-        $response->assertStatus(302);
-    }
-
-    public function testAddmember()
-    {
-        $response = $this->get('/addmember');
-
-        $response->assertStatus(302);
+        $response->assertResponseStatus(302);
     }
 
     public function testDashboard()
     {
-        $response = $this->get('/dashboard');
+        $response = $this->get('admin/dashboard');
 
-        $response->assertStatus(302);
+        $response->assertResponseStatus(302);
     }
 
     public function testLogin()
     {
-        $response = $this->get('/login');
+        $response = $this->get('admin/login');
 
-        $response->assertStatus(200);
-    }
-
-    public function testRegister()
-    {
-        $response = $this->get('/register');
-
-        $response->assertStatus(200);
+        $response->assertResponseStatus(200);
     }
 
     public function testMembers()
     {
-        $response = $this->get('/members');
+        $response = $this->get('admin/members');
 
-        $response->assertStatus(302);
-    }
-
-    public function testMembersCreate()
-    {
-        $response = $this->get('/members/create');
-
-        $response->assertStatus(302);
-    }
-
-    public function testProfile()
-    {
-        $response = $this->get('/profile');
-
-        $response->assertStatus(302);
+        $response->assertResponseStatus(302);
     }
 
     public function testPost()
     {
-        $response = $this->get('/posts');
+        $response = $this->get('admin/posts');
 
-        $response->assertStatus(500);
+        $response->assertResponseStatus(200);
     }
 
     public function testPostCreate()
     {
-        $response = $this->get('/posts/create');
+        $response = $this->get('admin/posts/create');
 
-        $response->assertStatus(200);
+        $response->assertResponseStatus(302);
     }
 }

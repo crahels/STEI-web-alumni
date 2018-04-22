@@ -17,7 +17,7 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => 'laraveltesting', // secret
+        'password' => 'laraveltesting',
         'remember_token' => str_random(10),
         'IsAdmin' => 1,
     ];
