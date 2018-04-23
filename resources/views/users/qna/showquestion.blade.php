@@ -109,11 +109,9 @@
             <a id="add-question-btn" class="btn btn-primary" href="questions/create">Add Question</a>
         </div>
         @endif
-
         @if (count($questions) > 0)
-            @foreach ($questions as $question)
-            <!-- Here -->
             <div class="row">
+                @foreach ($questions as $question)
                 <div class="col-2"></div>
                 <div class="well question-container col-8">
                     <div class="row">
