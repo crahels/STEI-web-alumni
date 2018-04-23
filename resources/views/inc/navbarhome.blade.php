@@ -91,9 +91,9 @@
                 <!-- Authentication Links -->
                 @guest
                     @if(Auth::guard('member')->user() != null)
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" style="min-width: 300px">
                             <a id="navbarDropdown login-dropdown" class="nav-link dropdown-toggle login" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{Auth::guard('member')->user()->name}}</span>
+                                <span class="pull-right">{{Auth::guard('member')->user()->name}}</span>
                             </a>
 
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -124,7 +124,7 @@
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}</span>
+                            <span>{{ Auth::user()->name }}</span>
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
