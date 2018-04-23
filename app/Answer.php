@@ -14,11 +14,15 @@ class Answer extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function member() {
+        return $this->belongsTo('App\Member');
+    }
+
     public function question() {
         return $this->belongsTo('App\Question');
     }
 
-    public function users() {
-        return $this->belongsToMany('App\User', 'ratings', 'answer_id', 'user_id')->withPivot('id');
+    public function members() {
+        return $this->belongsToMany('App\Member', 'ratings', 'answer_id', 'user_id')->withPivot('id');
     }
 }

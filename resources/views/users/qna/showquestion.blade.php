@@ -144,8 +144,8 @@
                                                 {{$answer->rating}}
                                             </span>
                                             <!-- @if(Auth::guard('member')->user() != null)
-                                                {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id], 'method' => 'POST']) !!}
-                                                @if ($answer->users->contains(Auth::guard('member')->user()->id)) 
+                                                {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id, 0], 'method' => 'POST']) !!}
+                                                @if ($answer->members->contains(Auth::guard('member')->user()->id)) 
                                                     {{Form::submit('VOTE', ['class' => 'btn'])}}
                                                 @else
                                                     {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
@@ -168,7 +168,7 @@
                                     <p>{{$answer->body}}</p>
                                     <a href="/answers/{{$answer->id}}">
                                         <small>
-                                            Written on {{$answer->created_at}} by {{$answer->user->name}} <span>@if($answer->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
+                                            Written on {{$answer->created_at}} by {{$answer->member->name}} <span>@if($answer->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
                                         </small>
                                     </a>
                                     <br>
