@@ -105,13 +105,14 @@
 
     <div class="container qna-container">
         @if(Auth::guard('member')->user() != null || (Auth::user() != null && Auth::user()->IsAdmin == 1))
-        <div class="col-lg-12 text-center">
+        <div class="section text-center">
             <a id="add-question-btn" class="btn btn-primary" href="questions/create">Add Question</a>
         </div>
         @endif
 
         @if (count($questions) > 0)
             @foreach ($questions as $question)
+            <!-- Here -->
             <div class="row">
                 <div class="col-2"></div>
                 <div class="well question-container col-8">
@@ -135,36 +136,6 @@
                         @foreach ($question->answers->sortByDesc('rating')->sortByDesc('is_pinned') as $answer)
                             <div class="col-12 post-card">
                                 <hr>
-                                <div class="col-2 pull-left">
-                                    <div>
-                                        <!-- <center> -->
-                                            <small style="font-size:0.8em">vote<span>@if($answer->rating > 1)<span>s</span>@endif</span>
-                                            </small>
-                                            <span class="sum-rating" style="font-size: 0.8em">
-                                                {{$answer->rating}}
-                                            </span>
-                                            <!-- @if(Auth::guard('member')->user() != null)
-                                                {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id], 'method' => 'POST']) !!}
-                                                @if ($answer->users->contains(Auth::guard('member')->user()->id)) 
-                                                    {{Form::submit('VOTE', ['class' => 'btn'])}}
-                                                @else
-                                                    {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
-                                                @endif
-                                            @else
-                                                {!! Form::open(['action' => ['AnswersController@givePin', $answer->id, $question->id, 0], 'method' => 'POST']) !!}
-                                                @if($answer->is_pinned == 1) 
-                                                    {{Form::button('<i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PINNED', ['type' => 'submit', 'class' => 'btn', 'data-toggle' => 'tooltip'])}}
-                                                    
-                                                @else
-                                                    {{Form::button('<i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PIN', ['type' => 'submit', 'class' => 'btn btn-warning', 'data-toggle' => 'tooltip'])}}
-                                                @endif
-                                            @endif
-                                            {!! Form::close() !!} -->
-                                        <!-- </center> -->
-                                    </div>
-                                </div>
-
-                                <div class="col-10">
                                     <p>{{$answer->body}}</p>
                                     <a href="/answers/{{$answer->id}}">
                                         <small>
@@ -175,28 +146,11 @@
                                     @if ($answer->created_at != $answer->updated_at)
                                         <small style="color:green;">(edited)</small>
                                     @endif
-                                </div>
                             </div>
                         @endforeach
-                        
-                        <div id="answercontainer-{{$question->id}}" class="col-12 post-card">
-                             <!-- <div id="add-answer">
-                                <hr>
-                                {!! Form::open(['action' => ['AnswersController@store', 0], 'method' => 'POST']) !!}
-                                <div class="form-group">
-                                    {{Form::label('body','Answer')}}
-                                    {{Form::text('body', '', ['class' => 'form-control'])}}
-                                </div>
-                                {{ Form::hidden('question_id', $question->id) }}
-                                {{Form::submit('Submit', ['class' => 'btn btn-primary pull-right'])}}
-                                    <!--<a onclick="return confirm('Are you sure you want to cancel?')" href="/admin/questions" class="btn btn-danger pull-right">Cancel</a>
-                                {!! Form::close() !!}
-                            </div> -->
-                        </div>
                     </div>
-            </div>
+                </div>
                 <div class="col-2"></div>
-            </div>
             @endforeach
             <ul class="pagination pull-right">{{$questions->links()}}</ul>
         @else
@@ -204,36 +158,6 @@
         @endif
     </div>
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- <script>
-    document.getElementById("nav-four").classList.add("active");
-    document.getElementById("text-nav-four").classList.add("color-active");
-
-    $("div[id^='answers']").hide();
-
-    $(document).ready(function() {
-        $("input[id^='btn']" ).click(function() {
-            var element  = this.id;
-            classname = element.split("-")[1];
-
-            if ($('#btn-' + classname).hasClass('show-button')) {
-                $('#answers-' + classname).hide();
-
-                $('#btn-' + classname).val('Show Answers');
-                $('#btn-' + classname).removeClass('show-button');
-                $('#btn-' + classname).addClass('hidden-button');
-
-            } else if ($('#btn-' + classname).hasClass('hidden-button')) {
-                $('#answers-' + classname).show();
-            
-                var top = $('#answercontainer-' + classname).position().top;
-                $('html').scrollTop(top);
-
-                $('#btn-' + classname).val('Hide Answers');
-                $('#btn-' + classname).removeClass('hidden-button');
-                $('#btn-' + classname).addClass('show-button');
-            }
-        });
-    });
-</script> -->
 @endsection
