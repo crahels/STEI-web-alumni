@@ -12,4 +12,5 @@ yarn-error.log
 .env
 .env.*.php
 .env.php
-.DS_store
+.DS_Store
+report/
