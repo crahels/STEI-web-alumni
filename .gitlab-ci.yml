@@ -56,7 +56,7 @@ before_script:
 test:
   stage: test
   script:
-    - php vendor/bin/phpunit --coverage-text --coverage-html 
+    - php vendor/bin/phpunit --coverage-text --coverage-html ./report
   artifacts:
     paths:
     - report/
