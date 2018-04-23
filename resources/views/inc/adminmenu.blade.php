@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <nav class="col-3 sidebar">
-      <div class="sidebar-sticky">
+      <div class="sidebar-sticky sidebar-box">
         <ul class="nav flex-column">
           <li class="nav-item" id="nav-one">
             <a class="nav-link" href="/admin/dashboard">
