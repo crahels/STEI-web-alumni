@@ -24,9 +24,12 @@
                             <small class="text-footer">
                                 <i>
                                     @if ($question->is_admin == 1)
-                                        Written on {{$question->created_at->format('d M Y')}} by {{$question->user->name}} as <span style="color:blue;">admin</span>
+                                        Written on {{$question->created_at->format('d M Y')}}<br>by {{$question->user->name}} as <span style="color:blue;">admin</span>
                                     @else
-                                        Written on {{$question->created_at->format('d M Y')}} by {{$question->member->name}}
+                                        Written on {{$question->created_at->format('d M Y')}}<br>by {{$question->member->name}}
+                                    @endif
+                                    @if ($question->is_anon == 1)
+                                        (anon)
                                     @endif
                                 </i>
                             </small>

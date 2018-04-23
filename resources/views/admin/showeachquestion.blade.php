@@ -18,6 +18,9 @@
             @else
                 <small class="text-footer">by {{$question->member->name}}</small>
             @endif
+            @if ($question->is_anon == 1)
+                (anon)
+            @endif
             <hr>
         </div>
         @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $question->member->id == Auth::guard('member')->user()->id && $question->is_admin == 0))
