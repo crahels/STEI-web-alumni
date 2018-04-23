@@ -264,115 +264,99 @@
                     <div id="team-section">
                         <div class="our-team">
                             @if (count($homedata[1]) > 0)
-                                @php
-                                    $i = 0;
-                                @endphp 
-                                @foreach ($homedata[1] as $member)
-                                    @if ($i < 5)
-                                        <div class="team-member">
-                                            <img src="/storage/profile_image/{{$member->profile_image}}" class="img-responsive" alt="">
-                                            <div class="team-details">
-                                                <h4>{{$member->name}}</h4>
-                                                <p>Alumni of STEI</p>
-                                                <ul>
-                                                <li><a href="/members/{{$member->id}}"><i class="fa fa-user"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    @else   
-                                        @break
-                                    @endif
-                                @endforeach
-                            @endif                            
-                            {{-- <div class="team-member">
-                                <img src="{{ asset('template/images/team/manage-1.png') }}" class="img-responsive" alt="">
-                                <div class="team-details">
-                                    <h4>John Doe</h4>
-                                    <p>Founder & Director</p>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                    </ul>
+                                <div class="team-member">
+                                    <img src="/storage/profile_image/{{$homedata[1][0]->profile_image}}" class="img-responsive" alt="">
+                                    <div class="team-details">
+                                        <h4>{{$homedata[1][0]->name}}</h4>
+                                        <p>Alumni of STEI</p>
+                                        <ul>
+                                        @if ((Auth::user() != null) || (Auth::guard('member')->user() != null))
+                                            <li><a href="/members/{{$homedata[1][0]->id}}"><i class="fa fa-user"></i></a></li>
+                                        @else
+                                            <li class="popup" onclick="myFunction()">
+                                                <span class="popuptext" id="myPopup">You must login first <a href="/login"><u>(LOGIN)</u></a></span>
+                                                <i class="fa fa-user show-profile-icon-team-details"></i></li>
+                                        @endif
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
 
-                            <div class="team-member">
-                                <img src="{{ asset('template/images/team/manage-2.png') }}" class="img-responsive" alt="">
-                                <div class="team-details">
-                                    <h4>John Doe</h4>
-                                    <p>Founder & Director</p>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @if (count($homedata[1]) > 1)
+                                <div class="team-member">
+                                    <img src="/storage/profile_image/{{$homedata[1][1]->profile_image}}" class="img-responsive" alt="">
+                                    <div class="team-details">
+                                        <h4>{{$homedata[1][1]->name}}</h4>
+                                        <p>Alumni of STEI</p>
+                                        <ul>
+                                        @if ((Auth::user() != null) || (Auth::guard('member')->user() != null))
+                                            <li><a href="/members/{{$homedata[1][1]->id}}"><i class="fa fa-user"></i></a></li>
+                                        @else
+                                            <li class="popup" onclick="myFunction2()">
+                                                <span class="popuptext" id="myPopup2">You must login first <a href="/login"><u>(LOGIN)</u></a></span>
+                                                <i class="fa fa-user show-profile-icon-team-details"></i></li>
+                                        @endif
+                                        </ul>
+                                    </div>
+                                </div>   
+                            @endif
+                    
+                            @if (count($homedata[1]) > 2)
+                                <div class="team-member">
+                                    <img src="/storage/profile_image/{{$homedata[1][2]->profile_image}}" class="img-responsive" alt="">
+                                    <div class="team-details">
+                                        <h4>{{$homedata[1][2]->name}}</h4>
+                                        <p>Alumni of STEI</p>
+                                        <ul>
+                                        @if ((Auth::user() != null) || (Auth::guard('member')->user() != null))
+                                            <li><a href="/members/{{$homedata[1][2]->id}}"><i class="fa fa-user"></i></a></li>
+                                        @else
+                                            <li class="popup" onclick="myFunction3()">
+                                                <span class="popuptext" id="myPopup3">You must login first <a href="/login"><u>(LOGIN)</u></a></span>
+                                                <i class="fa fa-user show-profile-icon-team-details"></i></li>
+                                        @endif
+                                        </ul>
+                                    </div>
+                                </div>          
+                            @endif
+                        
+                            @if (count($homedata[1]) > 3)
+                                <div class="team-member">
+                                    <img src="/storage/profile_image/{{$homedata[1][3]->profile_image}}" class="img-responsive" alt="">
+                                    <div class="team-details">
+                                        <h4>{{$homedata[1][3]->name}}</h4>
+                                        <p>Alumni of STEI</p>
+                                        <ul>
+                                        @if ((Auth::user() != null) || (Auth::guard('member')->user() != null))
+                                            <li><a href="/members/{{$homedata[1][3]->id}}"><i class="fa fa-user"></i></a></li>
+                                        @else
+                                            <li class="popup" onclick="myFunction4()">
+                                                <span class="popuptext" id="myPopup4">You must login first <a href="/login"><u>(LOGIN)</u></a></span>
+                                                <i class="fa fa-user show-profile-icon-team-details"></i></li>
+                                        @endif
+                                        </ul>
+                                    </div>
+                                </div>          
+                            @endif
 
-                            <div class="team-member">
-                                <img src="{{ asset('template/images/team/manage-3.png') }}" class="img-responsive" alt="">
-                                <div class="team-details">
-                                    <h4>John Doe</h4>
-                                    <p>Founder & Director</p>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>    
-
-                            <div class="team-member">
-                                <img src="{{ asset('template/images/team/manage-4.png') }}" class="img-responsive" alt="">
-                                <div class="team-details">
-                                    <h4>John Doe</h4>
-                                    <p>Founder & Director</p>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="team-member">
-                                <img src="{{ asset('template/images/team/manage-1.png') }}" class="img-responsive" alt="">
-                                <div class="team-details">
-                                    <h4>John Doe</h4>
-                                    <p>Founder & Director</p>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="team-member">
-                                <img src="{{ asset('template/images/team/manage-2.png') }}" class="img-responsive" alt="">
-                                <div class="team-details">
-                                    <h4>John Doe</h4>
-                                    <p>Founder & Director</p>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div> --}}
+                            @if (count($homedata[1]) > 4)
+                                <div class="team-member">
+                                    <img src="/storage/profile_image/{{$homedata[1][4]->profile_image}}" class="img-responsive" alt="">
+                                    <div class="team-details">
+                                        <h4>{{$homedata[1][4]->name}}</h4>
+                                        <p>Alumni of STEI</p>
+                                        <ul>
+                                        @if ((Auth::user() != null) || (Auth::guard('member')->user() != null))
+                                            <li><a href="/members/{{$homedata[1][4]->id}}"><i class="fa fa-user"></i></a></li>
+                                        @else
+                                            <li class="popup" onclick="myFunction5()">
+                                                <span class="popuptext" id="myPopup5">You must login first <a href="/login"><u>(LOGIN)</u></a></span>
+                                                <i class="fa fa-user show-profile-icon-team-details"></i></li>
+                                        @endif
+                                        </ul>
+                                    </div>
+                                </div>          
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -438,5 +422,32 @@
             </div>
         </footer>
     </section>
+    <script>
+    // When the user clicks on div, open the popup
+    function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+
+    function myFunction2() {
+        var popup = document.getElementById("myPopup2");
+        popup.classList.toggle("show");
+    }
+
+    function myFunction3() {
+        var popup = document.getElementById("myPopup3");
+        popup.classList.toggle("show");
+    }
+
+    function myFunction4() {
+        var popup = document.getElementById("myPopup4");
+        popup.classList.toggle("show");
+    }
+
+    function myFunction5() {
+        var popup = document.getElementById("myPopup5");
+        popup.classList.toggle("show");
+    }
+    </script>
 </body>
 @endsection
