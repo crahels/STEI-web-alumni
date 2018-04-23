@@ -66,8 +66,8 @@ pages:
   dependencies:
     - test
   script:
-    - rm -rf public && mkdir -p public
-    - mv report/* public/
+    - rm -rf public
+    - mv report public
   artifacts:
     paths:
       - public
