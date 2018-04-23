@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUserIdToQuestionsTable extends Migration
+class AddPinnedByAdminAtAnswerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddUserIdToQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->integer('user_id')->default(-1);
+        Schema::table('answers', function (Blueprint $table) {
+            $table->tinyInteger('is_pinned')->default(0);
         });
     }
 
@@ -25,8 +25,8 @@ class AddUserIdToQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->dropColumn('user_id');
+        Schema::table('answers', function (Blueprint $table) {
+            $table->dropColumn('is_pinned');
         });
     }
 }

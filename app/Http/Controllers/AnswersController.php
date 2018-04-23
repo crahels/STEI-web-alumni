@@ -87,7 +87,7 @@ class AnswersController extends Controller
             $answer->user_id = Auth::user()->id;
             $answer->is_admin = 1;
         } else {
-            $answer->user_id = Auth::guard('member')->user()->id;
+            $answer->member_id = Auth::guard('member')->user()->id;
             $answer->is_admin = 0;
         }
         $answer->save();
@@ -118,9 +118,9 @@ class AnswersController extends Controller
         $isMember = Auth::guard('member')->user() != null;
         $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
 
-         // if not member and admin then cannot edit this answer
-        //if(!($isMember || $isAdmin))
-        //    return response()->json([], 404);
+        //if not member and admin then cannot edit this answer
+        if(!($isMember || $isAdmin))
+            return response()->json([], 404);
 
         $this->validate($request, [
             'body' => 'required',
@@ -129,19 +129,18 @@ class AnswersController extends Controller
         $answer = new Answer;
         $answer->question_id = $request->question_id;
         $answer->body = $request->body;
-        $answer->user_id = auth()->user()->id;
         if ($isAdmin) {
             $answer->user_id = Auth::user()->id;
             $answer->is_admin = 1;
         } else {
-            $answer->user_id =  Auth::guard('member')->user()->id;
+            $answer->member_id =  Auth::guard('member')->user()->id;
             $answer->is_admin = 0;
         }
         $answer->save();
-        
-        return response()->json([
-            'status' => 'Job Done'
-        ], 200);
+        $answer->created = $answer->created_at->format('d M Y');
+        $resp = $answer;
+        $resp->user = $answer->user;
+        return response()->json($resp, 200);
     }
 
     /**
@@ -192,7 +191,7 @@ class AnswersController extends Controller
         if ($answer !== null) {
             // if admin can edit all kinds of answer
             // if not admin can only edit his own answer
-            if ($isAdmin || ($answer->user->id == $member->id && $answer->is_admin == 0)) {
+            if ($isAdmin || ($answer->member->id == $member->id && $answer->is_admin == 0)) {
                 if ($isAdmin) {
                     return view('admin.editanswer')->with('answer', $answer);
                 } else {
@@ -212,7 +211,7 @@ class AnswersController extends Controller
      * @param  \App\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function giveRating($answer_id, $user_id)
+    public function giveRating($answer_id, $user_id, $each)
     {
         $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
         $isMember = Auth::guard('member')->user() != null;
@@ -233,7 +232,7 @@ class AnswersController extends Controller
         // member can only give vote once
         } else {
             $found = 0;
-            foreach ($answer->users as $user) {
+            foreach ($answer->members as $user) {
                 if ($user->id == $user_id) {
                     $found = 1;
                     break;
@@ -241,23 +240,31 @@ class AnswersController extends Controller
             }
 
             if ($found == 0) {
-                $answer->users()->attach($user_id);
+                $answer->members()->attach($user_id);
 
                 $answer->rating++;
                 $answer->timestamps = false;
                 $answer->save();
                 
                 $questions = Question::orderBy('created_at','desc')->paginate(15);
-                return redirect('/questions')->with('questions', $questions)->with('success','Rating Added');
+                if ($each == 1) {
+                    return redirect('/questions/' . $answer->question_id)->with('questions', $questions)->with('success','Rating Added');
+                } else {
+                    return redirect('/questions')->with('questions', $questions)->with('success','Rating Added');
+                }
             } else {
-                $answer->users()->detach($user_id);
+                $answer->members()->detach($user_id);
 
                 $answer->rating--;
                 $answer->timestamps = false;
                 $answer->save();
                 
                 $questions = Question::orderBy('created_at','desc')->paginate(15);
-                return redirect('/questions')->with('questions', $questions)->with('error','Rating Deleted');
+                if ($each == 1) {
+                    return redirect('/questions/' . $answer->question_id)->with('questions', $questions)->with('error','Rating Deleted');
+                } else {
+                    return redirect('/questions')->with('questions', $questions)->with('error','Rating Deleted');
+                }
             }
         }
     }
@@ -338,7 +345,7 @@ class AnswersController extends Controller
         $answer = Answer::find($id);
         $member = Auth::guard('member')->user();
 
-        if ($isAdmin || ($answer->user->id == $member->id && $answer->is_admin == 0)) {
+        if ($isAdmin || ($answer->member->id == $member->id && $answer->is_admin == 0)) {
             if ($request->input('pin') === 'yes') {
                 $answer_pinned = Answer::where(['is_pinned' => 1, 'question_id' => $answer->question->id])->first();
                 if ($answer_pinned !== null) {
@@ -383,7 +390,7 @@ class AnswersController extends Controller
         if ($answer !== null) {
             // if admin can delete all kinds of answer
             // if not admin can only delete his own answer
-            if ($isAdmin || ($answer->user->id == $member->id && $answer->is_admin == 0)) {
+            if ($isAdmin || ($answer->member->id == $member->id && $answer->is_admin == 0)) {
                 $answer->delete();
                 if ($isAdmin) {
                     return redirect('/admin/questions')->with('error', 'Answer Deleted');
