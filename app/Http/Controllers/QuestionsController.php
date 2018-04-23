@@ -78,10 +78,16 @@ class QuestionsController extends Controller
             'body' => 'required'
         ]);
 
+        $is_anon = 0;
+        if ($request->input('anon') === 'yes') {
+            $is_anon = 1;
+        }
+
         //Add Question
         $question = new Question;
         $question->topic = $request->input('topic');
         $question->body = $request->input('body');
+        $question->is_anon = $is_anon;
         if ($isAdmin) {
 			$question->user_id = Auth::user()->id;
             $question->is_admin = 1;
@@ -181,6 +187,11 @@ class QuestionsController extends Controller
             'topic' => 'required',
             'body' => 'required'
         ]);
+        
+        $is_anon = 0;
+        if ($request->input('anon') === 'yes') {
+            $is_anon = 1;
+        }
 
         $question = Question::find($id);
         $member = Auth::guard('member')->user();
@@ -188,6 +199,7 @@ class QuestionsController extends Controller
         if ($isAdmin || ($question->member->id == $member->id && $question->is_admin == 0)) {
             $question->topic = $request->input('topic');
             $question->body = $request->input('body');
+            $question->is_anon = $is_anon;
             $question->save();
             if ($isAdmin) {
                 return redirect('/admin/questions/' . $id)->with('success', 'Question Updated');
