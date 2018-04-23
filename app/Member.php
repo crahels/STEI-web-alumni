@@ -30,4 +30,12 @@ class Member extends Authenticatable
     public function verifyToken(){
         return $this->hasOne('App\VerifyToken');
     }   
+
+    public function questions() {
+        return $this->hasMany('App\Question');
+    }
+
+    public function answers() {
+        return $this->hasMany('App\Answer');
+    }
 }

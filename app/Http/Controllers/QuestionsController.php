@@ -86,7 +86,7 @@ class QuestionsController extends Controller
 			$question->user_id = Auth::user()->id;
             $question->is_admin = 1;
         } else {
-			$question->user_id = Auth::guard('member')->user()->id;
+			$question->member_id = Auth::guard('member')->user()->id;
             $question->is_admin = 0;
         }
         $question->save();
@@ -147,7 +147,7 @@ class QuestionsController extends Controller
         if ($question !== null) {
             // if admin can edit all kinds of question
             // if not admin can only edit his own question
-            if ($isAdmin || ($question->user->id == $member->id && $question->is_admin == 0)) {
+            if ($isAdmin || ($question->member->id == $member->id && $question->is_admin == 0)) {
                 if ($isAdmin) {
                     return view('admin.editquestion')->with('question', $question);
                 } else {
@@ -185,7 +185,7 @@ class QuestionsController extends Controller
         $question = Question::find($id);
         $member = Auth::guard('member')->user();
 
-        if ($isAdmin || ($question->user->id == $member->id && $question->is_admin == 0)) {
+        if ($isAdmin || ($question->member->id == $member->id && $question->is_admin == 0)) {
             $question->topic = $request->input('topic');
             $question->body = $request->input('body');
             $question->save();
@@ -220,7 +220,7 @@ class QuestionsController extends Controller
         if ($question !== null) {
             // if admin can delete all kinds of question
             // if not admin can only delete his own question
-            if ($isAdmin || ($question->user->id == $member->id && $question->is_admin == 0)) {
+            if ($isAdmin || ($question->member->id == $member->id && $question->is_admin == 0)) {
                 $question->delete();
                 $answer = Answer::where('question_id', $id);
                 if ($answer !== null) {

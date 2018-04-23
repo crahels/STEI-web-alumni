@@ -120,7 +120,7 @@
                             <p style="font-size: 1.3em">{{$question->body}}</p>
                             <small>
                                 <i>
-                                    Written on {{$question->created_at}} by {{$question->name}}
+                                    Written on {{$question->created_at}} by {{$question->member->name}}
                                 </i>
                             </small>
                             <br>
@@ -137,7 +137,7 @@
                                     <p>{{$answer->body}}</p>
                                     <a href="/answers/{{$answer->id}}">
                                         <small>
-                                            Written on {{$answer->created_at}} by {{$answer->user->name}} <span>@if($answer->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
+                                            Written on {{$answer->created_at}} by {{$answer->member->name}} <span>@if($answer->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
                                         </small>
                                     </a>
                                     <br>

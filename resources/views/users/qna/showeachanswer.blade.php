@@ -4,7 +4,7 @@
 <div class="body-qna">
     <section class="services-section text-center">
         <div class="section-title">
-            <h3>&nbsp;{{$answer->user->name}}'s Answer </h3>
+            <h3>&nbsp;{{$answer->member->name}}'s Answer </h3>
         </div>
     </section>
     <div class="qna-container">
@@ -43,12 +43,12 @@
                     </tr>
                     <tr>
                         <td>Written By</td>
-                        <td>:&nbsp;{{$answer->user->name}}<span>@if($answer->is_admin == 1) <span>as <span style="color:blue;">admin</span></span>@endif</span></td>
+                        <td>:&nbsp;{{$answer->member->name}}<span>@if($answer->is_admin == 1) <span>as <span style="color:blue;">admin</span></span>@endif</span></td>
                     </tr>
                 <tbody>
             </table>
 
-        @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $answer->user->id == Auth::guard('member')->user()->id && $answer->is_admin == 0))
+        @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $answer->member->id == Auth::guard('member')->user()->id && $answer->is_admin == 0))
             <a href="/answers/{{$answer->id}}/edit" class="pull-left btn btn-warning" style="margin-right: 10px">
                 Edit
             </a>

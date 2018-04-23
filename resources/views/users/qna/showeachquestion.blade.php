@@ -12,9 +12,9 @@
                         <div class="footer-article"><hr>
                             <small>Written on {{$question->created_at}}</small><br>
                             <small>Last Editted on {{$question->updated_at}}</small><br>
-                            <small>by {{$question->user->name}}</small><hr>
+                            <small>by {{$question->member->name}}</small><hr>
                         </div>
-                        @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $question->user->id == Auth::guard('member')->user()->id && $question->is_admin == 0))
+                        @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $question->member->id == Auth::guard('member')->user()->id && $question->is_admin == 0))
                             <a href="/questions/{{$question->id}}/edit" class="pull-left btn btn-warning">Edit</a>
                             {!!Form::open(['action' => ['QuestionsController@destroy', $question->id], 'method' => 'POST', 'class' => 'pull-left', 'style' => 'margin-left: 20px'])!!}
                                 {{Form::hidden('_method', 'DELETE')}}
@@ -50,8 +50,8 @@
                                         {{$answer->rating}}
                                     </span>
                                     @if(Auth::guard('member')->user() != null)
-                                        {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id], 'method' => 'POST']) !!}
-                                        @if ($answer->users->contains(Auth::guard('member')->user()->id)) 
+                                        {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id, 1], 'method' => 'POST']) !!}
+                                        @if ($answer->members->contains(Auth::guard('member')->user()->id)) 
                                             {{Form::submit('VOTE', ['class' => 'btn'])}}
                                         @else
                                             {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
@@ -73,7 +73,7 @@
                                 <p>{{$answer->body}}</p>
                                 <a href="/answers/{{$answer->id}}">
                                     <small>
-                                        Written on {{$answer->created_at}} by {{$answer->user->name}} <span>@if($answer->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
+                                        Written on {{$answer->created_at}} by {{$answer->member->name}} <span>@if($answer->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
                                     </small>
                                 </a>
                                 <br>
