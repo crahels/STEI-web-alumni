@@ -163,8 +163,8 @@
     </div>
  
     <section id="profile">
-        <div class="row">
-            <div class="col-12 edit-profile-button" style="padding: 1em 2em 0 0">
+        <div>
+            <div class="section pull-right" style="padding: 1em 2em 0 0">
                 @if((Auth::user() != null && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $userdata[3]->id))
                     <a href="/members/{{$userdata[3]->id}}/edit" data-original-title="Edit this user" 
                         data-toggle="tooltip" type="button" class="btn btn-sm btn-warning" style="margin-bottom: 1em">
