@@ -261,10 +261,10 @@ class ArticleTest extends TestCase
 
         $response = $this->actingAs($user)
                          ->visit('admin/posts')
-                         ->see('Post for Testing 2')
-                         ->see('Post for Testing 4')
                          ->see('Post for Testing 1')
-                         ->see('Post for Testing 3');
+                         ->see('Post for Testing 2')
+                         ->see('Post for Testing 3')
+                         ->see('Post for Testing 4');
 
         $post_first->delete();
         $post_second->delete();
