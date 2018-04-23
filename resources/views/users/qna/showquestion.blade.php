@@ -152,7 +152,13 @@
             @endforeach
             <ul class="pagination pull-right">{{$questions->links()}}</ul>
         @else
-            <span> No question </span>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="well question-container col-8 text-center" style="font-size: 1.5em; font-weight: bolder;">
+                No Question
+            </div>
+            <div class="col-2"></div>
+        </div>
         @endif
     </div>
 </div>
