@@ -1,3 +1,7 @@
+.sidebar-box li {
+  max-height: 48px;
+}
+
 /* The switch - the box around the slider */
 .switch {
 	position: relative;
