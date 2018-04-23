@@ -7,6 +7,10 @@ variables:
   MYSQL_DATABASE: web_alumni_stei_test
   MYSQL_ROOT_PASSWORD: web_alumni
 
+stages:
+  - test
+  - deploy
+
 cache:
   paths:
   - vendor/
@@ -50,6 +54,23 @@ before_script:
   - php artisan db:seed
 
 test:
+  stage: test
   script:
-  - php vendor/bin/phpunit --coverage-text --colors=never 
-  # - npm test
+    - php vendor/bin/phpunit --coverage-text --coverage-html 
+  artifacts:
+    paths:
+    - report/
+
+pages:
+  stage: deploy
+  dependencies:
+    - test
+  script:
+    - mkdir public
+    - mv report/* public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30days
+  only:
+    - test_ci
