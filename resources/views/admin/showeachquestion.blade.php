@@ -18,7 +18,7 @@
                 <small class="text-footer">by <a href="/admin/members/{{$question->member_id}}">{{$question->member->name}}</a></small>
             @endif
             @if ($question->is_anon == 1)
-                anonymously
+                <span class="text-footer">anonymously</span>
             @endif
             <hr>
         </div>
