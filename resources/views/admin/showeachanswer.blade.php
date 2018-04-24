@@ -42,7 +42,7 @@
                     <tr>
                         <td>Written By</td>
                         @if ($answer->is_admin == 1)
-                            <td>:&nbsp;{{$answer->user->name}} as <span style="color:blue;">admin</span></td>
+                            <td>:&nbsp;{{$answer->user->name}} as <span style="color:red;">admin</span></td>
                         @else
                             <td>:&nbsp;{{$answer->member->name}}</td>
                         @endif
@@ -59,8 +59,6 @@
                 {{Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure you want to delete?')"])}}
             {!!Form::close() !!}
         @endif
-        <!--<br><br><br>
-        <a href="/admin/questions" class="btn btn-info pull-down">&#8592; Back</a>-->
     </div>
 </div>
 @endsection

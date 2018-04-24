@@ -27,9 +27,15 @@
                 <li class="hidden">
                     <a href="#page-top"></a>
                 </li>   
-                <li>
-                    <a href="/">Home</a>
-                </li>
+                @if(Request::is('/'))
+                    <li class="on-page" id="home-navbar">
+                        <a href="/">Home</a>
+                    </li>
+                @else
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                @endif
                 <li>
                     @if (Request::is('/'))
                         <a class="page-scroll" href="#service">Services</a>
