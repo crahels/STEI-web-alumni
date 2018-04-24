@@ -16,7 +16,7 @@ class MembersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin', ['except' => ['show', 'edit', 'update']]);
+        //$this->middleware('admin', ['except' => ['show', 'edit', 'update']]);
     }
 
     /**
@@ -36,7 +36,7 @@ class MembersController extends Controller
         if ($isAdmin) {
             return view('members.list')->with('members', $members);
         } else {
-            //return blabla;
+            return view('showmember')->with('members', $members);
         }
         
     }
