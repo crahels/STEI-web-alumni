@@ -16,15 +16,11 @@
                                 @if ($question->is_anon == 1)
                                     by Anonymous
                                 @else
-                                    @if ($question->is_admin == 1)
-                                        by {{$question->user->name}} as <span style="color:blue;">admin</span>
-                                    @else
-                                        by <a href="/members/{{$question->member->id}}">{{$question->member->name}}</a>
-                                    @endif
+                                    by <a href="/members/{{$question->member->id}}">{{$question->member->name}}</a>
                                 @endif
                             </small>
                         </div>
-                        @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $question->member_id == Auth::guard('member')->user()->id && $question->is_admin == 0))
+                        @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $question->member->id == Auth::guard('member')->user()->id && $question->is_admin == 0))
                             <div style="margin-top: 20px">
                                 <a href="/questions/{{$question->id}}/edit" class="pull-left btn btn-warning">Edit</a>
                                 {!!Form::open(['action' => ['QuestionsController@destroy', $question->id], 'method' => 'POST', 'class' => 'pull-left', 'style' => 'margin-left: 20px'])!!}
@@ -64,7 +60,7 @@
                                     @if(Auth::guard('member')->user() != null)
                                         {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id, 1], 'method' => 'POST']) !!}
                                         @if ($answer->members->contains(Auth::guard('member')->user()->id)) 
-                                            {{Form::submit('VOTED', ['class' => 'btn'])}}
+                                            {{Form::submit('VOTE', ['class' => 'btn'])}}
                                         @else
                                             {{Form::submit('VOTE', ['class' => 'btn btn-warning'])}}
                                         @endif
@@ -85,12 +81,7 @@
                                 <p style="word-wrap: break-word;">{{$answer->body}}</p>
                                 <a href="/answers/{{$answer->id}}">
                                     <small>
-                                        Written on {{$answer->created_at}}<br> 
-                                        @if ($answer->is_admin == 1)
-                                            by {{$answer->user->name}} as <span style="color:blue;">admin</span>
-                                        @else
-                                            by <a href="/members/{{$answer->member->id}}">{{$answer->member->name}}</a>
-                                        @endif
+                                        Written on {{$answer->created_at}} by <a href="/members/{{$answer->member->id}}">{{$answer->member->name}}</a> <span>@if($answer->is_admin == 1)<span>as <span style="color:blue;">admin</span></span>@endif</span>
                                     </small>
                                 </a>
                                 <br>
