@@ -56,7 +56,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="index">
+<body class="index" onscroll="scrollDetector()">
     @include('inc.navbarhome')
     <div id="loader">
         <div class="spinner">
@@ -99,5 +99,10 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('template/js/script.js') }}"></script>
+    <script>
+        function scrollDetector() {
+            document.getElementById("home-navbar").classList.remove('on-page');
+        }
+    </script>
 </body>
 </html>
