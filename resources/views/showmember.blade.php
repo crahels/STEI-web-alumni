@@ -1,6 +1,6 @@
 @extends('layouts.apphome')
 
-@section('title', 'Posts')
+@section('title', 'Show Members')
 
 @section('content')
 Menampilkan member2 semua yeyyyy

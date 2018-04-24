@@ -21,8 +21,6 @@ Route::get('/about', function () {
 	return view('about');
 });
 
-Route::resource('members', 'MembersController');
-
 Route::post('/importcsv','AddMemberController@importCSV');
 Route::post('/importmember','AddMemberController@importMember');
 
