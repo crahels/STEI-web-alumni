@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-12 post-card">
                             <h3 class="title-question"><a href="/admin/questions/{{$question->id}}">{{$question->topic}}</a></h3>
-                            <p>{{$question->body}}</p>
+                            <p style="word-wrap: break-word;">{{$question->body}}</p>
                             <small class="text-footer">
                                 <i>
                                     @if ($question->is_admin == 1)
@@ -29,7 +29,7 @@
                                         Written on {{$question->created_at->format('d M Y')}}<br>by {{$question->member->name}}
                                     @endif
                                     @if ($question->is_anon == 1)
-                                        (anon)
+                                        Anonymous
                                     @endif
                                 </i>
                             </small>
@@ -72,7 +72,7 @@
                                 </div>
         
                                 <div class="col-8 pull-right">
-                                    <p>{{$answer->body}}</p>
+                                    <p style="word-wrap: break-word;">{{$answer->body}}</p>
                                     <a href="/admin/answers/{{$answer->id}}">
                                         <small class="text-footer">
                                             @if ($answer->is_admin == 1) 

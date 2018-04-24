@@ -15,7 +15,7 @@
         @endif
     </span>  
     
-    <div class="body-article">
+    <div class="body-article" style="word-wrap: break-word;">
         {!!$post->body!!}
     </div>
 

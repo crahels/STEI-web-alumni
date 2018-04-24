@@ -18,14 +18,14 @@
                 <tbody>
                     <tr>
                         <td>Topic</td>
-                        <td>:&nbsp;{{$answer->question->topic}}</td>
+                        <td style="word-wrap: break-word;">:&nbsp;{{$answer->question->topic}}</td>
                     </tr>
                         <td>Question's Body</td>
-                        <td>:&nbsp;{{$answer->question->body}}</td>                            
+                        <td style="word-wrap: break-word;">:&nbsp;{{$answer->question->body}}</td>                            
                     </tr>
                     <tr>
                         <td>Answer's Body</td>
-                        <td>:&nbsp;{{$answer->body}}</td>
+                        <td style="word-wrap: break-word;">:&nbsp;{{$answer->body}}</td>
                     </tr>
                     <tr>
                         <td>Votes</td>
@@ -50,19 +50,6 @@
                 <tbody>
             </table>
         </div>
-        <!--<div class="body-article" style="font-size:1.5em;">Answer of Question "{{$answer->question->topic}}: {{$answer->question->body}}"</div>
-
-        <div class="body-article" style="font-size:1.5em;">
-            {{$answer->body}}
-        </div>-->
-    
-        <!--<div class="footer-article">
-            <hr>
-            <small>Written on {{$answer->created_at}}</small><br>
-            <small>Last Editted on {{$answer->updated_at}}</small><br>
-            <small>by {{$answer->user->name}}<span>@if($answer->is_admin == 1) <span>as <span style="color:blue;">admin</span></span>@endif</span></small>
-            <hr>
-        </div>-->
         @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $answer->member->id == Auth::guard('member')->user()->id && $answer->is_admin == 0))
             <a href="/admin/answers/{{$answer->id}}/edit" class="btn btn-warning">
                 Edit

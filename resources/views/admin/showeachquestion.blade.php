@@ -4,8 +4,7 @@
 <div class="row show-question">
     <div class="col-3 left-question">
         <h1 class="title-question">{{$question->topic}}</h1>
-
-        <div>
+        <div style="word-wrap: break-word;">
             {{$question->body}}
         </div>
 
@@ -68,7 +67,7 @@
                         </div>
 
                         <div class="col-9 pull-right">
-                            <p>{{$answer->body}}</p>
+                            <p style="word-wrap: break-word;">{{$answer->body}}</p>
                             <a href="/admin/answers/{{$answer->id}}">
                                 <small class="text-footer">
                                     @if ($answer->is_admin == 1)
