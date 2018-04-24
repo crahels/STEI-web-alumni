@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-  
     <span>
         <h1 class="post-title">{{$post->title}}</h1>
         @if(!Auth::guest() && Auth::user()->IsAdmin == 1)
+            <br>
             <h5 class="post-title">&nbsp;
                 @if ($post->draft == '1')
                     <span style="color:red;">Draft</span>
@@ -13,12 +13,11 @@
                 @endif
             </h5>
         @endif
-    </span>  
-    
+    </span>
+    <hr>
     <div class="body-article" style="word-wrap: break-word;">
         {!!$post->body!!}
     </div>
-
     <div class="footer-article">
         <hr>
         @if(!Auth::guest() && Auth::user()->IsAdmin == 1)
