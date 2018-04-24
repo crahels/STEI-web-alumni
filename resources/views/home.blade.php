@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Fame - One Page Multipurpose Bootstrap Theme</title>
+    <title>Web Alumni STEI</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('template/asset/css/bootstrap.css') }}" rel="stylesheet">

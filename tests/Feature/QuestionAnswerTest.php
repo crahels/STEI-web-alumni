@@ -18,7 +18,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testAddQuestionSuccess()
+    public function testAddQuestionAdminSuccess()
     {
         $user = factory(User::class)->create();
         
@@ -42,7 +42,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testAddQuestionWithoutTopic()
+    public function testAddQuestionAdminWithoutTopic()
     {
         $user = factory(User::class)->create();
         
@@ -63,7 +63,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testAddQuestionWithoutBody()
+    public function testAddQuestionAdminWithoutBody()
     {
         $user = factory(User::class)->create();
         
@@ -84,7 +84,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testAddQuestionWithoutBodyTopic()
+    public function testAddQuestionAdminWithoutBodyTopic()
     {
         $user = factory(User::class)->create();
         
@@ -106,7 +106,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testShowQuestion()
+    public function testShowQuestionAdmin()
     {
         $user = factory(User::class)->create();
         
@@ -132,7 +132,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testEditQuestionSuccess()
+    public function testEditQuestionAdminSuccess()
     {
         $user = factory(User::class)->create();
         $question = factory(question::class)->create([
@@ -158,7 +158,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testEditQuestionWithoutTopic()
+    public function testEditQuestionAdminWithoutTopic()
     {
         $user = factory(User::class)->create();
         $question = factory(question::class)->create([
@@ -183,7 +183,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testEditQuestionWithoutBody()
+    public function testEditQuestionAdminWithoutBody()
     {
         $user = factory(User::class)->create();
         $question = factory(question::class)->create([
@@ -208,7 +208,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testEditQuestionWithoutBodyTopic()
+    public function testEditQuestionAdminWithoutBodyTopic()
     {
         $user = factory(User::class)->create();
         $question = factory(question::class)->create([
@@ -234,7 +234,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testShowAnswer()
+    public function testShowAnswerAdmin()
     {
         $user = factory(User::class)->create();
         $question = factory(question::class)->create([
@@ -260,7 +260,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testEditAnswerPin()
+    public function testEditAnswerPinAdmin()
     {
         $user = factory(User::class)->create();
         $question = factory(question::class)->create([
@@ -304,7 +304,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testEditAnswerUnpinned()
+    public function testEditAnswerUnpinnedAdmin()
     {
         $user = factory(User::class)->create();
         $question = factory(question::class)->create([
@@ -348,7 +348,7 @@ class QuestionAnswerTest extends TestCase
      *
      * @return void
      */
-    public function testEditAnswerWithoutBody()
+    public function testEditAnswerAdminWithoutBody()
     {
         $user = factory(User::class)->create();
         $question = factory(question::class)->create([
