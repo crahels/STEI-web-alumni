@@ -665,7 +665,15 @@ li {
     
     #main-slide .slider-content h1{
 		font-size: 68px;
-	}
+    }
+    
+    #main-slide .item {
+        height: 600px;
+    }
+
+    #main-slide .item img {
+        height: 600px;
+    }
 }
 
 
@@ -689,7 +697,11 @@ li {
 	}
     
     #main-slide .item {
-        height: 550px;
+        height: 500px;
+    }
+
+    #main-slide .item img {
+        height: 500px;
     }
     
 }
@@ -700,7 +712,7 @@ li {
     #main-slide .slider-content h1{
 		font-size: 28px;
 		line-height: normal;
-		margin-bottom: 0;
+		margin-bottom: 3%;
 	}
 	#main-slide .slider-content p{
 		font-size: 14px;
@@ -712,30 +724,53 @@ li {
 		font-size: 12px;
 	}
 	#main-slide .carousel-indicators{
-		display: none;
+		display: block;
 	}
     
     #main-slide .item .slider-content{
-		display: none;
+		display: block;
 	}
     
     #main-slide .item {
-        height: 400px;
+        height: 450px;
+    }
+
+    #main-slide .item img {
+        height: 450px;
     }
     
 }
 
 
 @media (max-width : 479px) {
-    
-    #main-slide .item .slider-content{
-		display: none;
-	}
-    
+
     #main-slide .item {
-        height: 180px;
+        height: 470px;
     }
     
+    #main-slide .item .slider-content{
+		display: block;
+    }
+
+    #main-slide .item img {
+        height: 470px;
+    }
+
+    #main-slide .slider-content{
+        top: 40%;
+    }
+
+    #main-slide .slider-content p {
+        margin-bottom: 0;
+    }
+
+    .btn-primary {
+        margin-top: 5%;
+    }
+
+    .slider.btn {
+        margin-top: 5%; 
+    }
 }
 
 
@@ -1369,7 +1404,7 @@ and (min-width : 551px){
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    padding-top: 80px;
+    padding: 80px 0 120px 0;
 }
 
 .contact .btn-primary {
@@ -1471,9 +1506,8 @@ and (min-width : 551px){
 /*-------------------------------------------------------*/
 
 footer.style-1 {
-    margin-top: 100px;
     padding: 25px 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: #222;
 }
 
 footer.style-1 .copyright {
@@ -1513,7 +1547,6 @@ footer.style-1 .footer-link li {
     padding-left: 10px;
     font-size: 13px;
 }
-
 
 .btn:focus,
 .btn:active,
@@ -1648,6 +1681,7 @@ footer.style-1 .footer-link li {
     padding: 0 2px;
     opacity: 0;
     text-align: center;
+    min-height: 300px;
 }
 
 .team-member:hover .team-details {
@@ -2073,4 +2107,78 @@ a>.on-page>.active {
 .question-container {
 	border-radius: 0px;
 	background-color: white;
+}
+
+/*-----------------------------------------------*/
+/* Profile 		 								 */
+/* By: Stevanno									 */	
+/*-----------------------------------------------*/
+
+#profile {
+	min-height: 500px;
+}
+
+.user-info-left {
+  font-weight: bolder;
+  font-size: 1.1em;
+}
+
+/* SLIDER TOOGLE */
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 40px;
+	height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 15px;
+width: 15px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+input:checked + .slider {
+background-color: #2196F3;
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(19px);
+-ms-transform: translateX(19px);
+transform: translateX(19px);
+}
+
+/* Rounded sliders */
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
 }
