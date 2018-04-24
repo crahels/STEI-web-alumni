@@ -1,7 +1,7 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light ">
     <div class="container">
         <img src="{{URL::asset('storage/logo_itb.png')}}" alt="logo_ins">
-        <a class="navbar-brand" href="/admin/">
+        <a class="navbar-brand" href="/admin/dashboard">
             <i style="font-weight: lighter; font-style: initial;" class="web-alumni">Web Alumni</i>
             <b class="stei">STEI</b>
         </a>
