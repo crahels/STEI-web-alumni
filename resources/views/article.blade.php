@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-title text-center">
-                        <h3>Welcome to Alumni STEI Forum</h3>
-                        <p>Question & Answer</p>
+                        <h3>Welcome to Alumni STEI Article</h3>
+                        <p>Get most updated news about Alumni STEI here</p>
                     </div>
                 </div>
             </div>
