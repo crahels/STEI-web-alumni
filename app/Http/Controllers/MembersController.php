@@ -26,8 +26,19 @@ class MembersController extends Controller
      */
     public function index()
     {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+
         $members = Member::orderBy('nim','asc')->paginate(20);
-        return view('members.list')->with('members', $members);
+        if ($isAdmin) {
+            return view('members.list')->with('members', $members);
+        } else {
+            //return blabla;
+        }
+        
     }
 
     /**

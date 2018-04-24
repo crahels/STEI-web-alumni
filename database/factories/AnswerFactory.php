@@ -8,6 +8,7 @@ $factory->define(App\Answer::class, function (Faker $faker) {
         'body' => 'Answer for Testing',
         'is_admin' => 1,
         'member_id' => -1,
+        'user_id' => -1,
         'is_pinned' => 0
     ];
 });

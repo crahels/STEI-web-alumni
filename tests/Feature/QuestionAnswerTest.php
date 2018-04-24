@@ -10,6 +10,7 @@ use App\Question;
 use App\User;
 use App\Member;
 use App\Answer;
+use \Auth;
 
 class QuestionAnswerTest extends TestCase
 {
@@ -115,15 +116,18 @@ class QuestionAnswerTest extends TestCase
                          ->type('Question for Testing', 'topic')
                          ->type('Is This Question One?', 'body')
                          ->press('Add')
-                         ->see('Question Added')
-                         ->click('Question for Testing')
+                         ->see('Question Added');
+        
+        $dummy = Question::where('topic', 'Question for Testing')->first();
+        $written_on = 'Written on ' . $dummy->created_at->format('d M Y');
+        $response = $this->actingAs($user)
+                         ->visit('admin/questions')
+                         ->click($written_on)
                          ->see('Written on')
                          ->see('Last Editted on')
                          ->see('by');
         
-        $dummy = Question::where('topic', 'Question for Testing')->first();
         $dummy->delete();
-
         $user->delete();
     }
 
@@ -373,4 +377,262 @@ class QuestionAnswerTest extends TestCase
         $question->delete();
         $user->delete();
     }
+
+    /**
+     * test show question
+     *
+     * @return void
+     */
+    public function testShowEditQuestion()
+    {
+        $member = factory(Member::class)->create();
+
+        $question = factory(question::class)->create([
+            'is_admin' => 0,
+            'member_id' => $member->id
+        ]);
+        
+        Auth::guard('member')->login($member);
+        $response = $this->visit('/questions')
+                         ->click($question->topic)
+                         ->seePageIs('questions/' . $question->id)
+                         ->click('Edit')
+                         ->seePageIs('questions/' . $question->id . '/edit')
+                         ->type($question->topic . ' Editted', 'topic')
+                         ->type($question->body . ' Editted', 'body')
+                         ->check('anon')
+                         ->press('Submit')
+                         ->seePageIs('questions/' . $question->id)
+                         ->see($question->topic . ' Editted')
+                         ->see($question->body . ' Editted');
+        
+        $question->delete();
+        $member->delete();
+    }
+
+    public function testAddQuestionAnon()
+    {
+        $member = factory(Member::class)->create();
+        $question = factory(question::class)->make();
+
+        Auth::guard('member')->login($member);
+        $response = $this->visit('/questions/create')
+                         ->type($question->body, 'body')
+                         ->type($question->topic, 'topic')
+                         ->check('anon')
+                         ->press('Submit')
+                         ->seePageIs('/questions')
+                         ->see('by Anonymous');
+        
+        $dummy = Question::where('body', $question->body)->first();
+        $dummy->delete();
+        $member->delete();
+    }
+
+    /**
+     * test show question
+     *
+     * @return void
+     */
+    public function testShowEditQuestionOthers()
+    {
+        $member = factory(Member::class)->create();
+        $member_dummy = factory(Member::class)->create();
+
+        $question = factory(question::class)->create([
+            'is_admin' => 0,
+            'member_id' => $member_dummy->id
+        ]);
+        
+        Auth::guard('member')->login($member);
+        $response = $this->visit('questions')
+                         ->click($question->topic)
+                         ->seePageIs('questions/' . $question->id)
+                         ->dontSee('Delete');
+        
+        $response = $this->visit('questions/' . $question->id . '/edit')
+                         ->seePageIs('/');
+
+        $question->delete();
+        $member->delete();
+        $member_dummy->delete();
+    }
+
+    /**
+     * test show question edit
+     *
+     * @return void
+     */
+    public function testShowQuestionVoteAnswer()
+    {
+        $user = factory(User::class)->create();
+        $member = factory(Member::class)->create();
+
+        $question = factory(question::class)->create([
+            'user_id' => $user->id
+        ]);
+        $answer = factory(answer::class)->create([
+            'is_admin' => 0,
+            'member_id' => $member->id,
+            'question_id' => $question->id
+        ]);
+        
+        Auth::guard('member')->login($member);
+        $response = $this->visit('questions')
+                         ->click($question->topic)
+                         ->seePageIs('questions/' . $question->id)
+                         ->see($answer->body)
+                         ->press('VOTE')
+                         ->seePageIs('questions/' . $question->id)
+                         ->see('VOTED')
+                         ->see('1');
+        
+        $answer->delete();
+        $question->delete();
+        $user->delete();
+        $member->delete();
+    }
+
+    /**
+     * test show question vote
+     *
+     * @return void
+     */
+    public function testShowQuestionVoteUnvote()
+    {
+        $user = factory(User::class)->create();
+        $member = factory(Member::class)->create();
+
+        $question = factory(question::class)->create([
+            'user_id' => $user->id
+        ]);
+        $answer = factory(answer::class)->create([
+            'is_admin' => 0,
+            'member_id' => $member->id,
+            'question_id' => $question->id
+        ]);
+        
+        Auth::guard('member')->login($member);
+        $response = $this->visit('questions')
+                         ->click($question->topic)
+                         ->seePageIs('questions/' . $question->id)
+                         ->see($answer->body)
+                         ->press('VOTE')
+                         ->seePageIs('questions/' . $question->id)
+                         ->see('VOTED')
+                         ->see('1')
+                         ->press('VOTED')
+                         ->seePageIs('questions/' . $question->id)
+                         ->see('VOTE')
+                         ->see('0');
+        
+        $answer->delete();
+        $question->delete();
+        $user->delete();
+        $member->delete();
+    }
+
+    /**
+     * test show question add answer
+     *
+     * @return void
+     */
+    public function testShowQuestionAddAnswer()
+    {
+        $user = factory(User::class)->create();
+        $member = factory(Member::class)->create();
+
+        $question = factory(question::class)->create([
+            'user_id' => $user->id
+        ]);
+            
+        $answer = factory(answer::class)->make();
+        
+        Auth::guard('member')->login($member);
+        $response = $this->visit('questions')
+                         ->click($question->topic)
+                         ->seePageIs('questions/' . $question->id)
+                         ->type($answer->body, 'body')
+                         ->press('Submit')
+                         ->seePageIs('questions/' . $question->id)
+                         ->see($answer->body);
+        
+        $dummy = Answer::where('body', $answer->body)->first();
+        $dummy->delete();
+        $question->delete();
+        $user->delete();
+        $member->delete();
+    }
+
+    /**
+     * test show answer
+     *
+     * @return void
+     */
+    public function testShowEditAnswer()
+    {
+        $user = factory(User::class)->create();
+        $member = factory(Member::class)->create();
+
+        $question = factory(question::class)->create([
+            'user_id' => $user->id
+        ]);
+        $answer = factory(answer::class)->create([
+            'is_admin' => 0,
+            'member_id' => $member->id,
+            'question_id' => $question->id
+        ]);
+        
+        Auth::guard('member')->login($member);
+        $response = $this->visit('answers/' . $answer->id)
+                         ->click('Edit')
+                         ->seePageIs('answers/' . $answer->id . '/edit')
+                         ->see($question->body)
+                         ->type($answer->body . ' Editted', 'body')
+                         ->press('Submit')
+                         ->seePageIs('answers/' . $answer->id)
+                         ->see($question->topic)
+                         ->see($question->body)
+                         ->see($answer->body . ' Editted');
+        
+        $answer->delete();
+        $question->delete();
+        $user->delete();
+        $member->delete();
+    }
+
+    /**
+     * test show question
+     *
+     * @return void
+     */
+    public function testShowEditAnswerOthers()
+    {
+        $member = factory(Member::class)->create();
+        $member_dummy = factory(Member::class)->create();
+
+        $question = factory(question::class)->create([
+            'member_id' => $member->id,
+            'is_admin' => 0
+        ]);
+
+        $answer = factory(answer::class)->create([
+            'is_admin' => 0,
+            'member_id' => $member_dummy->id,
+            'question_id' => $question->id
+        ]);
+        
+        Auth::guard('member')->login($member);
+        $response = $this->visit('answers/' . $answer->id)
+                         ->dontSee('Delete');
+        
+        $response = $this->visit('answers/' . $answer->id . '/edit')
+                         ->seePageIs('/');
+        
+        $answer->delete();
+        $question->delete();
+        $member->delete();
+        $member_dummy->delete();
+    }
+    
 }
