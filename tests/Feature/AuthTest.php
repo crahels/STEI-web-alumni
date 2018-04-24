@@ -219,7 +219,7 @@ class AuthTest extends TestCase
 
         $response = $this->get('admin/members/' . $member->id);
 
-        $response->assertResponseStatus(200);
+        $response->assertResponseStatus(302);
 
         $response = $this->get('admin/members/' . $member->id . '/edit');
 

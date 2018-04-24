@@ -87,7 +87,7 @@ Route::group( [ 'prefix' => 'admin' ], function()
 	Route::post('/importcsv','AddMemberController@importCSV');
 	Route::post('/importmember','AddMemberController@importMember');
 
-	Route::post('/answers/rate/{answer}/{user}', 'AnswersController@giveRating');
+	Route::post('/answers/rate/{answer}/{user}/{each}', 'AnswersController@giveRating');
 	Route::post('/answers/pin/{answer}/{question}/{each}', 'AnswersController@givePin');
 	Route::get('/answers/add/{question}', 'AnswersController@giveAnswer');
 	Route::get('/dashboard', 'DashboardController@index');

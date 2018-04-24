@@ -28,11 +28,22 @@
                     <a href="#page-top"></a>
                 </li>   
                 <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
                     @if (Request::is('/'))
-                        {{-- nothing --}}
-                    @else
-                        <a href="/">Home</a>
-                    @endif
+                        <a class="page-scroll" href="#service">Services</a>
+                    @endif       
+                </li>
+                <li>
+                    @if (Request::is('/'))
+                        <a class="page-scroll" href="#team">New member</a>
+                    @endif                       
+                </li>
+                <li>
+                    @if (Request::is('/'))
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    @endif        
                 </li>
 
                 {{-- Article --}}
@@ -69,21 +80,6 @@
                         <a class="page-scroll" href="/about">About</a>
                     </li>
                 @endif
-                <li>
-                    @if (Request::is('/'))
-                        <a class="page-scroll" href="#service">Services</a>
-                    @endif       
-                </li>
-                <li>
-                    @if (Request::is('/'))
-                        <a class="page-scroll" href="#team">New member</a>
-                    @endif                       
-                </li>
-                <li>
-                    @if (Request::is('/'))
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    @endif        
-                </li>
             </ul>
 
             <!-- Login Dropdown -->
@@ -91,9 +87,9 @@
                 <!-- Authentication Links -->
                 @guest
                     @if(Auth::guard('member')->user() != null)
-                        <li class="nav-item dropdown" style="min-width: 300px">
+                        <li class="nav-item dropdown" style="min-width: 0">
                             <a id="navbarDropdown login-dropdown" class="nav-link dropdown-toggle login" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <span class="pull-right">{{Auth::guard('member')->user()->name}}</span>
+                                <span>{{Auth::guard('member')->user()->name}}</span>
                             </a>
 
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

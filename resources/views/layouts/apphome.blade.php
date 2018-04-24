@@ -65,6 +65,18 @@
         </div>
     </div>
     @yield('content')
+    <footer class="style-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 footer-left-position">
+                    <span class="copyright">Copyright &copy; 2018 <a href="https://themefisher.com/">ThemeFisher</a></span>
+                </div>
+                <div class="col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-xs-12 footer-right-position">
+                    <span class="copyright">Developed by <strong>STEI-ITB</strong> © 2018</span>
+                </div>
+            </div>
+        </div>
+    </footer>
     <!-- jQuery Version 2.1.1 -->
     <script src="{{ asset('template/js/jquery-2.1.1.min.js') }}"></script>
 

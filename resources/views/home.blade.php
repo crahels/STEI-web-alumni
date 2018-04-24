@@ -15,15 +15,17 @@
                 <li data-target="#main-slide" data-slide-to="0" class="active"></li>
                 <li data-target="#main-slide" data-slide-to="1"></li>
                 <li data-target="#main-slide" data-slide-to="2"></li>
-                <li data-target="#main-slide" data-slide-to="3"></li>
-                <li data-target="#main-slide" data-slide-to="4"></li>
+                @if ((Auth::user() != null) || (Auth::guard('member')->user() != null))
+                    <li data-target="#main-slide" data-slide-to="3"></li>
+                    <li data-target="#main-slide" data-slide-to="4"></li>
+                @endif
             </ol>
             <!--/ Indicators end-->
 
             <!-- Carousel inner -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img class="img-responsive" src="{{ asset('template/images/header-bg-1.jpg') }}" alt="slider">
+                    <img class="img-responsive" src="{{ asset('template/images/banner.jpg') }}" alt="slider">
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
                             <h1 class="animated3">
@@ -41,9 +43,9 @@
                         $i = 0;
                     @endphp
                     @foreach ($homedata[0] as $post)
-                        @if ($i < 3)
+                        @if ($i < 1)
                             <div class="item overlay">
-                                <img class="img-responsive-article" src="/storage/cover_images/{{$post->cover_image}}" alt="slider">
+                                <img class="img-responsive-article" src="{{ asset('template/images/article.jpg') }}" alt="slider">
                                 <div class="slider-content">
                                     <div class="col-md-12 text-center">
                                         <h1 class="animated1">
@@ -63,17 +65,61 @@
                     @endforeach
                 @endif
                 
-                <div class="item">
-                    <img class="img-responsive" src="{{ asset('template/images/galaxy.jpg') }}" alt="slider">
+                <div class="item overlay">
+                    <img class="img-responsive-article" src="{{ asset('template/images/view-more-article.jpg') }}" alt="slider">
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
                             <h1 class="animated2">
                                 <span>View more <strong>Article</strong></span>
                             </h1>
-                             <a class="animated3 slider btn btn-primary btn-min-block" href="/article">Click me</a>
+                            <a class="page-scroll btn btn-primary animated3" href="/article">View</a>
                         </div>
                     </div>
                 </div>
+
+                @if ((Auth::user() != null) || (Auth::guard('member')->user() != null))
+                    @if (count($homedata[2]) > 0)
+                        @php
+                            $i = 0;
+                        @endphp
+                        @foreach ($homedata[2] as $question)
+                            @if ($i < 1)
+                                <div class="item overlay">
+                                    <img class="img-responsive-article" src="{{ asset('template/images/question.jpg') }}" alt="slider">
+                                    <div class="slider-content">
+                                        <div class="col-md-12 text-center">
+                                            <h1 class="animated1">
+                                                <span>{{$question->topic}}</span>
+                                            </h1>
+                                            <p class="animated2">BBB</p>
+                                            <a href="/questions/{{$question->id}}" class="page-scroll btn btn-primary animated3">View question</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @php
+                                    $i = $i + 1;
+                                @endphp
+                            @else
+                                @break
+                            @endif
+                        @endforeach
+                    @endif
+                @endif
+
+                @if ((Auth::user() != null) || (Auth::guard('member')->user() != null))
+                <div class="item overlay">
+                    <img class="img-responsive-article" src="{{ asset('template/images/view-more-questions.jpg') }}" alt="slider">
+                    <div class="slider-content">
+                        <div class="col-md-12 text-center">
+                            <h1 class="animated2">
+                                <span>View <strong>Forum</strong></span>
+                            </h1>
+                            <p class="animated2">Anda bisa mengirimkan pertanyaan pada forum alumni STEI-ITB</p>
+                            <a class="page-scroll btn btn-primary animated3" href="/questions">Visit</a>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 <!--/ Carousel item end -->
             </div>
             <!-- Carousel inner end-->
@@ -237,7 +283,7 @@
                     <div class="counter-item">
                     <i class="fa fa-comments"></i>
                     <div class="timer" id="item3" data-to="{{count($homedata[2])}}" data-speed="2500"></div>
-                    <h5>Forum</h5>                               
+                    <h5>Questions</h5>                               
                     </div>
                 </div>
             </div>
@@ -398,29 +444,6 @@
                 </div>
             </div>
         </div>
-        <footer class="style-1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-xs-12">
-                        <span class="copyright">Copyright &copy; 2018 <a href="https://themefisher.com/">ThemeFisher</a></span>
-                    </div>
-                    <div class="col-md-4 col-xs-12">
-                        <div class="footer-social text-center">
-                            <ul>
-                                {{-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li> --}}
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-xs-12" style="text-align: right">
-                        <span class="copyright">Developed by <strong>STEI-ITB</strong> © 2018</span>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </section>
     <script>
     // When the user clicks on div, open the popup
