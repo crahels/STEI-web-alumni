@@ -157,7 +157,7 @@ li {
     color: #fff;
 }
 
-@media(min-width:768px) {
+@media(min-width:824px) {
     .navbar-default {
         padding: 25px 0;
         border: 0;
@@ -677,7 +677,7 @@ li {
 }
 
 
-@media (min-width : 768px) and (max-width: 991px) {
+@media (min-width : 824px) and (max-width: 991px) {
     
     #main-slide .slider-content h1{
 		font-size: 35px;
@@ -960,7 +960,7 @@ and (min-width : 551px){
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 824px) {
   #portfolio-list li {
       width: 33.3%;
   }
