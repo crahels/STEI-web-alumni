@@ -18,14 +18,14 @@
                 <tbody>
                     <tr>
                         <td>Topic</td>
-                        <td>:&nbsp;{{$answer->question->topic}}</td>
+                        <td style="word-wrap: break-word;">:&nbsp;{{$answer->question->topic}}</td>
                     </tr>
                         <td>Question's Body</td>
-                        <td>:&nbsp;{{$answer->question->body}}</td>                            
+                        <td style="word-wrap: break-word;">:&nbsp;{{$answer->question->body}}</td>                            
                     </tr>
                     <tr>
                         <td>Answer's Body</td>
-                        <td>:&nbsp;{{$answer->body}}</td>
+                        <td style="word-wrap: break-word;">:&nbsp;{{$answer->body}}</td>
                     </tr>
                     <tr>
                         <td>Votes</td>

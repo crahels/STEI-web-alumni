@@ -4,8 +4,7 @@
 <div class="row show-question">
     <div class="col-3 left-question">
         <h1 class="title-question">{{$question->topic}}</h1>
-
-        <div>
+        <div style="word-wrap: break-word;">
             {{$question->body}}
         </div>
 
@@ -68,7 +67,7 @@
                         </div>
 
                         <div class="col-9 pull-right">
-                            <p>{{$answer->body}}</p>
+                            <p style="word-wrap: break-word;">{{$answer->body}}</p>
                             <small class="text-footer">
                                 @if ($answer->is_admin == 1)
                                     <a href="/admin/answers/{{$answer->id}}">Written on {{$answer->created_at->format('d M Y')}}</a><br>by {{$answer->user->name}} as <span style="color:red;">admin</span>
@@ -141,9 +140,9 @@
                                     '<span class="sum-rating">' +
                                         '0' + 
                                     '</span>' +
-                                    '<form method="POST" action="/admin/answers/pin/' + data.id + '/' + data.question_id + '/1">' +
+                                    '<form method="POST" action="/admin/answers/pin/' + data.id + '/' + data.question_id + '/0">' +
                                     '<input type="hidden" name="_token" value="{{ csrf_token() }}">' +
-                                    '{{Form::button("<div class=\"btn-pinned\" <i class=\"fa fa-thumb-tack\"></i>&nbsp;&nbsp;PIN</div>", ["type" => "submit", "class" => "btn btn-warning", "data-toggle" => "tooltip"])}}' +
+                                    '{{Form::button("<div class=\"btn-pinned\"><i class=\"fa fa-thumb-tack\"></i>&nbsp;&nbsp;PIN</div>", ["type" => "submit", "class" => "btn btn-warning", "data-toggle" => "tooltip"])}}' +
                                     '</form>' +
                                 '</center>' +
                             '</div>' +

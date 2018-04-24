@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-12 post-card">
                             <h3 class="title-question">{{$question->topic}}</h3>
-                            <p>{{$question->body}}</p>
+                            <p style="word-wrap: break-word;">{{$question->body}}</p>
                             <small class="text-footer">
                                 <i>
                                     @if ($question->is_admin == 1)
@@ -72,7 +72,7 @@
                                 </div>
         
                                 <div class="col-8 pull-right">
-                                    <p>{{$answer->body}}</p>
+                                    <p style="word-wrap: break-word;">{{$answer->body}}</p>
                                         <small class="text-footer">
                                             @if ($answer->is_admin == 1) 
                                                 <a href="answers/{{$answer->id}}">Written on {{$answer->created_at->format('d M Y')}}</a><br>by {{$answer->user->name}} as <span style="color:red;">admin</span>
