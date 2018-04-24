@@ -202,6 +202,11 @@ class MembersController extends Controller
      */
     public function destroy($id)
     {
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+        if(!$isAdmin)
+            return redirect('/');
+
         $user = Member::find($id);
         if($user !== null) {
             $user->delete();
