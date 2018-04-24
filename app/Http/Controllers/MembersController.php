@@ -16,7 +16,7 @@ class MembersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin', ['except' => ['show', 'edit', 'update']]);
+        //$this->middleware('admin', ['except' => ['show', 'edit', 'update']]);
     }
 
     /**
@@ -26,8 +26,19 @@ class MembersController extends Controller
      */
     public function index()
     {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+
         $members = Member::orderBy('nim','asc')->paginate(20);
-        return view('members.list')->with('members', $members);
+        if ($isAdmin) {
+            return view('members.list')->with('members', $members);
+        } else {
+            return view('showmember')->with('members', $members);
+        }
+        
     }
 
     /**
@@ -191,6 +202,11 @@ class MembersController extends Controller
      */
     public function destroy($id)
     {
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+        if(!$isAdmin)
+            return redirect('/');
+
         $user = Member::find($id);
         if($user !== null) {
             $user->delete();
