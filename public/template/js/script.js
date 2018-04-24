@@ -4,7 +4,7 @@ var $ = jQuery.noConflict();
 
 // Page Loader
 $(window).load(function () {
-    
+
     "use strict";
 	$('#loader').fadeOut();
 });
@@ -197,7 +197,7 @@ $ ( function () {
 
 
 $('#team a').click(function (e) {
-  e.preventDefault()
+//   e.preventDefault()
   $(this).tab('show')
 })
 

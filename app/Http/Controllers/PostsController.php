@@ -20,19 +20,25 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $isMember = Auth::guard('member')->user() != null;
+    {   
         $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
-
-        if ($isAdmin) {
-            $posts = Post::orderBy('created_at','desc')->paginate(10); 
-        } else if ($isMember) {
+        $isMember = Auth::guard('member')->user() != null;
+        $posts = Post::orderBy('created_at','desc')->paginate(10);
+        if ($isAdmin){
+            return view('admin.showpost')->with('posts', $posts);
+        } else if ($isMember){
             $posts = Post::where('draft', 0)->orderBy('created_at','desc')->paginate(10);
-        } else {
+            return view('article')->with('posts', $posts);
+        } else { //guest
             $posts = Post::where('draft', 0)->where('public', 1)->orderBy('created_at','desc')->paginate(10);
-        }
+            return view('article')->with('posts', $posts);
+        }  
+    }
 
-        return view('admin.showpost')->with('posts', $posts);
+    public function indexMember()
+    {
+        $posts = Post::orderBy('created_at','desc')->get();
+        return view('home')->with('posts', $posts);
     }
 
     /**
@@ -106,8 +112,15 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+        $isMember = Auth::guard('member')->user() != null;
+       
         if ($post !== null) {
-            return view('admin.showeachpost')->with('post', $post);
+            if ($isAdmin)
+                return view('admin.showeachpost')->with('post', $post);
+            else
+                return view('showarticle')->with('post', $post);
+           
         } else {
             return abort(404);
         }    

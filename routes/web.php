@@ -11,23 +11,35 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', 'HomeController@index');
+
+// Route::get('/profilemember/{id}', 'MembersController@showMyProfile');
+
+// Route::get('/editMyProfile/{id}', 'MembersController@editMember');
+
+Route::get('/about', function () {
+	return view('about');
 });
 
-Route::get('/dashboard-member', function () {
-    return view('dashboard-member');
-});
+Route::resource('members', 'MembersController');
 
-/*Route::resource('members', 'MembersController');
 Route::post('/importcsv','AddMemberController@importCSV');
 Route::post('/importmember','AddMemberController@importMember');
 
-Route::resource('profile', 'MembersController');
+//Route::resource('profile', 'MembersController');
 Route::resource('addmember', 'AddMemberController');
 Route::resource('posts', 'PostsController');
+Route::resource('article', 'PostsController');
 Route::resource('questions', 'QuestionsController');
-Route::resource('answers', 'AnswersController');*/
+Route::resource('answers', 'AnswersController');
+
+Route::post('/answers/rate/{answer}/{user}/{each}', 'AnswersController@giveRating');
+Route::post('/answers/pin/{answer}/{question}/{each}', 'AnswersController@givePin');
+Route::get('/answers/add/{question}', 'AnswersController@giveAnswer');
+Route::post('/answers/{each}', 'AnswersController@store');
+
+Route::get('/admin/dashboard', 'DashboardController@index');
+Route::get('/members/{user}/delete', 'MembersController@destroy');
 
 Route::get('login', 'Auth\SocialAccountsController@index');
 Route::get('login/{provider}', 'Auth\SocialAccountsController@redirectToProvider');
@@ -65,7 +77,7 @@ Route::group( [ 'prefix' => 'admin' ], function()
 	$this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 	// admin route
-	Route::resource('profile', 'MembersController');
+	//Route::resource('profile', 'MembersController');
 	Route::resource('addmember', 'AddMemberController');
 	Route::resource('posts', 'PostsController');
 	Route::resource('questions', 'QuestionsController');

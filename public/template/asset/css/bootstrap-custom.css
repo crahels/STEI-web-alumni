@@ -5,9 +5,204 @@
     letter-spacing: 1px;
     color: #fff;
     font-size: 12px;
+    margin-left: 4%;
 }
 
 .dropdown-item {
     color: white;
     margin: 0 0 0 8%;
+}
+
+.far {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fas {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.navbar-default .navbar-nav>.on-page>a:hover,
+.navbar-default .navbar-nav>.on-page>a:focus {
+    color: #fff;    
+}
+
+.on-page {
+    border-radius: 3px;
+}
+
+/* Clear the 1px gap on row and container */
+.row:before, div .row:after {
+    display: none;
+}
+  
+div.overlay {
+    opacity: 0.9;
+    background-color: black;
+    position: absolute;
+    left: 0; top: 0; height: 100%; width: 100%;
+}
+
+.img-responsive-article {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    opacity: 0.3;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.user-services {
+    margin-top: 3%;
+}
+
+.user-services-questions {
+    text-align: center;
+    color: #fff;
+    font-size: 300%;
+}   
+
+.user-services-answers {
+    text-align: center;
+    color: #fff;
+    font-size: 300%;
+}
+
+.user-services-article {
+    text-align: center;
+    color: #fff;
+    font-size: 300%;
+}
+
+.user-services-questions-text {
+    text-align: center;
+    color: #fff;
+    font-size: 115%;
+}   
+
+.user-services-answers-text {
+    text-align: center;
+    color: #fff;
+    font-size: 115%;
+}
+
+.user-services-article-text {
+    text-align: center;
+    color: #fff;
+    font-size: 115%;
+}
+
+.profile-navigation-container {
+    text-align: center;
+    margin-top: 4em;
+}
+
+.profile-navigation {
+    padding: 8px 12px;
+    background: #fff;
+    border: 1px solid #fff;
+    color: #666;
+    font-size: 16px;
+    border-radius: 50%;
+}
+
+.profile-navigation:hover {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    color: #fff;
+}
+
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #cc4949;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+
+.show-profile-icon-team-details {
+    padding: 8px 12px;
+    background: #fff;
+    border: 1px solid #fff;
+    color: #666;
+    font-size: 16px;
+}
+
+.show-profile-icon-team-details:hover {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    color: #fff;
+}
+
+.team-member .team-details li span a {
+    padding: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 12px;
+}
+
+.team-member .team-details li:hover span a {
+    background-color: transparent;
+    border: none;
+    color: #9cc5fc;
 }

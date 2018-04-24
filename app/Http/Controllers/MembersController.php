@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SendReverificationEmail;
 use App\Member;
 use \Auth;
+use App\Post;
+use App\Question;
+use App\Answer;
 
 class MembersController extends Controller
 {
@@ -55,16 +58,38 @@ class MembersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {        
-        $user = Member::find($id);
-        $user['countQuestions'] = $user->questions->count();
-        $user['countAnswers'] = $user->answers->count();
-        if($user !== null){
-            return view('admin.profile')->with('user', $user);
+    {
+        $isMember = Auth::guard('member')->user() != null;
+        $isAdmin = Auth::user() != null && Auth::user()->IsAdmin == 1;
+
+        if(!($isMember || $isAdmin))
+            return redirect('/');
+        
+        if ($isAdmin) {
+            $user = Member::find($id);
+            $user['countQuestions'] = $user->questions->count();
+            $user['countAnswers'] = $user->answers->count();
+            if($user !== null){
+                return view('admin.profile')->with('user', $user);
+            } else {
+                return abort(404);
+            }
         } else {
-            return abort(404);
-        }
+            $posts = Post::where('user_id', $id)->get();
+            $questions = Question::where('user_id', $id)->get();
+            $answers = Answer::where('user_id', $id)->get();
+            
+            $user = Member::find($id);
+            if($user == null) {
+                return abort(404);
+            }
+
+            $userdata = [$posts, $questions, $answers, $user];
+
+            return view('admin.profile')->with('userdata', $userdata);   
+        }     
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -83,7 +108,7 @@ class MembersController extends Controller
             return redirect('/');
         }
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -150,7 +175,11 @@ class MembersController extends Controller
             Mail::to($user)->send(new SendReverificationEmail($token));
             return redirect('/members/' . $id)->with('success', 'Profile Updated. Confirmation code has been sent to new email.');
         }else{*/
+        if ($isAdmin) {
             return redirect('/admin/members/' . $id)->with('success', 'Profile Updated');
+        } else {
+            return redirect('/members/' . $id)->with('success', 'Profile Updated');
+        }
         //}
     }
 

@@ -1035,3 +1035,12 @@ anchors are inline so you need ot make them block to go full width
 .profile-info {
 	margin-top: 50px;
 }
+
+.table-user-information {
+
+}
+
+.user-info-left {
+  font-weight: bolder;
+  color: red;
+}
