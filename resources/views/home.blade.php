@@ -197,13 +197,8 @@
                                     <div class="border"></div>
                                 </div>
                                 <div class="media-body">
-<<<<<<< HEAD
-                                    <h4 class="media-heading">Articles</h4>
-                                    <p>Keep up to date with trusted articles from the admins.</p>
-=======
                                     <h4 class="media-heading">Tons of articles</h4>
                                     <p>Feels bored? Enjoy our articles in your spare time!</p>
->>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                                 </div>
                             </div>
                         </div>
@@ -217,53 +212,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">Interaction with others</h4>
-<<<<<<< HEAD
-                                    <p>You can interact with others in the Forum tab.</p>
-                                </div>
-                            </div>
-                        </div>
-                    {{-- </div><!-- /.col-md-4 -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="feature-2">
-                            <div class="media">
-                                <div class="pull-left">
-                                    <i class="fa fa-plug"></i>
-                                    <div class="border"></div>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Wordpress Plugin</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.col-md-4 -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="feature-2">
-                            <div class="media">
-                                <div class="pull-left">
-                                    <i class="fa fa-joomla"></i>
-                                    <div class="border"></div>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Joomla Template</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.col-md-4 -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="feature-2">
-                            <div class="media">
-                                <div class="pull-left">
-                                    <i class="fa fa-cube"></i>
-                                    <div class="border"></div>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Joomla Extension</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
-=======
                                     <p>Exchange your opinion through our forum!</p>
->>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                                 </div>
                             </div>
                         </div>
@@ -315,10 +264,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
                         <h3>Our New Members</h3>
-<<<<<<< HEAD
-=======
                         <p>Meet our new members!</p>
->>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                     </div>
                 </div>
             </div>
@@ -435,10 +381,7 @@
                 <div class="col-lg-12">
                     <div class="section-title text-center">
                         <h3>Contact With Us</h3>
-<<<<<<< HEAD
-=======
                         <h5 class="white-text lowercase"><strong>sisfo@std.stei.itb.ac.id</strong></h5>
->>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                     </div>
                 </div>
             </div>
