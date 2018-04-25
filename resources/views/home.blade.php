@@ -31,7 +31,7 @@
                             <h1 class="animated3">
                             <span>Web Alumni <strong>STEI</strong></span>
                             </h1>
-                            <p class="animated2">Website resmi alumni Sekolah Teknik Elektro dan Informatika<br>Institut Teknologi Bandung</p>	
+                            <p class="animated2">Official website of School of Electrical Engineering and Informatics<br>Bandung Institute of Technology</p>	
                             <a href="#service" class="page-scroll btn btn-primary animated1">Read More</a>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                             <h1 class="animated2">
                                 <span>View <strong>Forum</strong></span>
                             </h1>
-                            <p class="animated2">Anda bisa mengirimkan pertanyaan pada forum alumni STEI-ITB</p>
+                            <p class="animated2">Feel free to ask questions and give answers through our forum!</p>
                             <a class="page-scroll btn btn-primary animated3" href="/questions">Visit</a>
                         </div>
                     </div>
@@ -142,12 +142,18 @@
                 {{-- <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="section-title text-center">
-                            <h3>Greeting Speech</h3>
+                            <h3>Greetings</h3>
                             <br>
+<<<<<<< HEAD
                             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                             <br>
                             <br>
                             Ketua Alumni STEI</p>
+=======
+                            <p>This website is developed for alumni of STEI ITB. Through this website, you can interact with each of alumni STEI ITB that has activated their accounts.
+                                If you have questions, feel free to ask our admin through our forum.
+                            </p>
+>>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                         </div>
                     </div>
                 </div> --}}
@@ -156,7 +162,11 @@
                     <div class="col-md-12">
                         <div class="section-title text-center">
                             <h3>Our Services</h3>
+<<<<<<< HEAD
                             <br>
+=======
+                            <p>These are our features that we provide just only for you.</p>
+>>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                         </div>
                     </div>
                 </div>
@@ -170,7 +180,11 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">Meet new members</h4>
+<<<<<<< HEAD
                                     <p>Say hello to the new members of the family. Our family is getting bigger!</p>
+=======
+                                    <p>Want to know the new comers? We provide it for you!</p>
+>>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                                 </div>
                             </div>
                         </div>
@@ -183,8 +197,13 @@
                                     <div class="border"></div>
                                 </div>
                                 <div class="media-body">
+<<<<<<< HEAD
                                     <h4 class="media-heading">Articles</h4>
                                     <p>Keep up to date with trusted articles from the admins.</p>
+=======
+                                    <h4 class="media-heading">Tons of articles</h4>
+                                    <p>Feels bored? Enjoy our articles in your spare time!</p>
+>>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                                 </div>
                             </div>
                         </div>
@@ -198,6 +217,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">Interaction with others</h4>
+<<<<<<< HEAD
                                     <p>You can interact with others in the Forum tab.</p>
                                 </div>
                             </div>
@@ -241,10 +261,12 @@
                                 <div class="media-body">
                                     <h4 class="media-heading">Joomla Extension</h4>
                                     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
+=======
+                                    <p>Exchange your opinion through our forum!</p>
+>>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                                 </div>
                             </div>
                         </div>
-                    </div><!-- /.col-md-4 --> --}}
                     
                 </div><!-- /.row -->
             
@@ -258,13 +280,6 @@
     <section class="fun-facts">
         <div class="container">
             <div class="row">
-                {{-- <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="counter-item">
-                    <i class="fa fa-cloud-upload"></i>
-                    <div class="timer" id="item1" data-to="991" data-speed="5000"></div>
-                    <h5>Files uploaded</h5>                               
-                    </div>
-                </div>   --}}
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
                     <i class="fa fa-users"></i>
@@ -300,6 +315,10 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
                         <h3>Our New Members</h3>
+<<<<<<< HEAD
+=======
+                        <p>Meet our new members!</p>
+>>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                     </div>
                 </div>
             </div>
@@ -416,6 +435,10 @@
                 <div class="col-lg-12">
                     <div class="section-title text-center">
                         <h3>Contact With Us</h3>
+<<<<<<< HEAD
+=======
+                        <h5 class="white-text lowercase"><strong>sisfo@std.stei.itb.ac.id</strong></h5>
+>>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                     </div>
                 </div>
             </div>
@@ -424,8 +447,8 @@
                     <div class="footer-contact-info">
                         <h4>Contact info</h4>
                         <ul>
-                            <li><strong>E-mail :</strong> admin@admin.com</li>
-                            <li><strong>Phone :</strong> +62-22-2502260</li>
+                            <li><strong>E-mail :</strong> sisfo@std.stei.itb.ac.id</li>
+                            <!--<li><strong>Phone :</strong> +62-22-2502260</li>-->
                             <br>
                         </ul>
                     </div>
