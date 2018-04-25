@@ -9,7 +9,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin: 0">
               <!-- Left Side Of Navbar -->
               <ul class="navbar-nav mr-auto" style="margin: 0">
                 @if(Auth::guard('member')->user() != null)
