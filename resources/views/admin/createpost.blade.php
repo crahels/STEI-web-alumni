@@ -47,6 +47,7 @@
             </div>
             
             <div class="form-group">
+                {{Form::label('cover_image', 'Thumbnail')}}
                 {{Form::file('cover_image')}}
             </div>
             
