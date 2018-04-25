@@ -144,16 +144,9 @@
                         <div class="section-title text-center">
                             <h3>Greetings</h3>
                             <br>
-<<<<<<< HEAD
-                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                            <br>
-                            <br>
-                            Ketua Alumni STEI</p>
-=======
                             <p>This website is developed for alumni of STEI ITB. Through this website, you can interact with each of alumni STEI ITB that has activated their accounts.
                                 If you have questions, feel free to ask our admin through our forum.
                             </p>
->>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                         </div>
                     </div>
                 </div> --}}
@@ -162,11 +155,7 @@
                     <div class="col-md-12">
                         <div class="section-title text-center">
                             <h3>Our Services</h3>
-<<<<<<< HEAD
-                            <br>
-=======
                             <p>These are our features that we provide just only for you.</p>
->>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                         </div>
                     </div>
                 </div>
@@ -180,11 +169,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">Meet new members</h4>
-<<<<<<< HEAD
-                                    <p>Say hello to the new members of the family. Our family is getting bigger!</p>
-=======
                                     <p>Want to know the new comers? We provide it for you!</p>
->>>>>>> 35cfcf3b08cc77a3aff1d41876e9505b15553af6
                                 </div>
                             </div>
                         </div>
