@@ -19,14 +19,14 @@
                 <div class="well col-12">
                     <div class="row">
                         <div class="col-12 post-card">
-                            <h3 class="title-question">{{$question->topic}}</h3>
+                            <h3 class="title-question"><a href="questions/{{$question->id}}">{{$question->topic}}</a></h3>
                             <p style="word-wrap: break-word;">{{$question->body}}</p>
                             <small class="text-footer">
                                 <i>
                                     @if ($question->is_admin == 1)
-                                        <a href="questions/{{$question->id}}">Written on {{$question->created_at->format('d M Y')}}</a><br>by {{$question->user->name}} as <span style="color:red;">admin</span>
+                                        Written on {{$question->created_at->format('d M Y')}}</a><br>by {{$question->user->name}} as <span style="color:red;">admin</span>
                                     @else
-                                        <a href="questions/{{$question->id}}">Written on {{$question->created_at->format('d M Y')}}</a><br>by <a href="members/{{$question->member_id}}">{{$question->member->name}}</a>
+                                        Written on {{$question->created_at->format('d M Y')}}</a><br>by <a href="members/{{$question->member_id}}">{{$question->member->name}}</a>
                                     @endif
                                     @if ($question->is_anon == 1)
                                         anonymously
