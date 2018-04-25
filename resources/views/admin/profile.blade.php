@@ -142,7 +142,6 @@
                                     <td class="user-info-left">Phone Number</td>
                                     <td>{{$userdata[3]->phone_number}}</td>                          
                                 </tr>
-                                @if(Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $userdata[3]->id)
                                 <tr>
                                     <td class="user-info-left">Company</td>
                                     <td>
@@ -167,6 +166,7 @@
                                     <td class="user-info-left">Address</td>
                                     <td>{{$userdata[3]->address}}</td>
                                 </tr>
+                                @if(Auth::guard('member')->user() != null && Auth::guard('member')->user()->id == $userdata[3]->id)
                                     @if(Auth::guard('member')->user()->email != null)
                                         <tr>
                                             <td class="user-info-left">
