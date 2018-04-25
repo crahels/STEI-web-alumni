@@ -38,7 +38,7 @@
 }
 
 .navbar-default .navbar-nav>.on-page>a:hover,
-.navbar-default .navbar-nav>.on-page>a:focus {
+.navbar-default .navbar-nav>.on-page>a:focus, {
     color: #fff;    
 }
 
@@ -245,4 +245,9 @@ div.overlay {
     .footer-left-position {
         text-align: center;
     }
+}
+
+.dropdown-home {
+    margin-left: 5%;
+    padding-bottom: 2%;
 }

@@ -36,7 +36,7 @@ class MembersController extends Controller
             $members = Member::orderBy('nim','asc')->paginate(20);
             return view('members.list')->with('members', $members);
         } else {
-            $members = Member::orderBy('nim','asc')->get();
+            $members = Member::orderBy('nim','asc')->paginate(12);
             return view('showmember')->with('members', $members);
         }
         

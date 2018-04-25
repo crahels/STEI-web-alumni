@@ -315,7 +315,7 @@
                                 </div>          
                             @endif
                         
-                            @if (count($homedata[1]) > 3)
+                            {{-- @if (count($homedata[1]) > 3)
                                 <div class="team-member">
                                     <img src="/storage/profile_image/{{$homedata[1][3]->profile_image}}" class="img-responsive" alt="">
                                     <div class="team-details">
@@ -351,7 +351,27 @@
                                         </ul>
                                     </div>
                                 </div>          
-                            @endif
+                            @endif --}}
+
+                            <div class="team-member">
+                                <img src="/storage/view-more-members.png" class="img-responsive" alt="">
+                                <div class="team-details">
+                                    <h4>VIEW MORE</h4>
+                                    <ul>
+                                    @if ((Auth::user() != null) || (Auth::guard('member')->user() != null))
+                                        <li style="padding-top: 5px">
+                                            <a href="/members" style="background: none; border: none; color: white">
+                                                <i class="fa fa-search-plus fa-5x"></i>
+                                            </a>
+                                        </li>
+                                    @else
+                                        <li class="popup" onclick="myFunction5()" style="padding-top: 5px">
+                                            <span class="popuptext" id="myPopup5" style="bottom: 115%">You must login first <a href="/login"><u>(LOGIN)</u></a></span>
+                                            <i class="fa fa-search-plus fa-5x" style="background: none; border: none; color: white"></i></li>
+                                    @endif
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -30,16 +30,20 @@
 
                 @if(Request::is('/'))
                     <li class="on-page" id="home-navbar">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="/">Home
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="/" style="color:white">Home
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="page-scroll" href="#page-top">Introduction</a>
+                            <li class="dropdown-home">
+                                <a class="page-scroll" href="#page-top">Introduction</a>
                             </li>
-                            <li><a class="page-scroll" href="#service">Services</a>
+                            <li class="dropdown-home">
+                                <a class="page-scroll" href="#service">Services</a>
                             </li>
-                            <li><a class="page-scroll" href="#team">New Member</a>
+                            <li class="dropdown-home">
+                                <a class="page-scroll" href="#team">New Member</a>
                             </li>
-                            <li><a class="page-scroll" href="#contact">Contact</a>
+                            <li class="dropdown-home">
+                                <a class="page-scroll" href="#contact">Contact</a>
                             </li>
                         </ul>
                     </li>
@@ -48,13 +52,17 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="/">Home
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="page-scroll on-page" href="/#page-top">Introduction</a>
+                            <li class="dropdown-home">
+                                <a class="page-scroll on-page" href="/#page-top">Introduction</a>
                             </li>
-                            <li><a class="page-scroll" href="/#service">Services</a>
+                            <li class="dropdown-home">
+                                <a class="page-scroll" href="/#service">Services</a>
                             </li>
-                            <li><a class="page-scroll" href="/#team">New Member</a>
+                            <li class="dropdown-home">
+                                <a class="page-scroll" href="/#team">New Member</a>
                             </li>
-                            <li><a class="page-scroll" href="/#contact">Contact</a>
+                            <li class="dropdown-home">
+                                <a class="page-scroll" href="/#contact">Contact</a>
                             </li>
                         </ul>
                     </li>
@@ -82,17 +90,6 @@
                     @endif
                 @endif
 
-                {{-- About --}}
-                @if (Request::is('about'))
-                    <li class="on-page">
-                        <a href="#">About</a>
-                    </li>
-                @else
-                    <li>
-                        <a class="page-scroll" href="/about">About</a>
-                    </li>
-                @endif
-
                 {{-- Members --}}
                 @if(Auth::guard('member')->user() != null)
                     @if (Request::is('members'))
@@ -104,6 +101,17 @@
                             <a class="page-scroll" href="/members">Members</a>
                         </li>
                     @endif
+                @endif
+
+                {{-- About --}}
+                @if (Request::is('about'))
+                    <li class="on-page">
+                        <a href="#">About</a>
+                    </li>
+                @else
+                    <li>
+                        <a class="page-scroll" href="/about">About</a>
+                    </li>
                 @endif
             </ul>
 
