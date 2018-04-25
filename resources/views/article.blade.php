@@ -71,7 +71,7 @@
                         <div class="col-8 post-card">
                             <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
                             <div style="word-wrap: break-word;"> {!!substr($post->body, 0, 200)!!}... </div>
-                            <small style="font-weight: bolder;">Written on {{$post->created_at}} by <span style="color: red">Admin</span></small>
+                            <small style="font-weight: bolder;">Written on {{$post->created_at->format('d M Y')}} by <span style="color: red">Admin</span></small>
                         </div>
                         <div class="col-4 img-card">
                             <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}">

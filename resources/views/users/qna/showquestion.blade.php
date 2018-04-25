@@ -79,7 +79,7 @@
                                 <p style="font-size: 1.3em; word-wrap: break-word;">{{$question->body}}</p>
                                 <small>
                                     <i>
-                                        Written on {{$question->created_at}} 
+                                        Written on {{$question->created_at->format('d M Y')}} 
                                         @if ($question->is_anon == 1)
                                             by Anonymous
                                         @else
@@ -111,7 +111,7 @@
                                     <span style="word-wrap: break-word;">{{$answer->body}}</span><br>
                                     <a href="/answers/{{$answer->id}}">
                                         <small>
-                                            Written on {{$answer->created_at}}
+                                            Written on {{$answer->created_at->format('d M Y')}}
                                         </small>
                                     </a>
                                     @if ($answer->is_admin == 1)

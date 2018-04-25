@@ -91,7 +91,7 @@
                                             <h1 class="animated1">
                                                 <span>{{$question->topic}}</span>
                                             </h1>
-                                            <p class="animated2">BBB</p>
+                                            {{-- <p class="animated2">{{$question->body}}</p> --}}
                                             <a href="/questions/{{$question->id}}" class="page-scroll btn btn-primary animated3">View question</a>
                                         </div>
                                     </div>

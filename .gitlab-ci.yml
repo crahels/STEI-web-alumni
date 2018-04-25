@@ -56,7 +56,7 @@ before_script:
 test:
   stage: test
   script:
-    - php vendor/bin/phpunit --coverage-text --coverage-html ./report
+    - php vendor/bin/phpunit --coverage-text --colors=never --coverage-html ./report
   artifacts:
     paths:
     - report/
@@ -73,4 +73,4 @@ pages:
       - public
     expire_in: 30days
   only:
-    - test_ci
+    - master

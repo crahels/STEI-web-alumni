@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <title>Web Alumni STEI</title>
-
+    <link rel="icon" href="/storage/logo_itb.png" type="image/x-icon"/>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('template/asset/css/bootstrap.css') }}" rel="stylesheet">
     

@@ -10,8 +10,8 @@
                         <h1 style="word-wrap: break-word;">{{$question->topic}}</h1>
                         <div class="body-article" style="font-size:1.5em; word-wrap: break-word;">{{$question->body}}</div>
                         <div class="footer-article"><hr>
-                            <small>Written on {{$question->created_at}}</small><br>
-                            <small>Last Editted on {{$question->updated_at}}</small><br>
+                            <small>Written on {{$question->created_at->format('d M Y')}}</small><br>
+                            <small>Last Editted on {{$question->updated_at->format('d M Y')}}</small><br>
                             <small>
                                 @if ($question->is_anon == 1)
                                     by Anonymous
