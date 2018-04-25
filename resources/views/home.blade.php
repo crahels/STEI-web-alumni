@@ -31,7 +31,7 @@
                             <h1 class="animated3">
                             <span>Web Alumni <strong>STEI</strong></span>
                             </h1>
-                            <p class="animated2">Website resmi alumni Sekolah Teknik Elektro dan Informatika<br>Institut Teknologi Bandung</p>	
+                            <p class="animated2">Official website of School of Electrical Engineering and Informatics<br>Bandung Institute of Technology</p>	
                             <a href="#service" class="page-scroll btn btn-primary animated1">Read More</a>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                             <h1 class="animated2">
                                 <span>View <strong>Forum</strong></span>
                             </h1>
-                            <p class="animated2">Anda bisa mengirimkan pertanyaan pada forum alumni STEI-ITB</p>
+                            <p class="animated2">Feel free to ask questions and give answers through our forum!</p>
                             <a class="page-scroll btn btn-primary animated3" href="/questions">Visit</a>
                         </div>
                     </div>
@@ -142,12 +142,11 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="section-title text-center">
-                            <h3>Greeting Speech</h3>
+                            <h3>Greetings</h3>
                             <br>
-                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                            <br>
-                            <br>
-                            Yowinarto, Ketua Alumni STEI</p>
+                            <p>This website is developed for alumni of STEI ITB. Through this website, you can interact with each of alumni STEI ITB that has activated their accounts.
+                                If you have questions, feel free to ask our admin through our forum.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -156,7 +155,7 @@
                     <div class="col-md-12">
                         <div class="section-title text-center">
                             <h3>Our Services</h3>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                            <p>These are our features that we provide just only for you.</p>
                         </div>
                     </div>
                 </div>
@@ -170,7 +169,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">Meet new members</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
+                                    <p>Want to know the new comers? We provide it for you!</p>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +183,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">Tons of articles</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
+                                    <p>Feels bored? Enjoy our articles in your spare time!</p>
                                 </div>
                             </div>
                         </div>
@@ -198,53 +197,10 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">Interaction with others</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
+                                    <p>Exchange your opinion through our forum!</p>
                                 </div>
                             </div>
                         </div>
-                    {{-- </div><!-- /.col-md-4 -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="feature-2">
-                            <div class="media">
-                                <div class="pull-left">
-                                    <i class="fa fa-plug"></i>
-                                    <div class="border"></div>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Wordpress Plugin</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.col-md-4 -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="feature-2">
-                            <div class="media">
-                                <div class="pull-left">
-                                    <i class="fa fa-joomla"></i>
-                                    <div class="border"></div>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Joomla Template</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.col-md-4 -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="feature-2">
-                            <div class="media">
-                                <div class="pull-left">
-                                    <i class="fa fa-cube"></i>
-                                    <div class="border"></div>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Joomla Extension</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.col-md-4 --> --}}
                     
                 </div><!-- /.row -->
             
@@ -258,13 +214,6 @@
     <section class="fun-facts">
         <div class="container">
             <div class="row">
-                {{-- <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="counter-item">
-                    <i class="fa fa-cloud-upload"></i>
-                    <div class="timer" id="item1" data-to="991" data-speed="5000"></div>
-                    <h5>Files uploaded</h5>                               
-                    </div>
-                </div>   --}}
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="counter-item">
                     <i class="fa fa-users"></i>
@@ -300,7 +249,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
                         <h3>Our New Members</h3>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                        <p>Meet our new members!</p>
                     </div>
                 </div>
             </div>
