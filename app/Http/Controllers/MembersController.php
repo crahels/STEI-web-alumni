@@ -32,10 +32,11 @@ class MembersController extends Controller
         if(!($isMember || $isAdmin))
             return redirect('/');
 
-        $members = Member::orderBy('nim','asc')->paginate(20);
         if ($isAdmin) {
+            $members = Member::orderBy('nim','asc')->paginate(20);
             return view('members.list')->with('members', $members);
         } else {
+            $members = Member::orderBy('nim','asc')->get();
             return view('showmember')->with('members', $members);
         }
         

@@ -86,6 +86,21 @@
                         <a class="page-scroll" href="/about">About</a>
                     </li>
                 @endif
+                
+                @if(Auth::guard('member')->user() != null)
+                    @if (Request::is('/'))
+                    @else
+                        @if (Request::is('members'))
+                            <li class="on-page">
+                                <a href="#">Members</a>
+                            </li>
+                        @else
+                            <li>
+                                <a class="page-scroll" href="/members">Members</a>
+                            </li>
+                        @endif
+                    @endif
+                @endif
             </ul>
 
             <!-- Login Dropdown -->
