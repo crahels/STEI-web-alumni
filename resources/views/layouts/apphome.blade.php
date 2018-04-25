@@ -64,6 +64,7 @@
             <div class="dot2"></div>
         </div>
     </div>
+    @include('inc.messages')
     @yield('content')
     <footer class="style-1">
         <div class="container">
