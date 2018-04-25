@@ -366,7 +366,7 @@
                 <div class="col-lg-12">
                     <div class="section-title text-center">
                         <h3>Contact With Us</h3>
-                        <h5 class="white-text lowercase"><strong>admin@admin.com</strong></h5>
+                        <h5 class="white-text lowercase"><strong>sisfo@std.stei.itb.ac.id</strong></h5>
                     </div>
                 </div>
             </div>
@@ -375,8 +375,8 @@
                     <div class="footer-contact-info">
                         <h4>Contact info</h4>
                         <ul>
-                            <li><strong>E-mail :</strong> admin@admin.com</li>
-                            <li><strong>Phone :</strong> +62-22-2502260</li>
+                            <li><strong>E-mail :</strong> sisfo@std.stei.itb.ac.id</li>
+                            <!--<li><strong>Phone :</strong> +62-22-2502260</li>-->
                             <br>
                         </ul>
                     </div>
