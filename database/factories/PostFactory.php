@@ -8,7 +8,7 @@ $factory->define(App\Post::class, function (Faker $faker) {
         'body' => 'Post Body',
         'user_id' => '0',
         'cover_image' => 'noimage.jpg',
-        'draft' => 1,
-        'public' => 1
+        'draft' => 0,
+        'public' => 0
     ];
 });

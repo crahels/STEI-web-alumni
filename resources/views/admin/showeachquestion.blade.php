@@ -3,9 +3,8 @@
 @section('content')
 <div class="row show-question">
     <div class="col-3 left-question">
-        <h1 class="title-question">{{$question->topic}}zz</h1>
-
-        <div>
+        <h1 class="title-question">{{$question->topic}}</h1>
+        <div style="word-wrap: break-word;">
             {{$question->body}}
         </div>
 
@@ -14,13 +13,16 @@
             <small class="text-footer">Written on {{$question->created_at->format('d M Y')}}</small><br>
             <small class="text-footer">Last Editted on {{$question->updated_at->format('d M Y')}}</small><br>
             @if ($question->is_admin == 1)
-                <small class="text-footer">by {{$question->user->name}} as <span style="color:lightblue;">admin</span></small>
+                <small class="text-footer">by {{$question->user->name}} as <span style="color:red;">admin</span></small>
             @else
-                <small class="text-footer">by {{$question->member->name}}</small>
+                <small class="text-footer">by <a href="/admin/members/{{$question->member_id}}">{{$question->member->name}}</a></small>
+            @endif
+            @if ($question->is_anon == 1)
+                <span class="text-footer">anonymously</span>
             @endif
             <hr>
         </div>
-        @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $question->member->id == Auth::guard('member')->user()->id && $question->is_admin == 0))
+        @if((!Auth::guest() && Auth::user()->IsAdmin == 1) || (Auth::guard('member')->user() != null && $question->member_id == Auth::guard('member')->user()->id && $question->is_admin == 0))
             <a href="/admin/questions/{{$question->id}}/edit" class="btn btn-warning edit-button">
                 Edit
             </a>
@@ -57,7 +59,7 @@
                                         {{Form::button('<div class="btn-pinned"><i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PINNED</div>', ['type' => 'submit', 'class' => 'btn', 'data-toggle' => 'tooltip'])}}
                                         
                                     @else
-                                        {{Form::button('<div class="btn-pinned"><i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PIN</div>', ['type' => 'submit', 'class' => 'btn btn-warning', 'data-toggle' => 'tooltip'])}}
+                                        {{Form::button('<div class="btn-pinned"><i class="fa fa-thumb-tack"></i>&nbsp;&nbsp;PIN</div>', ['type' => 'submit', 'class' => 'btn btn-warning', 'data-toggle' => 'tooltip', 'id' => 'btn-pinned-' . $answer->id])}}
                                     @endif
                                 @endif
                                 {!! Form::close() !!}
@@ -65,16 +67,14 @@
                         </div>
 
                         <div class="col-9 pull-right">
-                            <p>{{$answer->body}}</p>
-                            <a href="/admin/answers/{{$answer->id}}">
-                                <small class="text-footer">
-                                    @if ($answer->is_admin == 1)
-                                        Written on {{$answer->created_at->format('d M Y')}} by {{$answer->user->name}} as <span style="color:blue;">admin</span>
-                                    @else
-                                        Written on {{$answer->created_at->format('d M Y')}} by {{$answer->member->name}}
-                                    @endif
-                                </small>
-                            </a>
+                            <p style="word-wrap: break-word;">{{$answer->body}}</p>
+                            <small class="text-footer">
+                                @if ($answer->is_admin == 1)
+                                    <a href="/admin/answers/{{$answer->id}}">Written on {{$answer->created_at->format('d M Y')}}</a><br>by {{$answer->user->name}} as <span style="color:red;">admin</span>
+                                @else
+                                    <a href="/admin/answers/{{$answer->id}}">Written on {{$answer->created_at->format('d M Y')}}</a><br>by <a href="/admin/members/{{$answer->member_id}}">{{$answer->member->name}}</a>
+                                @endif
+                            </small>
                             <br>
                             @if ($answer->created_at != $answer->updated_at)
                                 <small style="color:green;" class="text-footer">(edited)</small>
@@ -98,8 +98,6 @@
                 </div>
             </div>
         </div>
-    <!--<br><br><br>
-    <a href="/admin/questions" class="btn btn-info pull-down">&#8592; Back</a>-->
     </div>
 </div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -130,9 +128,10 @@
                     question_id: question_id_ans
                 },
                 success: function(data) {
+                    console.log(data.question_id);
                     $('#bodyanswer-' + question_id_ans).val('');
                     $(
-                        '<div class="col-11 post-card">' +
+                        '<div class="col-11 post-card" name="answer-added">' +
                             '<hr>' +
                             '<div class="col-2 vote-block">' +
                                 '<center>' +
@@ -141,20 +140,18 @@
                                     '<span class="sum-rating">' +
                                         '0' + 
                                     '</span>' +
-                                    '<form method="POST" action="/admin/answers/pin/' + data.id + '/' + data.question_id + '/1">' +
+                                    '<form method="POST" action="/admin/answers/pin/' + data.id + '/' + data.question_id + '/0">' +
                                     '<input type="hidden" name="_token" value="{{ csrf_token() }}">' +
-                                    '{{Form::button("<div class=\"btn-pinned\" <i class=\"fa fa-thumb-tack\"></i>&nbsp;&nbsp;PIN</div>", ["type" => "submit", "class" => "btn btn-warning", "data-toggle" => "tooltip"])}}' +
+                                    '{{Form::button("<div class=\"btn-pinned\"><i class=\"fa fa-thumb-tack\"></i>&nbsp;&nbsp;PIN</div>", ["type" => "submit", "class" => "btn btn-warning", "data-toggle" => "tooltip"])}}' +
                                     '</form>' +
                                 '</center>' +
                             '</div>' +
 
                             '<div class="col-9 pull-right">' +
                                 '<p>' + data.body + '</p>' +
-                                '<a href="/admin/answers/' + data.id + '">' + 
                                     '<small class="text-footer">' +
-                                        'Written on ' + data.created + ' by ' + data.user.name + ' as <span style="color:blue;">admin</span>' + 
+                                        '<a href="/admin/answers/' + data.id + '">Written on ' + data.created + '</a><br>by ' + data.user.name + ' as <span style="color:red;">admin</span>' + 
                                     '</small>' +
-                                '</a>' +
                                 '<br>' +
                             '</div>' +
                         '</div>'

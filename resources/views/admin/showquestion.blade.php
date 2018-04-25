@@ -19,14 +19,17 @@
                 <div class="well col-12">
                     <div class="row">
                         <div class="col-12 post-card">
-                            <h3 class="title-question"><a href="/admin/questions/{{$question->id}}">{{$question->topic}}</a></h3>
-                            <p>{{$question->body}}</p>
+                            <h3 class="title-question">{{$question->topic}}</h3>
+                            <p style="word-wrap: break-word;">{{$question->body}}</p>
                             <small class="text-footer">
                                 <i>
                                     @if ($question->is_admin == 1)
-                                        Written on {{$question->created_at->format('d M Y')}} by {{$question->user->name}} as <span style="color:blue;">admin</span>
+                                        <a href="questions/{{$question->id}}">Written on {{$question->created_at->format('d M Y')}}</a><br>by {{$question->user->name}} as <span style="color:red;">admin</span>
                                     @else
-                                        Written on {{$question->created_at->format('d M Y')}} by {{$question->member->name}}
+                                        <a href="questions/{{$question->id}}">Written on {{$question->created_at->format('d M Y')}}</a><br>by <a href="members/{{$question->member_id}}">{{$question->member->name}}</a>
+                                    @endif
+                                    @if ($question->is_anon == 1)
+                                        anonymously
                                     @endif
                                 </i>
                             </small>
@@ -69,16 +72,14 @@
                                 </div>
         
                                 <div class="col-8 pull-right">
-                                    <p>{{$answer->body}}</p>
-                                    <a href="/admin/answers/{{$answer->id}}">
+                                    <p style="word-wrap: break-word;">{{$answer->body}}</p>
                                         <small class="text-footer">
                                             @if ($answer->is_admin == 1) 
-                                                Written on {{$answer->created_at->format('d M Y')}} by {{$answer->user->name}} as <span style="color:blue;">admin</span>
+                                                <a href="answers/{{$answer->id}}">Written on {{$answer->created_at->format('d M Y')}}</a><br>by {{$answer->user->name}} as <span style="color:red;">admin</span>
                                             @else
-                                                Written on {{$answer->created_at->format('d M Y')}} by {{$answer->member->name}}
+                                                <a href="answers/{{$answer->id}}">Written on {{$answer->created_at->format('d M Y')}}</a><br>by <a href="members/{{$answer->member_id}}">{{$answer->member->name}}</a>
                                             @endif
                                         </small>
-                                    </a>
                                     <br>
                                     @if ($answer->created_at != $answer->updated_at)
                                         <small style="color:green;" class="text-footer">(edited)</small>
@@ -188,17 +189,16 @@
 
                             '<div class="col-8 pull-right">' +
                                 '<p>' + data.body + '</p>' +
-                                '<a href="/admin/answers/' + data.id + '">' + 
                                     '<small class="text-footer">' +
-                                        'Written on ' + data.created + ' by ' + data.user.name + ' as <span style="color:blue;">admin</span>' + 
+                                        '<a href="/admin/answers/' + data.id + '">Written on ' + data.created + '</a><br>by ' + data.user.name + ' as <span style="color:red;">admin</span>' + 
                                     '</small>' +
-                                '</a>' +
                                 '<br>' +
                             '</div>' +
                         '</div>'
                     ).insertBefore("#answercontainer-" + question_id_ans);
                 },
                 error: function(data) {
+                    console.log(data);
                     $('<div class="alert alert-danger">Fail To Save</div>').insertAfter(".top-of-page");
                     var top = $('.top-of-page').position().top;
                     $('html').scrollTop(top);

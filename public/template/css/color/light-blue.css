@@ -10,7 +10,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-    color: #ea321e;
+    color: #69D2E7;
     text-decoration: none;
 }
 
@@ -310,10 +310,6 @@ footer.style-1 {
     background: #69D2E7;
 }
 
-.dot1, .dot2 {
-    background-color: #69D2E7;
-}
-
 .login:hover,
 .login:focus,
 .login:active {
@@ -332,6 +328,18 @@ footer.style-1 {
   color: #69D2E7;
 }
 
-.page-change {
-    color: #69D2E7;
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #69D2E7;
+}
+
+.on-page {
+    background-color: #69D2E7;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+      color: #69D2E7;
+    }
 }

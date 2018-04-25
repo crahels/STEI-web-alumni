@@ -1,15 +1,15 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light ">
     <div class="container">
         <img src="{{URL::asset('storage/logo_itb.png')}}" alt="logo_ins">
-        <a class="navbar-brand" href="/admin/">
+        <a class="navbar-brand" href="/admin/dashboard">
             <i style="font-weight: lighter; font-style: initial;" class="web-alumni">Web Alumni</i>
             <b class="stei">STEI</b>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse" style="margin-left:4%;" id="navbarSupportedContent">
               <!-- Left Side Of Navbar -->
               <ul class="navbar-nav mr-auto">
                 @if(Auth::guard('member')->user() != null)

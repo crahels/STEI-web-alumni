@@ -26,12 +26,12 @@
     background-size: cover;">
 <div class="container justify-content-center header-login">
             <div class="loginTitle text-center">
-                <img src="{{URL::asset('storage/logo_itb.png')}}" style="margin: 0 auto; float:none; margin-right: 1%;" id=loginItb>
-                <i class="title1">Web Alumni</i>
-                <i class="title2">STEI-ITB</i>
+                <a href="/"><img src="{{URL::asset('storage/logo_itb.png')}}" style="margin: 0 auto; float:none; margin-right: 1%;" id=loginItb></a>
+                <a ><i class="title1">Web Alumni</i></a>
+                <a><i class="title2">STEI-ITB</i></a>
             </div>
 </div>
-<div class="container-fluid loginContainer-member">
+<div class="container-fluid loginContainer-member" style="width: 100%">
     <div class="justify-content-center">
             <div class="text-center header-login-member-padding">
                 <h2 class="text-center text-uppercase text-white"><b>Login</b></h2>

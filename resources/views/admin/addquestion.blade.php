@@ -13,7 +13,16 @@
                 {{Form::label('topic', 'Topic')}}
                 {{Form::text('topic', '', ['class' => 'form-control', 'placeholder' => 'Topic'])}}
             </div>
-            <div class="form-group">
+            <div class="form-group" style="width:30%;">
+                <div style="float:left;">{{Form::label('anon', 'Anonymous')}}&nbsp;&nbsp;&nbsp;</div>
+                <div class="pull-right">
+                    <label class="switch">
+                        <input name="anon" id="anon" value="yes" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group" style="clear:both;">
                 {{Form::label('body', 'Question')}}
                 {{Form::textarea('body', '', ['class' => 'form-control', 'placeholder' => 'Question'])}}
             </div>

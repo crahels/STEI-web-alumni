@@ -1,3 +1,7 @@
+.sidebar-box li {
+  max-height: 48px;
+}
+
 /* The switch - the box around the slider */
 .switch {
 	position: relative;
@@ -83,9 +87,8 @@ div.row:before, div.row:after {
 }
 
 .navbar {
-	background-color: #003365 !important;
+  background-color: #003365 !important;
 	border-radius: 0px !important;
-	height: 80px;
 }
 
 .navbar-brand {

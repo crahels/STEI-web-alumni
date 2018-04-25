@@ -13,6 +13,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -26,6 +29,7 @@
             @yield('content')
         </div>
 
+        <script src="{{ asset('template/js/script.js') }}"></script>
         <script src="//cdn.ckeditor.com/4.7.2/standard/ckeditor.js"></script>
         <script>
             CKEDITOR.replace( 'article-ckeditor' );
