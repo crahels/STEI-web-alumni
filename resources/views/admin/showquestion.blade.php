@@ -52,7 +52,7 @@
                                             {{$answer->rating}}
                                         </span>
                                         @if(Auth::guard('member')->user() != null)
-                                            {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id], 'method' => 'POST']) !!}
+                                            {!! Form::open(['action' => ['AnswersController@giveRating', $answer->id, Auth::guard('member')->user()->id, 0], 'method' => 'POST']) !!}
                                             @if ($answer->members->contains(Auth::guard('member')->user()->id)) 
                                                 {{Form::submit('VOTE', ['class' => 'btn'])}}
                                             @else
