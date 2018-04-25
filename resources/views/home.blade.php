@@ -139,7 +139,7 @@
     <!-- Start Feature Section -->
         <section id="service" class="services-section">
             <div class="container">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="section-title text-center">
                             <h3>Greeting Speech</h3>
@@ -147,16 +147,16 @@
                             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                             <br>
                             <br>
-                            Yowinarto, Ketua Alumni STEI</p>
+                            Ketua Alumni STEI</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="section-title text-center">
                             <h3>Our Services</h3>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -170,7 +170,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">Meet new members</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
+                                    <p>Say hello to the new members of the family. Our family is getting bigger!</p>
                                 </div>
                             </div>
                         </div>
@@ -183,8 +183,8 @@
                                     <div class="border"></div>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">Tons of articles</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
+                                    <h4 class="media-heading">Articles</h4>
+                                    <p>Keep up to date with trusted articles from the admins.</p>
                                 </div>
                             </div>
                         </div>
@@ -198,7 +198,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">Interaction with others</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu</p>
+                                    <p>You can interact with others in the Forum tab.</p>
                                 </div>
                             </div>
                         </div>
@@ -276,7 +276,7 @@
                     <div class="counter-item">
                     <i class="fa fa-newspaper-o"></i>
                     <div class="timer" id="item2" data-to="{{count($homedata[0])}}" data-speed="2500"></div>
-                    <h5>Article</h5>                               
+                    <h5>Articles</h5>                               
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
@@ -300,7 +300,6 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
                         <h3>Our New Members</h3>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate</p>
                     </div>
                 </div>
             </div>
@@ -371,7 +370,7 @@
                                     <img src="/storage/profile_image/{{$homedata[1][3]->profile_image}}" class="img-responsive" alt="">
                                     <div class="team-details">
                                         <h4>{{$homedata[1][3]->name}}</h4>
-                                        <p>Alumni of STEI</p>
+                                        <p>Alumni of STEI ITB</p>
                                         <ul>
                                         @if ((Auth::user() != null) || (Auth::guard('member')->user() != null))
                                             <li><a href="/members/{{$homedata[1][3]->id}}"><i class="fa fa-user"></i></a></li>
@@ -390,7 +389,7 @@
                                     <img src="/storage/profile_image/{{$homedata[1][4]->profile_image}}" class="img-responsive" alt="">
                                     <div class="team-details">
                                         <h4>{{$homedata[1][4]->name}}</h4>
-                                        <p>Alumni of STEI</p>
+                                        <p>Alumni of STEI ITB</p>
                                         <ul>
                                         @if ((Auth::user() != null) || (Auth::guard('member')->user() != null))
                                             <li><a href="/members/{{$homedata[1][4]->id}}"><i class="fa fa-user"></i></a></li>
@@ -417,7 +416,6 @@
                 <div class="col-lg-12">
                     <div class="section-title text-center">
                         <h3>Contact With Us</h3>
-                        <h5 class="white-text lowercase"><strong>admin@admin.com</strong></h5>
                     </div>
                 </div>
             </div>
