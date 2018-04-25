@@ -354,7 +354,7 @@
                             @endif --}}
 
                             <div class="team-member">
-                                <img src="/storage/view-more-members.png" class="img-responsive" alt="">
+                                <img src="/storage/view-more-members.jpg" class="img-responsive" alt="">
                                 <div class="team-details">
                                     <h4>VIEW MORE</h4>
                                     <ul>

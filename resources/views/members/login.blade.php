@@ -8,7 +8,8 @@
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <link href="{{ asset('packages/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-        <title>@yield('title')</title>
+        <link rel="icon" href="/storage/logo_itb.png" type="image/x-icon"/>
+        <title>Web Alumni STEI</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,6 +20,9 @@
     <!-- Fonts -->
 </head>
 @include('inc.messages')
+
+@section('title', 'HOME')
+
 <body class="bodyLogin" style="background:url({{url('storage/banner_darken.png')}}) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;

@@ -108,7 +108,8 @@ div.row:before, div.row:after {
 }
 
 .navbar-nav {
-	font-size: 1.2em;
+  font-size: 1.2em;
+  margin: 0;
 }
 
 .sidebar {

@@ -4466,7 +4466,7 @@ tbody.collapse.show {
   padding: 0.25rem 0.75rem;
   font-size: 1.125rem;
   line-height: 1;
-  background-color: transparent;
+  background-color: #e8e8e8;
   border: 1px solid transparent;
   border-radius: 0.25rem;
 }

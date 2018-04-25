@@ -9,9 +9,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-          <div class="collapse navbar-collapse" style="margin-left:4%;" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <!-- Left Side Of Navbar -->
-              <ul class="navbar-nav mr-auto">
+              <ul class="navbar-nav mr-auto" style="margin: 0">
                 @if(Auth::guard('member')->user() != null)
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/members/{{Auth::guard('member')->user()->id}}">Profile</span></a>
@@ -38,7 +38,7 @@
                   <!-- Authentication Links -->
                   @guest
                     @if(Auth::guard('member')->user() != null)
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" style="margin: 0">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <span>{{Auth::guard('member')->user()->name}}</span>
                             </a>
