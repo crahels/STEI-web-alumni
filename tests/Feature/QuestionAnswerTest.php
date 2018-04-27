@@ -119,10 +119,9 @@ class QuestionAnswerTest extends TestCase
                          ->see('Question Added');
         
         $dummy = Question::where('topic', 'Question for Testing')->first();
-        $written_on = 'Written on ' . $dummy->created_at->format('d M Y');
         $response = $this->actingAs($user)
                          ->visit('admin/questions')
-                         ->click($written_on)
+                         ->click('Question for Testing')
                          ->see('Written on')
                          ->see('Last Editted on')
                          ->see('by');
